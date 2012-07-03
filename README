@@ -10,7 +10,7 @@
 #
 # @autor   Glauco Roberto Munsberg dos Santos
 # @github  git@github.com:glaucomunsberg/Konigsberg.git
-# @version 0.1
+# @version 0.2
 #
 ################################################################################
 # 1.Introduçao
@@ -19,6 +19,7 @@
 # Projeto Konigsberg se propõem a realizar o trabalho de EDII, proposto pelo 
 #   professor Ricardo Matsumura Araújo. O repositório recebe o nome 'Königsberg'
 #   em referencia ao problema histórico relacionado aos grafos
+#
 ################################################################################
 # 2.Como foi programado
 ################################################################################

@@ -1,3 +1,16 @@
+Versão 0.2
+    Correções
+        Modificação de identificadores
+        Modança no encapsulamento da informação
+
+    Implementações
+        deleteJSONid         - remove  e retorna no formato JSON [bit implemented yet]
+        vizinhoJSONid        - retorna se não vizinhos no formato JSON
+        getVizinhosDaMatriz  - retorna os vizinhos [bit implemented yet]
+        conexaoJSONconexaoid - retorna String sobre a conexão no formato JSON
+        ordemtopologica      - retorna a ordem topologia [bit implemented yet]
+        ordemtopologicaJSON  - retorna String no formato JSON da conexão
+
 Versão 0.1
     Correções
     Implementações
