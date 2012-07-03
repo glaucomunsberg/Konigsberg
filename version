@@ -1,0 +1,9 @@
+Versão 0.1
+    Correções
+    Implementações
+        inicialize     - Método de inicialização do sistema
+        setValorMatriz - insere valor na matriz
+        getValorMatriz - retorna o valor
+        setNomeVertice - insere o nome do vertice
+        getNomeVertice - retorna o nome do vertice
+        getJSONid      - retorna String sobre o vertice no formato JSON
