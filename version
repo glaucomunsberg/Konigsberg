@@ -1,3 +1,23 @@
+Versão 0.4
+    Principal
+        ✔ setNovaAresta         - Cria uma nova aresta entre dos verteces
+        ✎ getJSONid             - modificado seu comportamento e documentação
+        ✎ vizinhoJSONid         - modificado
+        ✎ conexaoJSONconexaoid  - modificado
+        ✎ ordemTopologicaJSON   - documentado implementada
+        ✎ setNovoVertice        - documentado implementada
+        ✎ deleteJSONid          - [bit implemented yet]
+
+    Aresta
+        ✔ setProximaAresta  - insere a próxima aresta
+        ✔ arestaExists      - verifica se a aresta existe naquele vertice
+    Vertice
+        ✔ getVertice        - retorna o vertice se ele existe
+        ✔ verticeExists     - Verifica se existe o vertice
+        ⇲ getVertice        - agora se chama getNomeVertice
+        ✎ documentação do codigo em geral
+        
+
 Versão 0.3.1
     Principal
         ✎ Troca do grafo Matriz de Int por Vertices e Arestas
@@ -7,9 +27,11 @@ Versão 0.3.1
         ✎ getVizinhosDaMatriz   - modificado
         ✘ setNomeVertice        - removido
     Aresta
-        ✎ getProximo            - agora se chama getProximoAresta
+        ⇲ getProximo            - agora se chama getProximoAresta
     Vertice
         ✔ setNovoVertice        - cria um novo vertice
+    version
+        ✔ Nova simbologia para os commits
 
 Versão 0.3
     Aresta
@@ -46,8 +68,7 @@ Understanding the file 'version'
 --------------------------------------------------------------------------------
 [estable version].[change in their behavior].[version of the struct]
     class manipulated
-        modifications {[✔:created, ✎:edited, ✘:removed] }
-
+        modifications {[✔:created, ✎:edited, ✘:removed, ⇲:renamed] }
     
 
     

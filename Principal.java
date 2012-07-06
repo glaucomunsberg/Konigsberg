@@ -8,8 +8,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Principal{
-    private String[] verticeNome;
-    private int tamanhoMaximo;
     private Vertice raiz;
     private Vertice vertice;
     private Aresta aresta;
@@ -26,10 +24,7 @@ public class Principal{
      * @return void
      */
     public void inicialize(){
-        int dimensaoMaxima = 10;
-        tamanhoMaximo = dimensaoMaxima;
-        verticeNome = new String[dimensaoMaxima];
-        Vertice linha = new Vertice("RAIZ", -999, null, null);
+        raiz = new Vertice("RAIZ", -999, null, null);
     }
     
     /**
@@ -105,13 +100,13 @@ public class Principal{
         vertice = raiz.getProximoVertice();
         while( vertice != null){
             if( vertice.getID() == verticeID){
-                return vertice.getNome();
+                return vertice.getNomeVertice();
             }
             else{
                 vertice = vertice.getProximoVertice();
             }
         }
-        return null;
+        return "";
     }
     
     /**
@@ -165,12 +160,12 @@ public class Principal{
      * 
      * @return String verticeFormatoJSON
      */
-    public String getJSONid(int vertice){
-        
-        if( vertice < this.tamanhoMaximo ){
-            return String.format("{\"vertice\":{\"ID\":%d, \"dado\":\"%s\", \"resposta\":\"sucesso\"}}", vertice+1,this.verticeNome[vertice] );
+    public String getJSONid(int verticeID){
+        vertice = raiz.getVerticeExists(verticeID);
+        if( vertice != null ){
+            return String.format("{\"vertice\":{\"ID\":%d, \"dado\":\"%s\", \"resposta\":\"sucesso\"}}", verticeID,vertice.getNomeVertice() );
         }else{
-            return String.format("{\"vertice\":{\"ID\":%d, \"dado\":\"\", \"resposta\":\"falha\"}}", vertice);
+            return String.format("{\"vertice\":{\"ID\":%d, \"dado\":\"\", \"resposta\":\"falha\"}}", verticeID);
         }
     }
     
@@ -179,12 +174,12 @@ public class Principal{
      * @param int vertice
      * @return String verticeRemovidoFormatoJSON
      */
-    public String deleteJSONid(int vertice){
-        
-        if( vertice < this.tamanhoMaximo ){
-            return String.format("{\"delete\":{\"ID\":%d,\"resposta\":\"sucesso\"}}", vertice+1);
+    public String deleteJSONid(int verticeID){
+        vertice = raiz.getVerticeExists(verticeID);
+        if( vertice != null ){
+            return String.format("{\"delete\":{\"ID\":%d,\"resposta\":\"sucesso\"}}", verticeID);
         }else{
-            return String.format("{\"delete\":{\"ID\":%d,\"resposta\":\"falha\"}}", vertice+1);
+            return String.format("{\"delete\":{\"ID\":%d,\"resposta\":\"falha\"}}", verticeID);
         }
     }
     
@@ -194,11 +189,11 @@ public class Principal{
      * 
      * @return String vizinhosFormatoJSON
      */
-    public String vizinhoJSONid(int vertice){
-        
-        if( vertice < this.tamanhoMaximo){
-            String retorno = String.format("{\"vizinhos\":{\"ID\":%d, \"resposta\":\"sucesso\", \"vizinhos\":[", vertice+1);
-            int[] vizinho = this.getVizinhosDaMatriz(vertice);
+    public String vizinhoJSONid(int verticeID){
+        vertice = raiz.getVerticeExists(verticeID);
+        if( vertice != null){
+            String retorno = String.format("{\"vizinhos\":{\"ID\":%d, \"resposta\":\"sucesso\", \"vizinhos\":[", verticeID);
+            int[] vizinho = this.getVizinhosDaMatriz(verticeID);
             for(int a=0; a < vizinho.length;a++){
                 retorno+=String.format("%d", vizinho[a]);
                 if( a+1 < vizinho.length ){
@@ -208,23 +203,35 @@ public class Principal{
             retorno += "]}}";
             return retorno;
         }else{
-            return String.format("{\"vizinhos\":{\"ID\":%d, \"resposta\":\"falha\", \"vizinhos\":[]}}", vertice+1);
+            return String.format("{\"vizinhos\":{\"ID\":%d, \"resposta\":\"falha\", \"vizinhos\":[]}}", verticeID);
         }
     }
     
-    public String conexaoJSONconexaoid(int id1, int id2){
-        if( id1 < this.tamanhoMaximo && id2 < this.tamanhoMaximo){
-            if( this.getValorMatriz(id1, id2) >= 0)
+    /**
+     * Método que verifica se há conexão e retorna no formado JSON
+     * @param int verticeOrigemId
+     * @param int verticeDestinoId
+     * @return String formatoJSON
+     */
+    public String conexaoJSONconexaoid(int verticeOrigemId, int verticeDestinoId){
+        vertice = raiz.getVerticeExists(verticeOrigemId);
+        aresta = vertice.getArestaExists(verticeDestinoId);
+        if( vertice != null && aresta != null){
+            if( this.getValorMatriz(verticeOrigemId, verticeDestinoId) >= 0)
             {
-                return String.format("{\"conexao\":{\"ID1\":%d, \"ID2\":%d, \"resposta\":\"sucesso\", \"conexao\":\"sim\"}}", id1+1, id2+1);
+                return String.format("{\"conexao\":{\"ID1\":%d, \"ID2\":%d, \"resposta\":\"sucesso\", \"conexao\":\"sim\"}}", verticeOrigemId, verticeDestinoId);
             }else{
-                return String.format("{\"conexao\":{\"ID1\":%d, \"ID2\":%d, \"resposta\":\"sucesso\", \"conexao\":\"não\"}}", id1+1, id2+1);
+                return String.format("{\"conexao\":{\"ID1\":%d, \"ID2\":%d, \"resposta\":\"sucesso\", \"conexao\":\"não\"}}", verticeOrigemId, verticeDestinoId);
             }
         }else{
-            return String.format("{\"conexao\":{\"ID1\":%d, \"ID2\":%d, \"resposta\":\"falha\", \"conexao\":\"\"}}", id1+1, id2+1);
+            return String.format("{\"conexao\":{\"ID1\":%d, \"ID2\":%d, \"resposta\":\"falha\", \"conexao\":\"\"}}", verticeOrigemId, verticeDestinoId);
         }
     }
     
+    /**
+     * Método que retorna a ordemTopologicaJSON
+     * @return String formatoJSON
+     */
     public String ordemTopologicaJSON(){
         String retorno = "{\"ordemtop\":[";
         int[] ordem = this.getOrdemTopologica();
@@ -249,4 +256,32 @@ public class Principal{
         vertice.setProximoVertice(new Vertice(nome, verticeID, null, null));
         
     }
+    
+    public void setNovaAresta(int verticeOrigemID, int verticeDestinoID, int valor){
+        Vertice vert = raiz.getVerticeExists(verticeDestinoID);
+        if(vert == null){
+            return;
+        }
+        
+        vertice = raiz.getProximoVertice();
+        while( vertice != null ){
+            if(vertice.getID() == verticeOrigemID ){
+                aresta = vertice.getAresta();
+                while( aresta != null){
+                    if( aresta.getVerticeID() == verticeDestinoID){
+                        aresta.setValor(valor);
+                        return;
+                    }
+                    else{
+                        aresta = aresta.getProximaAresta();
+                    }
+                }
+                aresta.setProximaAresta(new Aresta(verticeDestinoID,valor,null));
+                return;
+            }else{
+                vertice = vertice.getProximoVertice();
+            }
+        }
+    }
+    
 }
