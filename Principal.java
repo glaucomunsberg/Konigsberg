@@ -89,26 +89,6 @@ public class Principal{
         return -1;
     }
     
-    
-    /**
-     * Método que retorna o nome do vertice
-     * @param int vertice
-     * 
-     * @return String nomeDoVertice
-     */
-    private String getNomeVertice(int verticeID){
-        vertice = raiz.getProximoVertice();
-        while( vertice != null){
-            if( vertice.getID() == verticeID){
-                return vertice.getNomeVertice();
-            }
-            else{
-                vertice = vertice.getProximoVertice();
-            }
-        }
-        return "";
-    }
-    
     /**
      * Método que retorna um array com os vertices vizinhos do
      *  vertice passado
@@ -244,6 +224,12 @@ public class Principal{
         return retorno+="]}"; 
     }
     
+    /**
+     * Insere um novo Vertice
+     * 
+     * @param int verticeID
+     * @param String nome 
+     */
     private void setNovoVertice(int verticeID, String nome){
         vertice = raiz.getProximoVertice();
         while( vertice != null ){

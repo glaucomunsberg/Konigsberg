@@ -14,7 +14,7 @@ public class Vertice {
      * Construtor base com tudo zero e null
      */
     public Vertice(){
-        nome = "";
+        nome = ""; 
         ID = 0;
         proximoVertice = null;
     }

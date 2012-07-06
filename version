@@ -7,7 +7,7 @@ Versão 0.4
         ✎ ordemTopologicaJSON   - documentado implementada
         ✎ setNovoVertice        - documentado implementada
         ✎ deleteJSONid          - [bit implemented yet]
-
+        ✘ getNomeVertice        - Removido por não inflingir o conceito de OO
     Aresta
         ✔ setProximaAresta  - insere a próxima aresta
         ✔ arestaExists      - verifica se a aresta existe naquele vertice
