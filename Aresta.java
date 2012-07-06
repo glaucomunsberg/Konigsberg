@@ -63,7 +63,7 @@ public class Aresta
      * 
      * @return Aresta proxima
      */
-    public Aresta getProximo(){
+    public Aresta getProximaAresta(){
         return this.proximo;
     }
     

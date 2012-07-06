@@ -48,5 +48,4 @@ public class Vertice {
     public void setProximoVertice(Vertice vertice){
         this.proximoVertice = vertice;
     }
-    
 }

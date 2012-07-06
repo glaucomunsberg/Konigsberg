@@ -5,11 +5,14 @@
  *      @version 0.1
  */
 
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Principal{
     private String[] verticeNome;
     private int tamanhoMaximo;
-    private int matriz[][];
+    private Vertice raiz;
+    private Vertice vertice;
+    private Aresta aresta;
     private Scanner leitor;
     
     public Principal(){    
@@ -26,20 +29,40 @@ public class Principal{
         int dimensaoMaxima = 10;
         tamanhoMaximo = dimensaoMaxima;
         verticeNome = new String[dimensaoMaxima];
-        matriz = new int[dimensaoMaxima][dimensaoMaxima];
+        Vertice linha = new Vertice("RAIZ", -999, null, null);
     }
     
     /**
      * Método para inserir o valor na matriz, recebe como parametros
      *  a linha, coluna e valor
-     * @param int linha
-     * @param int coluna
+     * @param int verticeOrigemID
+     * @param int verticeDestinoD
      * @param int valor
      * 
      * @return void
      */
-    public void setValorMatriz(int linha, int coluna, int valor){
-        this.matriz[linha][coluna] = valor;
+    public boolean setValorMatriz(int verticeOrigemID, int verticeDestinoD, int valor){
+        vertice = raiz.getProximoVertice();
+        while( vertice != null )
+        {
+            if( vertice.getID() == verticeOrigemID){
+                aresta = vertice.getAresta();
+                while( aresta != null)
+                {
+                    if( aresta.getVerticeID() == verticeDestinoD){
+                        aresta.setValor(valor);
+                        return true;
+                    }
+                    else{
+                        aresta = aresta.getProximaAresta();
+                    }
+                }
+            }
+            else{
+                vertice = vertice.getProximoVertice();
+            } 
+        }
+        return false;
     }
     
     /**
@@ -50,20 +73,27 @@ public class Principal{
      * 
      * @return int peso
      */
-    private int getValorMatriz(int linha, int coluna){
-        return matriz[linha][coluna];
+    private int getValorMatriz(int verticeOrigemID, int verticeDestinoID){
+        vertice = raiz.getProximoVertice();
+        while( vertice != null ){
+            if( vertice.getID() == verticeOrigemID){
+                aresta = vertice.getAresta();
+                while( aresta != null){
+                    if( aresta.getVerticeID() == verticeDestinoID){
+                        return aresta.getValor();
+                    }
+                    else{
+                        aresta = aresta.getProximaAresta();
+                    }
+                }
+            }
+            else{
+                vertice = vertice.getProximoVertice();
+            }
+        }
+        return -1;
     }
     
-    /**
-     * Insere o nome do vertice recebe o vertice e valors
-     * @param int vertice
-     * @param String nome
-     * 
-     * @return void
-     */
-    public void setNomeVertice(int vertice, String nome){
-        verticeNome[vertice] = nome;
-    }
     
     /**
      * Método que retorna o nome do vertice
@@ -71,8 +101,17 @@ public class Principal{
      * 
      * @return String nomeDoVertice
      */
-    private String getNomeVertice(int vertice){
-        return this.verticeNome[vertice];
+    private String getNomeVertice(int verticeID){
+        vertice = raiz.getProximoVertice();
+        while( vertice != null){
+            if( vertice.getID() == verticeID){
+                return vertice.getNome();
+            }
+            else{
+                vertice = vertice.getProximoVertice();
+            }
+        }
+        return null;
     }
     
     /**
@@ -82,9 +121,31 @@ public class Principal{
      * 
      * @return int[]vizinho
      */
-    private int[] getVizinhosDaMatriz(int vertice){
-        int[] vizinhos = new int[1];
-        return vizinhos;
+    private int[] getVizinhosDaMatriz(int verticeID){
+        
+        vertice = raiz.getProximoVertice();
+        ArrayList<Integer> array = new ArrayList<Integer>();
+         while( vertice != null){
+             if( vertice.getID() == verticeID){
+                 aresta = vertice.getAresta();
+                 while( aresta != null)
+                 {
+                     array.add( aresta.getVerticeID());
+                     aresta = aresta.getProximaAresta();
+                 }
+                 int[] arrayDeInt = new int[array.size()];
+                 for (int i=0; i < array.size(); i++)
+                 {
+                    arrayDeInt[i] = array.get(i).intValue();
+                 }
+                 return arrayDeInt;
+             }
+             else{
+                 vertice = vertice.getProximoVertice();
+             }
+         }
+
+        return new int[0];
     }
     
     /**
@@ -174,5 +235,18 @@ public class Principal{
                 }
             }
         return retorno+="]}"; 
+    }
+    
+    private void setNovoVertice(int verticeID, String nome){
+        vertice = raiz.getProximoVertice();
+        while( vertice != null ){
+            if(vertice.getID() == verticeID ){
+                return;
+            }else{
+                vertice = vertice.getProximoVertice();
+            }
+        }
+        vertice.setProximoVertice(new Vertice(nome, verticeID, null, null));
+        
     }
 }
