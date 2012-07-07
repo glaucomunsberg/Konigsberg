@@ -1,20 +1,31 @@
+Versão 0.4.5
+    Principal
+        ✎ setNovoVertice    - metodo simplificado pelo vertece.setProximoVertice
+        ✎ getValorMatriz    - modificado por ter sido simplificado pelo metodo vertece.setProximoVertice e vertece.setProximaAresta
+    Vertice
+        ✔ setProximaAresta  - método que veio de aresta,solucionando problema
+        ⇲ setProximoVertice - recebe parametros cria o vertice novo
+        ⇲ getAresta         - agora se chama getProximaAresta
+    Aresta
+        ✘ setProximaAresta  - método removido por causar instabilidade
+
 Versão 0.4
     Principal
-        ✔ setNovaAresta         - Cria uma nova aresta entre dos verteces
+        ✔ setNovaAresta         - cria uma nova aresta entre dos verteces
         ✎ getJSONid             - modificado seu comportamento e documentação
         ✎ vizinhoJSONid         - modificado
         ✎ conexaoJSONconexaoid  - modificado
         ✎ ordemTopologicaJSON   - documentado implementada
         ✎ setNovoVertice        - documentado implementada
         ✎ deleteJSONid          - [bit implemented yet]
-        ✘ getNomeVertice        - Removido por não inflingir o conceito de OO
+        ✘ getNomeVertice        - Removido por inflingir o conceito de OO
     Aresta
-        ✔ setProximaAresta  - insere a próxima aresta
-        ✔ arestaExists      - verifica se a aresta existe naquele vertice
+        ✔ setProximaAresta      - insere a próxima aresta
+        ✔ arestaExists          - verifica se a aresta existe naquele vertice
     Vertice
-        ✔ getVertice        - retorna o vertice se ele existe
-        ✔ verticeExists     - Verifica se existe o vertice
-        ⇲ getVertice        - agora se chama getNomeVertice
+        ✔ getVertice            - retorna o vertice se ele existe
+        ✔ verticeExists         - Verifica se existe o vertice
+        ⇲ getVertice            - agora se chama getNomeVertice
         ✎ documentação do codigo em geral
         
 
@@ -68,7 +79,4 @@ Understanding the file 'version'
 --------------------------------------------------------------------------------
 [estable version].[change in their behavior].[version of the struct]
     class manipulated
-        modifications {[✔:created, ✎:edited, ✘:removed, ⇲:renamed] }
-    
-
-    
+        modifications {[✔:created, ✎:edited, ✘:removed, ⇲:rename method or changed some attribute] }

@@ -41,7 +41,7 @@ public class Principal{
         while( vertice != null )
         {
             if( vertice.getID() == verticeOrigemID){
-                aresta = vertice.getAresta();
+                aresta = vertice.getProximaAresta();
                 while( aresta != null)
                 {
                     if( aresta.getVerticeID() == verticeDestinoD){
@@ -69,22 +69,18 @@ public class Principal{
      * @return int peso
      */
     private int getValorMatriz(int verticeOrigemID, int verticeDestinoID){
-        vertice = raiz.getProximoVertice();
-        while( vertice != null ){
-            if( vertice.getID() == verticeOrigemID){
-                aresta = vertice.getAresta();
-                while( aresta != null){
-                    if( aresta.getVerticeID() == verticeDestinoID){
-                        return aresta.getValor();
-                    }
-                    else{
-                        aresta = aresta.getProximaAresta();
-                    }
-                }
+        System.out.printf("Valor da matriz\n");
+        vertice = raiz.getVerticeExists(verticeOrigemID);
+        
+        if( vertice != null )
+        {
+            System.out.printf("Achou vertice\n");
+            aresta = vertice.getArestaExists(verticeDestinoID);
+            if(aresta != null){
+                System.out.printf("Achou aresta\n");
+                return aresta.getValor();
             }
-            else{
-                vertice = vertice.getProximoVertice();
-            }
+           
         }
         return -1;
     }
@@ -102,7 +98,7 @@ public class Principal{
         ArrayList<Integer> array = new ArrayList<Integer>();
          while( vertice != null){
              if( vertice.getID() == verticeID){
-                 aresta = vertice.getAresta();
+                 aresta = vertice.getProximaAresta();
                  while( aresta != null)
                  {
                      array.add( aresta.getVerticeID());
@@ -230,44 +226,39 @@ public class Principal{
      * @param int verticeID
      * @param String nome 
      */
-    private void setNovoVertice(int verticeID, String nome){
-        vertice = raiz.getProximoVertice();
-        while( vertice != null ){
-            if(vertice.getID() == verticeID ){
-                return;
-            }else{
-                vertice = vertice.getProximoVertice();
-            }
-        }
-        vertice.setProximoVertice(new Vertice(nome, verticeID, null, null));
-        
+    public void setNovoVertice(int verticeID, String nome){
+        raiz.setProximoVertice(nome, verticeID);
     }
     
-    public void setNovaAresta(int verticeOrigemID, int verticeDestinoID, int valor){
-        Vertice vert = raiz.getVerticeExists(verticeDestinoID);
-        if(vert == null){
-            return;
-        }
-        
-        vertice = raiz.getProximoVertice();
-        while( vertice != null ){
-            if(vertice.getID() == verticeOrigemID ){
-                aresta = vertice.getAresta();
-                while( aresta != null){
-                    if( aresta.getVerticeID() == verticeDestinoID){
-                        aresta.setValor(valor);
-                        return;
-                    }
-                    else{
-                        aresta = aresta.getProximaAresta();
-                    }
-                }
-                aresta.setProximaAresta(new Aresta(verticeDestinoID,valor,null));
-                return;
-            }else{
-                vertice = vertice.getProximoVertice();
+    public void setNovaAresta(int verticeOrigemID, int verticeDestinoID, int valor){        
+        vertice = raiz.getVerticeExists(verticeOrigemID);
+        if( vertice != null )
+        {
+            aresta = vertice.getArestaExists(verticeOrigemID);
+            if( aresta != null){
+                    return;
             }
+            else{
+                aresta = aresta.getProximaAresta();
+            }
+            raiz.setProximaAresta(verticeDestinoID,valor);
         }
+    }
+    
+    public static void main(String args[]){
+        Principal grafo = new Principal();
+        grafo.inicialize();
+        grafo.setNovoVertice(1, "glauco");
+        grafo.setNovoVertice(2, "maria");
+        grafo.setNovoVertice(3, "tiago");
+        System.out.printf("%s\n", grafo.getJSONid(1));
+        System.out.printf("%s\n", grafo.getJSONid(2));
+        System.out.printf("%s\n", grafo.getJSONid(3));
+        grafo.setNovaAresta(1, 2, 2);
+        System.out.printf("Get Valor\n");
+        System.out.printf("%s\n", grafo.getValorMatriz(1, 2));
+        System.out.printf("END\n");
+        
     }
     
 }

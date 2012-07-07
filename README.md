@@ -1,4 +1,9 @@
 Konigsberg
 ==========
 
-Projeto Konigsberg se propõem a realizar o trabalho de EDII, proposto pelo professor Ricardo Matsumura Araújo. O repositório recebe o nome 'Königsberg' em referencia ao problema histórico relacionado aos grafos
+Projeto Konigsberg se propõem a realizar o trabalho de EDII, proposto pelo professor Ricardo Matsumura Araújo. 
+O repositório recebe o nome 'Königsberg' em referencia ao problema histórico relacionado aos grafos
+
+
+Para saber mais sobre como foi o desenvolvimento leia 'version'
+Para saber mais como executar e detalhes da programação leia 'README'

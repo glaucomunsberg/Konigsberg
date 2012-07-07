@@ -58,7 +58,7 @@ public class Vertice {
      * 
      * @return Aresta aresta
      */
-    public Aresta getAresta(){
+    public Aresta getProximaAresta(){
         return this.aresta;
     }
     
@@ -80,13 +80,23 @@ public class Vertice {
     
     /**
      * Método que insere novo vertice
+     *  deslocando o próximo deste para o novo
+     *  vertice
      * 
      * @param Vertice vertice 
      */
-    public void setProximoVertice(Vertice vertice){
-        this.proximoVertice = vertice;
+    public void setProximoVertice(String nome, int verticeID){
+        this.proximoVertice = new Vertice(nome, verticeID, null, this.proximoVertice);
     }
-    
+   
+    /**
+     * Método que insere uma nova aresta
+     * @param aresta 
+     */
+    public void setProximaAresta(int VerticeDestinoID, int valor){
+        Aresta are = this.getProximaAresta();
+        this.aresta = new Aresta(VerticeDestinoID, valor, are);    
+    }
     /**
      * Método que retorna a aresta se ela existe
      *  nesse vertice, caso contrário retorna null
@@ -95,7 +105,7 @@ public class Vertice {
      * @return {Aresta || null }
      */
     public Aresta getArestaExists(int verticeID){
-        Aresta arestaTemp = this.getAresta();
+        Aresta arestaTemp = this.getProximaAresta();
         while( arestaTemp != null ){
             if( arestaTemp.getVerticeID() == verticeID ){
                 return arestaTemp;
