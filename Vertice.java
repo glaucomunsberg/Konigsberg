@@ -94,8 +94,7 @@ public class Vertice {
      * @param aresta 
      */
     public void setProximaAresta(int VerticeDestinoID, int valor){
-        Aresta are = this.getProximaAresta();
-        this.aresta = new Aresta(VerticeDestinoID, valor, are);    
+        this.aresta = new Aresta(VerticeDestinoID, valor, this.aresta);    
     }
     /**
      * Método que retorna a aresta se ela existe

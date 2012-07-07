@@ -69,18 +69,13 @@ public class Principal{
      * @return int peso
      */
     private int getValorMatriz(int verticeOrigemID, int verticeDestinoID){
-        System.out.printf("Valor da matriz\n");
         vertice = raiz.getVerticeExists(verticeOrigemID);
         
         if( vertice != null )
         {
-            System.out.printf("Achou vertice\n");
             aresta = vertice.getArestaExists(verticeDestinoID);
-            if(aresta != null){
-                System.out.printf("Achou aresta\n");
+            if(aresta != null)
                 return aresta.getValor();
-            }
-           
         }
         return -1;
     }
@@ -96,7 +91,7 @@ public class Principal{
         
         vertice = raiz.getProximoVertice();
         ArrayList<Integer> array = new ArrayList<Integer>();
-         while( vertice != null){
+        while( vertice != null){
              if( vertice.getID() == verticeID){
                  aresta = vertice.getProximaAresta();
                  while( aresta != null)
@@ -107,7 +102,7 @@ public class Principal{
                  int[] arrayDeInt = new int[array.size()];
                  for (int i=0; i < array.size(); i++)
                  {
-                    arrayDeInt[i] = array.get(i).intValue();
+                    arrayDeInt[i]=array.get(i);
                  }
                  return arrayDeInt;
              }
@@ -190,10 +185,11 @@ public class Principal{
      * @return String formatoJSON
      */
     public String conexaoJSONconexaoid(int verticeOrigemId, int verticeDestinoId){
-        vertice = raiz.getVerticeExists(verticeOrigemId);
-        aresta = vertice.getArestaExists(verticeDestinoId);
-        if( vertice != null && aresta != null){
-            if( this.getValorMatriz(verticeOrigemId, verticeDestinoId) >= 0)
+        Vertice verticeA = raiz.getVerticeExists(verticeOrigemId);
+        Vertice verticeB = raiz.getVerticeExists(verticeDestinoId);
+        Aresta arestaA = verticeA.getArestaExists(verticeDestinoId);
+        if( verticeA != null && verticeB != null){
+            if( arestaA != null)
             {
                 return String.format("{\"conexao\":{\"ID1\":%d, \"ID2\":%d, \"resposta\":\"sucesso\", \"conexao\":\"sim\"}}", verticeOrigemId, verticeDestinoId);
             }else{
@@ -238,10 +234,7 @@ public class Principal{
             if( aresta != null){
                     return;
             }
-            else{
-                aresta = aresta.getProximaAresta();
-            }
-            raiz.setProximaAresta(verticeDestinoID,valor);
+            vertice.setProximaAresta(verticeDestinoID,valor);
         }
     }
     
@@ -251,14 +244,12 @@ public class Principal{
         grafo.setNovoVertice(1, "glauco");
         grafo.setNovoVertice(2, "maria");
         grafo.setNovoVertice(3, "tiago");
-        System.out.printf("%s\n", grafo.getJSONid(1));
-        System.out.printf("%s\n", grafo.getJSONid(2));
-        System.out.printf("%s\n", grafo.getJSONid(3));
         grafo.setNovaAresta(1, 2, 2);
-        System.out.printf("Get Valor\n");
-        System.out.printf("%s\n", grafo.getValorMatriz(1, 2));
-        System.out.printf("END\n");
-        
+        grafo.setNovaAresta(1, 3, 3);
+        System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 2));
+        System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 3));
+        System.out.printf("%s\n", grafo.conexaoJSONconexaoid(3, 1));
+        System.out.printf("%s\n", grafo.conexaoJSONconexaoid(2, 4));
     }
     
 }

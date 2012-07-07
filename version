@@ -1,4 +1,11 @@
-Versão 0.4.5
+Versão 0.4.2
+    Principal
+        ✎ getValorMatriz        - modificação simples
+        ✎ conexaoJSONconexaoid  - correção na lógica para simplificar
+    Vertice
+        ✎ setProximaAresta      - modificação simples
+
+Versão 0.4.1
     Principal
         ✎ setNovoVertice    - metodo simplificado pelo vertece.setProximoVertice
         ✎ getValorMatriz    - modificado por ter sido simplificado pelo metodo vertece.setProximoVertice e vertece.setProximaAresta
