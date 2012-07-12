@@ -148,6 +148,7 @@ public class Principal{
     public String deleteJSONid(int verticeID){
         vertice = raiz.getVerticeExists(verticeID);
         if( vertice != null ){
+            raiz.deleteVerticeDaMatriz(verticeID);
             return String.format("{\"delete\":{\"ID\":%d,\"resposta\":\"sucesso\"}}", verticeID);
         }else{
             return String.format("{\"delete\":{\"ID\":%d,\"resposta\":\"falha\"}}", verticeID);
@@ -187,8 +188,8 @@ public class Principal{
     public String conexaoJSONconexaoid(int verticeOrigemId, int verticeDestinoId){
         Vertice verticeA = raiz.getVerticeExists(verticeOrigemId);
         Vertice verticeB = raiz.getVerticeExists(verticeDestinoId);
-        Aresta arestaA = verticeA.getArestaExists(verticeDestinoId);
         if( verticeA != null && verticeB != null){
+            Aresta arestaA = verticeA.getArestaExists(verticeDestinoId);
             if( arestaA != null)
             {
                 return String.format("{\"conexao\":{\"ID1\":%d, \"ID2\":%d, \"resposta\":\"sucesso\", \"conexao\":\"sim\"}}", verticeOrigemId, verticeDestinoId);
@@ -244,12 +245,22 @@ public class Principal{
         grafo.setNovoVertice(1, "glauco");
         grafo.setNovoVertice(2, "maria");
         grafo.setNovoVertice(3, "tiago");
+        grafo.setNovoVertice(4, "marta");
         grafo.setNovaAresta(1, 2, 2);
+        grafo.setNovaAresta(1, 2, 3);
         grafo.setNovaAresta(1, 3, 3);
-        System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 2));
+        grafo.setNovaAresta(1, 4, 3);
+        System.out.printf("%s\n", grafo.getJSONid(1));
+        System.out.printf("%s\n", grafo.getJSONid(2));
         System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 3));
-        System.out.printf("%s\n", grafo.conexaoJSONconexaoid(3, 1));
-        System.out.printf("%s\n", grafo.conexaoJSONconexaoid(2, 4));
+        System.out.printf("%s\n", grafo.deleteJSONid(1));
+        System.out.printf("%s\n", grafo.getJSONid(1));
+        System.out.printf("%s\n", grafo.getJSONid(2));
+        System.out.printf("%s\n", grafo.getJSONid(3));
+        System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 3));
+        System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 2));
+        System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 4));
+        //System.out.printf("%s\n", grafo.getJSONid(2));
     }
     
 }

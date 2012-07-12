@@ -75,4 +75,8 @@ public class Aresta
         this.valor = valor;
     }
     
+    public void setProximaAresta(Aresta a){
+        this.proximo = a;
+    }
+    
 }

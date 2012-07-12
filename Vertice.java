@@ -153,4 +153,72 @@ public class Vertice {
         return null;
         
     }
+    
+    /**
+     * Método para deletar um vertice se consta
+     *  a partir de ele e suas referencias
+     * 
+     * @param int verticeID
+     * @return { true - se deletou || false- se não achou}
+     */
+    public void deleteVerticeDaMatriz(int verticeID){
+        //System.err.printf("DELETAR VERTICE\n");
+        Vertice verticeAnterior = this.proximoVertice;
+        Vertice vertice = verticeAnterior.proximoVertice;
+        
+        //verifica se é o primeiro que deve ser deletado
+        if(verticeAnterior.getID() == verticeID){
+            //System.err.printf("Encontrado o para deletar\n");
+            this.proximoVertice = vertice;
+ 
+        }
+        
+        /**
+         * Remove o vertice se encontra-o ou então
+         *  passa para o próximo
+         */
+        while( vertice != null){
+            if( vertice.getID() == verticeID ){
+                //System.err.printf("Encontrado o para deletar\n");
+                verticeAnterior.proximoVertice = vertice.proximoVertice;
+                vertice = null;
+            }
+            else{
+                //System.err.printf("Não encontrou para deletar\n");
+                verticeAnterior = vertice;
+                vertice = vertice.proximoVertice;
+            }
+        }
+        
+        /**
+         * Depois de remover o vertice, se o achou
+         *  então ele procura por arestas com o mesmo sentido
+         */
+        //System.err.printf("PROCURAR ARESTAS\n");
+        vertice = this.proximoVertice;
+        while(vertice != null){
+            Aresta arestaAnterior = vertice.aresta;
+            if(arestaAnterior != null){
+                Aresta estaAresta = arestaAnterior.getProximaAresta();
+                if( arestaAnterior.getVerticeID() == verticeID){
+                    //System.err.printf("Encontrado Aresta o para deletar\n");
+                    vertice.aresta = estaAresta;
+                }
+                while(estaAresta != null){
+                    if(estaAresta.getVerticeID() == verticeID){
+                        //System.err.printf("Encontrado Aresta o para deletar\n");
+                        arestaAnterior.setProximaAresta(estaAresta.getProximaAresta());
+                        estaAresta = null;
+                    }
+                    else{
+                        //System.err.printf("Aresta não encontrou para deletar\n");
+                        arestaAnterior = estaAresta;
+                        estaAresta = estaAresta.getProximaAresta();
+                    }
+                }
+            }
+            vertice = vertice.getProximoVertice();
+        }
+        
+    }
 }
