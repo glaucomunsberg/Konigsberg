@@ -10,23 +10,64 @@
 #
 # @autor   Glauco Roberto Munsberg dos Santos
 # @github  git@github.com:glaucomunsberg/Konigsberg.git
-# @version 0.2
+# @version 0.4
 #
 ################################################################################
 # 1.Introduçao
 ################################################################################
 #
-# Projeto Konigsberg se propõem a realizar o trabalho de EDII, proposto pelo 
-#   professor Ricardo Matsumura Araújo. O repositório recebe o nome 'Königsberg'
-#   em referencia ao problema histórico relacionado aos grafos.
+#   Projeto Konigsberg se propõem a realizar o trabalho de EDII, proposto pelo 
+#   professor Ricardo Matsumura Araújo e que está espeficido através dos links:
+#   * Primeira parte do Trabalho:
+#       http://avainstitucional.ufpel.edu.br/mod/assignment/view.php?id=25409
+#   * Segunda parte do Trabalho:
+#       http://avainstitucional.ufpel.edu.br/mod/assignment/view.php?id=25879
+#       sendo esse segundo trabalho realizado em conjunto com também acadêmico
+#       da ciência da computação André Peil.
 #
+#   O repositório e o projeto recebe o nome 'Königsberg' em referencia ao 
+#   problema histórico relacionado aos grafos. O trabalho foi versionado no 
+#   GitHub como apoio a programação, para o maior detalhamento das versões 
+#   consulte o arquivo "version.txt". 
+#
+#   O trabalho foi programado e testado em um computador:
+#    * Pentium Dual Core 2.2GHz
+#    * 2,5GB Memória RAM DDR2
+#    * Ubuntu 12.04 32-bits, área de troca de 1Gb para auxílio, com Java7
+#      e demais configurações padrões.
+#
+#   1.1 Resultado Obtido
+#       Usando uma JMV de no máximo 2,3Gb os resultados* obtidos foram:
+#
+#   1.1.1 Grafos
+#       Numero de Arestas: XX
+#       Tamanho da Vertices: XX
+#       Tempo de execução : XX,Xs
+#
+#   1.1.2 Visualização de Grafos
+#       Numero de caract.: 5mil
+#       Tempo de execução: 57,7s
+#
+#   *Sem estouro de memória e inferior a XXsegundos
 #
 ################################################################################
 # 2.Como foi programado
 ################################################################################
 #
+#   O projeto Konigsberg dividido em duas partes, sendo a primeira programada
+#   por Glauco Roberto Munsberg dos Santos e a segunda parte programada por este
+#   e André Peil sendo o desenvolvimento ocorrido do periodo entre 3 de Julho de
+#   2012 até XX de XX de 2012. Desenvolvida com a linguagem de programação Java
+#   dando continuidade aos conceitos obtido através da, também disciplica na
+#   Ciência da Computação, Programação Orientada à Objetos. 
 #
+#   PRIMEIRA PARTE:
+#   SEGUNDA PARTE:
 #
+#   A documentação do código está dividida em duas parte: A primeira que se 
+#   refere o comportamente do programa se encontra neste arquivo, a segunda se
+#   encontra diretamente nos arquivos .java referente como é executado os seus 
+#   métodos e comportamento interno.
 #
 ################################################################################
 # 3.Como executar
@@ -36,16 +77,24 @@
 #
 #
 ################################################################################
-# 4.Resultados obtidos
+# 4.Como executar
 ################################################################################
 #
 #
 #
 #
 ################################################################################
-# 5.Conclusão
+# 5.Resultados obtidos
 ################################################################################
 #
 #
 #
 #
+################################################################################
+# 6.Conclusão
+################################################################################
+#
+#
+#
+#
+################################################################################

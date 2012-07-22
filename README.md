@@ -6,4 +6,5 @@ O repositório recebe o nome 'Königsberg' em referencia ao problema histórico 
 
 
 Para saber mais sobre como foi o desenvolvimento leia 'version'
+
 Para saber mais como executar e detalhes da programação leia 'README'

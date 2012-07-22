@@ -115,16 +115,6 @@ public class Principal{
     }
     
     /**
-     * Retorna a ordem topologica da matriz em questão
-     * 
-     * @return int[] ordemTopologica 
-     */
-    private int[] getOrdemTopologica(){
-        int[] ordem = new int[1];
-        return ordem;
-    }
-    
-    /**
      * Respeitando o JSON esse método retorna a string associada ao vértice de número ID
      *  se este existir, ou indica a ocorrência de falha
      * @param int vertice
@@ -201,19 +191,20 @@ public class Principal{
         }
     }
     
+    
     /**
      * Método que retorna a ordemTopologicaJSON
      * @return String formatoJSON
      */
     public String ordemTopologicaJSON(){
         String retorno = "{\"ordemtop\":[";
-        int[] ordem = this.getOrdemTopologica();
-            for(int a=0; a < ordem.length;a++){
-                retorno+=String.format("%d", ordem[a]);
-                if( a+1 < ordem.length ){
-                    retorno+=String.format(",", ordem[a]);
-                }
-            }
+        //int[] ordem = raiz.getOrdemTopologica();
+            //for(int a=0; a < ordem.length;a++){
+                //retorno+=String.format("%d", ordem[a]);
+                //if( a+1 < ordem.length ){
+                //    retorno+=String.format(",", ordem[a]);
+               // }
+           // }
         return retorno+="]}"; 
     }
     
@@ -246,20 +237,15 @@ public class Principal{
         grafo.setNovoVertice(2, "maria");
         grafo.setNovoVertice(3, "tiago");
         grafo.setNovoVertice(4, "marta");
-        grafo.setNovaAresta(1, 2, 2);
         grafo.setNovaAresta(1, 2, 3);
-        grafo.setNovaAresta(1, 3, 3);
-        grafo.setNovaAresta(1, 4, 3);
-        System.out.printf("%s\n", grafo.getJSONid(1));
-        System.out.printf("%s\n", grafo.getJSONid(2));
-        System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 3));
-        System.out.printf("%s\n", grafo.deleteJSONid(1));
-        System.out.printf("%s\n", grafo.getJSONid(1));
-        System.out.printf("%s\n", grafo.getJSONid(2));
-        System.out.printf("%s\n", grafo.getJSONid(3));
+        grafo.setNovaAresta(1, 3, 4);
+        grafo.setNovaAresta(1, 4, 5);
+        grafo.setNovaAresta(2, 3, 6);
+        grafo.setNovaAresta(2, 4, 7);
         System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 3));
         System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 2));
         System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 4));
+        grafo.raiz.getOrdemTopologica();
         //System.out.printf("%s\n", grafo.getJSONid(2));
     }
     

@@ -1,3 +1,13 @@
+Versão 0.4.4
+    Principal
+        ✘ getOrdemTopologica        - Removido para respeirar a OO
+    Vertice
+        ✔ getlistaDeVerticesSemEntrada - Lista de vertices sem Entradas [bit implemented yet]
+        ✔ getlistaVerticesID           - Lista todos os vertices que existe
+        ✔ getOrdemTopologica        - retorna a ordem topológica do grafo
+    README
+        ✎ documentação incremetada
+
 Versão 0.4.3
     Principal
         ✎ deleteJSONid          - implementado com o método deleteVerticeDaMatriz criado no vertice
