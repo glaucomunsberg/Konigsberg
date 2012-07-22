@@ -1,10 +1,23 @@
+Versão 0.4.5
+    Principal
+        ✔ lerComandos           - método que faz a leitura dos comandos [bit implemented yet]
+        ✎ setNovaAresta         - comentado
+    Vertices
+        ✔ getNumeroDeVertices   - retorna o número de vertices
+        ✔ getIsDirecionado      - retorna se ele é direcionado ou não
+        ✔ setItsDirecionado     - insere se ele é ou não direcionado 
+    README
+        ✎ documentação incremetada
+    listaComandos
+        ✔ lista de comandos para serem usados pelo programa
+
 Versão 0.4.4
     Principal
-        ✘ getOrdemTopologica        - Removido para respeirar a OO
+        ✘ getOrdemTopologica            - Removido para respeirar a OO
     Vertice
-        ✔ getlistaDeVerticesSemEntrada - Lista de vertices sem Entradas [bit implemented yet]
-        ✔ getlistaVerticesID           - Lista todos os vertices que existe
-        ✔ getOrdemTopologica        - retorna a ordem topológica do grafo
+        ✔ getlistaDeVerticesSemEntrada  - Lista de vertices sem Entradas [bit implemented yet]
+        ✔ getlistaVerticesID            - Lista todos os vertices que existe
+        ✔ getOrdemTopologica            - retorna a ordem topológica do grafo
     README
         ✎ documentação incremetada
 
@@ -30,8 +43,9 @@ Versão 0.4.1
         ✎ getValorMatriz    - modificado por ter sido simplificado pelo metodo vertece.setProximoVertice e vertece.setProximaAresta
     Vertice
         ✔ setProximaAresta  - método que veio de aresta,solucionando problema
-        ⇲ setProximoVertice - recebe parametros cria o vertice novo
-        ⇲ getAresta         - agora se chama getProximaAresta
+        ✔ getProximaAresta    - antigo getAresta
+        ✎ setProximoVertice - recebe parametros cria o vertice novo
+        ✘ getAresta         - agora se chama getProximaAresta
     Aresta
         ✘ setProximaAresta  - método removido por causar instabilidade
 
@@ -49,9 +63,10 @@ Versão 0.4
         ✔ setProximaAresta      - insere a próxima aresta
         ✔ arestaExists          - verifica se a aresta existe naquele vertice
     Vertice
+        ✔ getNomeVertice        - antigo getVertice
         ✔ getVertice            - retorna o vertice se ele existe
         ✔ verticeExists         - Verifica se existe o vertice
-        ⇲ getVertice            - agora se chama getNomeVertice
+        ✘ getVertice            - agora se chama getNomeVertice
         ✎ documentação do codigo em geral
         
 
@@ -64,7 +79,8 @@ Versão 0.3.1
         ✎ getVizinhosDaMatriz   - modificado
         ✘ setNomeVertice        - removido
     Aresta
-        ⇲ getProximo            - agora se chama getProximoAresta
+        ✔ getProximoAresta      - antigo getProximo
+        ✘ getProximo            - agora se chama getProximoAresta
     Vertice
         ✔ setNovoVertice        - cria um novo vertice
     version
@@ -101,8 +117,15 @@ Versão 0.0
         ✔ created the project
 
 --------------------------------------------------------------------------------
+Problems to solve
+--------------------------------------------------------------------------------
+
+    ⌛ O número de vertice é ditado por um máximo? Comando *vertice ou *vertice limite;
+    ⌛ Caso haja um erro no comando criado pelo usuário deve este ser mostrado;
+
+--------------------------------------------------------------------------------
 Understanding the file 'version'
 --------------------------------------------------------------------------------
 [estable version].[change in their behavior].[version of the struct]
     class manipulated
-        modifications {[✔:created, ✎:edited, ✘:removed, ⇲:rename method or changed some attribute] }
+        modifications {[✔:"created", ✎:"edited", ✘:"removed", ⌛="problem to solve" ]}

@@ -218,6 +218,12 @@ public class Principal{
         raiz.setProximoVertice(nome, verticeID);
     }
     
+    /**
+     * Método que insere uma nova aresta ao vertice
+     * @param int verticeOrigemID
+     * @param int verticeDestinoID
+     * @param int valor 
+     */
     public void setNovaAresta(int verticeOrigemID, int verticeDestinoID, int valor){        
         vertice = raiz.getVerticeExists(verticeOrigemID);
         if( vertice != null )
@@ -230,22 +236,93 @@ public class Principal{
         }
     }
     
+    public void lerComandos(){
+        
+        /**
+         * tipoComando
+         *  0 = Queries
+         *  1 = Arcs ou edgues
+         *  2 = Vertices
+         */
+        int tipoComando=0;
+        String comando = leitor.nextLine();
+        boolean leuSeEDirecionado = false;
+        boolean tipoLido;
+        /**
+         * Enquando não houver condição de parada prosegue
+         */
+        while( !comando.equals("@")){
+            comando = comando.toLowerCase();
+            tipoLido = false;     
+            String parteComando[] = comando.split(" ");
+            
+            //Se for apenas uma linha quer dizer que mudará o tipo de comando
+            // os que seguirá são desse tipo
+            if(parteComando.length == 1){
+                if(parteComando[0].equals("*queries")){
+                    tipoComando = 0;
+                    tipoLido = true;
+                }else{
+                    if(parteComando[0].equals("*arcs") || parteComando[0].equals("*edges") ){
+                        tipoComando = 2;
+                        if(!leuSeEDirecionado){
+                            leuSeEDirecionado = true;
+                            tipoLido = true;
+                            if(parteComando[0].equals("*arcs")){
+                                Vertice.setItsDirecionado(true);
+                            }else{
+                                Vertice.setItsDirecionado(false);
+                            }
+                        }
+                    }else{
+                        if( parteComando[0].equals("*vertices")){
+                            tipoComando = 1;
+                            tipoLido = true;
+                        }
+                    }
+                }
+            }
+            
+            //Em posse do tipo de comando segue-se o entendimento do comando
+            if(tipoLido == false){
+                switch(tipoComando){
+                    case 0:
+                        //QUERIE
+                        if(parteComando.length == 3){
+                            
+                        }
+                        break;
+                    case 1:
+                        //VERTICE
+                        System.out.println("vertice");
+                        break;
+                }
+            }
+            else{
+                System.out.printf("agora tipo: %s\n",parteComando[0] );
+            }
+            comando = leitor.nextLine();        
+        }
+
+    }
+    
     public static void main(String args[]){
         Principal grafo = new Principal();
         grafo.inicialize();
-        grafo.setNovoVertice(1, "glauco");
-        grafo.setNovoVertice(2, "maria");
-        grafo.setNovoVertice(3, "tiago");
-        grafo.setNovoVertice(4, "marta");
-        grafo.setNovaAresta(1, 2, 3);
-        grafo.setNovaAresta(1, 3, 4);
-        grafo.setNovaAresta(1, 4, 5);
-        grafo.setNovaAresta(2, 3, 6);
-        grafo.setNovaAresta(2, 4, 7);
-        System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 3));
-        System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 2));
-        System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 4));
-        grafo.raiz.getOrdemTopologica();
+        grafo.lerComandos();
+        //grafo.setNovoVertice(1, "glauco");
+        //grafo.setNovoVertice(2, "maria");
+        //grafo.setNovoVertice(3, "tiago");
+        //grafo.setNovoVertice(4, "marta");
+        //grafo.setNovaAresta(1, 2, 3);
+        //grafo.setNovaAresta(1, 3, 4);
+        //grafo.setNovaAresta(1, 4, 5);
+        //grafo.setNovaAresta(2, 3, 6);
+        //grafo.setNovaAresta(2, 4, 7);
+        //System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 3));
+        //System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 2));
+        //System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 4));
+        //grafo.raiz.getOrdemTopologica();
         //System.out.printf("%s\n", grafo.getJSONid(2));
     }
     

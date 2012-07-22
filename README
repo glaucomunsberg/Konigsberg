@@ -4,9 +4,10 @@
 #
 # 1.Introduçao
 # 2.Como foi programado
-# 3.Como executar
-# 4.Resultados obtidos
-# 5.Conclusão
+# 3.Comandos Aceitos
+# 4.Como executar
+# 5.Resultados obtidos
+# 6.Conclusão
 #
 # @autor   Glauco Roberto Munsberg dos Santos
 # @github  git@github.com:glaucomunsberg/Konigsberg.git
@@ -57,20 +58,20 @@
 #   O projeto Konigsberg dividido em duas partes, sendo a primeira programada
 #   por Glauco Roberto Munsberg dos Santos e a segunda parte programada por este
 #   e André Peil sendo o desenvolvimento ocorrido do periodo entre 3 de Julho de
-#   2012 até XX de XX de 2012. Desenvolvida com a linguagem de programação Java
-#   dando continuidade aos conceitos obtido através da, também disciplica na
-#   Ciência da Computação, Programação Orientada à Objetos. 
+#   2012 até XX de XX de 2012. Para isso foi usado a linguagem de programação 
+#   Java dando continuidade aos conceitos obtido através da, também disciplica
+#   na Ciência da Computação, Programação Orientada à Objetos. 
 #
 #   PRIMEIRA PARTE:
 #   SEGUNDA PARTE:
 #
 #   A documentação do código está dividida em duas parte: A primeira que se 
-#   refere o comportamente do programa se encontra neste arquivo, a segunda se
-#   encontra diretamente nos arquivos .java referente como é executado os seus 
-#   métodos e comportamento interno.
+#   refere o comportamente do programa e se encontra neste arquivo, a segunda se
+#   encontra diretamente nos arquivos *.java referente como é executado os seus 
+#   métodos e comportamento interno, bem como o retorno e seu tipo
 #
 ################################################################################
-# 3.Como executar
+# 3.Comandos aceitos
 ################################################################################
 #
 #

@@ -9,14 +9,17 @@ import java.util.ArrayList;
 public class Vertice {
     
     private String nome;
+    private static int numDeVertices;
     private int ID;
     private Aresta aresta;
     private Vertice proximoVertice;
-    
+    private static boolean isDirecionado;
+    private static boolean isDirecionadoInseridoValor;
     /**
      * Construtor base com tudo zero e null
      */
     public Vertice(){
+        numDeVertices=0;
         nome = ""; 
         ID = 0;
         proximoVertice = null;
@@ -30,6 +33,7 @@ public class Vertice {
      * @param Vertice proximoVertice 
      */
     public Vertice(String nome, int ID, Aresta aresta, Vertice proximoVertice){
+        numDeVertices++;
         this.nome = nome;
         this.ID = ID;
         this.aresta = aresta;
@@ -41,6 +45,7 @@ public class Vertice {
      * @param Vertice vertice 
      */
     public Vertice(Vertice vertice){
+        numDeVertices++;
         this.ID = vertice.ID;
         this.nome = vertice.nome;
         this.aresta = vertice.aresta;
@@ -81,6 +86,33 @@ public class Vertice {
         return proximoVertice;
     }
     
+    /**
+     * Retorna o total vertices que possúi
+     * @return int numDeVertices
+     */
+    public static int getNumeroDeVertices(){
+        return numDeVertices;
+    }
+    
+    /**
+     * Retorna se o grafo é direcionado
+     * @return int numDeVertices
+     */
+    public static boolean getIsDirecionado(){
+        return isDirecionado;
+    }
+    
+    /**
+     * Método que insere se o grafo é direcionado ou não.
+     *  nota: apenas executado uma única vez
+     * @param boolean direcao 
+     */
+    public static void setItsDirecionado(boolean direcao){
+        if(!isDirecionadoInseridoValor){
+            isDirecionadoInseridoValor = true;
+            isDirecionado = direcao;
+        }
+    }
     /**
      * Método que insere novo vertice
      *  deslocando o próximo deste para o novo
@@ -263,6 +295,7 @@ public class Vertice {
         while( vertice != null){
             if( vertice.getID() == verticeID ){
                 //System.err.printf("Encontrado o para deletar\n");
+                numDeVertices--;
                 verticeAnterior.proximoVertice = vertice.proximoVertice;
                 vertice = null;
             }
