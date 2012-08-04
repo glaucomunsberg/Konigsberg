@@ -3,7 +3,7 @@
 2 "vertice 2"
 *edges
 1 2 1
-*conexao
-conexao 1
-conexao 2
+*queries
+conexao 1 2
+conexao 2 1
 @

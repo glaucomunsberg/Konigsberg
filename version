@@ -1,3 +1,15 @@
+
+Versão 0.5.2.1
+    listaComandos
+	✎ exemplo mais simples e legivel
+    README
+	✎ documentação incremetada e corrigida em relação aos comandos
+    exemplosDeComandos
+	✔ arquivo_condicao_parada.txt	- criado segundo REAME
+	✔ arquivo_delete_vertice.txt	- comandos de remoção de vertice
+	✘ arquivo_remove_aresta.txt	- arquivo com propósito erroneo
+	✎ arquivo_condicao_parada.txt	- erro de sintaxe
+
 Versão 0.5.2
     Principal
         ✎ lerComandos               - agora executa os comandos implementados até então

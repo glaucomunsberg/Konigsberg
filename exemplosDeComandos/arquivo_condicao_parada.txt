@@ -1,0 +1,7 @@
+*vertices
+1 "vertice 1"
+@
+*queries
+remove 1
+remove 2
+@

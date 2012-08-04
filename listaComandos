@@ -1,9 +1,9 @@
 *Vertices
-11111111 "Fulano de Tal"
+1 "Fulano de Tal"
 0 "Ciclano"
 2 "Beltrano"
 *arcs
-11111 12222 1
+1 1 1
 1 2 5
 2 0 5
 *Queries
@@ -11,4 +11,3 @@ get 1
 delete 0
 vizinhos 1
 conexao 1 1
-@

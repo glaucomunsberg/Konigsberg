@@ -283,18 +283,20 @@
 #          <ID> - Índice do vértice
 #
 #         Veja um exemplo:
-#         -arquivo_remove_aresta.txt-------------
+#         -arquivo_delete_vertice.txt------------
 #         |	*vertices			|
 #         |	1 "vertice 1"			|
 #         |	*queries			|
-#         |	remove 1			|
-#         |	remove 2			|
+#         |	delete 1			|
+#         |	delete 2			|
 #         |	@				|
 #         ---------------------------------------
 #         -console_return------------------------------------------------
 #         |	{"delete"{"ID":1,"resposta":"sucesso"}}			|
 #         |	{"delete"{"ID":2,"resposta":"falha"}}			|
 #          --------------------------------------------------------------
+#         Obs.: Deletar um vértice implica em remove todo e qualquer aresta com 
+#         origem ou destino no vertice tal.
 #
 #         3.4.3 vizinhos <ID>
 #         O comando "get <ID>" retorna uma lista de vizinhos do vértice ID. No 
@@ -346,8 +348,33 @@
 #         |	{"conexao":{"ID1":2, "ID2":1, "resposta":"falha", "conexao":""}}      |
 #         -----------------------------------------------------------------------------
 #
-#   
+#         3.4.5 ordemtop
+#         [not implement yet]
 #
+#         3.4.6 arvoreminima
+#         [not implement yet]
+#
+#         3.4.7 menorcaminho
+#         [not implement yet]
+#         
+#   3.5 @
+#      O comando "@" é a condição de parada da leitura de comandos e encerra a 
+#      execução do programa. Caso haja algum comando após ele, serão 
+#      desconsiderados.
+#      Veja um exemplo a abaixo:
+#
+#      -arquivo_condicao_parada.txt-------
+#      |	*vertices		|
+#      |	1 "vertice 1"		|
+#      |	@			|
+#      |	*queries		|
+#      |	remove 1		|
+#      |	remove 2		|
+#      |	@			|
+#      ----------------------------------
+#      -console_return-------------------
+#      |				|
+#      ----------------------------------
 #
 ################################################################################
 # 4.Como executar
