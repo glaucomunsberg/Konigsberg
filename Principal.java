@@ -68,17 +68,17 @@ public class Principal{
      * 
      * @return int peso
      */
-    private int getValorMatriz(int verticeOrigemID, int verticeDestinoID){
-        vertice = raiz.getVerticeExists(verticeOrigemID);
-        
-        if( vertice != null )
-        {
-            aresta = vertice.getArestaExists(verticeDestinoID);
-            if(aresta != null)
-                return aresta.getValor();
-        }
-        return -1;
-    }
+    //private int getValorMatriz(int verticeOrigemID, int verticeDestinoID){
+    //    vertice = raiz.getVerticeExists(verticeOrigemID);
+     //   
+     //   if( vertice != null )
+      //  {
+      //      aresta = vertice.getArestaExists(verticeDestinoID);
+      //      if(aresta != null)
+      //          return aresta.getValor();
+      //  }
+      //  return -1;
+    //}
     
     /**
      * Método que retorna um array com os vertices vizinhos do
@@ -151,7 +151,7 @@ public class Principal{
      * 
      * @return String vizinhosFormatoJSON
      */
-    public String vizinhoJSONid(int verticeID){
+    public String getVizinhoJSONid(int verticeID){
         vertice = raiz.getVerticeExists(verticeID);
         if( vertice != null){
             String retorno = String.format("{\"vizinhos\":{\"ID\":%d, \"resposta\":\"sucesso\", \"vizinhos\":[", verticeID);
@@ -175,7 +175,7 @@ public class Principal{
      * @param int verticeDestinoId
      * @return String formatoJSON
      */
-    public String conexaoJSONconexaoid(int verticeOrigemId, int verticeDestinoId){
+    public String getConexaoJSONconexaoid(int verticeOrigemId, int verticeDestinoId){
         Vertice verticeA = raiz.getVerticeExists(verticeOrigemId);
         Vertice verticeB = raiz.getVerticeExists(verticeDestinoId);
         if( verticeA != null && verticeB != null){
@@ -196,7 +196,7 @@ public class Principal{
      * Método que retorna a ordemTopologicaJSON
      * @return String formatoJSON
      */
-    public String ordemTopologicaJSON(){
+    public String getOrdemTopologicaJSON(){
         String retorno = "{\"ordemtop\":[";
         //int[] ordem = raiz.getOrdemTopologica();
             //for(int a=0; a < ordem.length;a++){
@@ -288,19 +288,55 @@ public class Principal{
                 switch(tipoComando){
                     case 0:
                         //QUERIE
-                        if(parteComando.length == 3){
-                            
+                        if("get".equals(parteComando[0])){
+                            //System.out.printf("query get %d\n", Integer.parseInt(parteComando[1]));
+                            System.out.println(this.getJSONid(Integer.parseInt(parteComando[1])));
+                        }else{
+                            if("delete".equals(parteComando[0])){
+                                //System.out.printf("query delete %d\n", Integer.parseInt(parteComando[1]));
+                                System.out.println(this.deleteJSONid(Integer.parseInt(parteComando[1])));
+                            }else{
+                                if("vizinhos".equals(parteComando[0])){
+                                    //System.out.printf("query vizinhos %d\n",Integer.parseInt(parteComando[1]));
+                                    System.out.println(this.getVizinhoJSONid(Integer.parseInt(parteComando[1])));
+                                }else{
+                                    if("conexao".equals(parteComando[0])){
+                                        //System.out.printf("query conexao %d %d\n", Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2]));
+                                        System.out.println(this.getConexaoJSONconexaoid( Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2])));
+                                    }else{
+                                        if("ordemtop".equals(parteComando[0])){
+                                            //ORDEM TOPOLOGICA
+                                        }else{
+                                            if("arvoreminima".equals(parteComando[0])){
+                                                //ARVORE MINIMA
+                                            }else{
+                                                if("menorcaminho".equals(parteComando[0])){
+                                                    //MENOR CAMINHO
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                         break;
                     case 1:
                         //VERTICE
-                        System.out.println("vertice");
+                        
+                        int inicioDoNome = comando.indexOf("\"");
+                        setNovoVertice(Integer.parseInt(parteComando[0]), comando.substring(inicioDoNome, comando.length()-1));
+                        //System.out.printf("Vertice ID: %d NOME: %s\n", Integer.parseInt(parteComando[0]), comando.substring(inicioDoNome+1, comando.length()-1));
+                        break;
+                    case 2:
+                        //ARESTA
+                        setNovaAresta(Integer.parseInt(parteComando[0]),Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2]));
+                        //System.out.printf("Aresta %d %d %d\n", Integer.parseInt(parteComando[0]),Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2]));
                         break;
                 }
             }
-            else{
-                System.out.printf("agora tipo: %s\n",parteComando[0] );
-            }
+            //else{
+            //   System.out.printf("agora tipo: %s\n",parteComando[0] );
+            //}
             comando = leitor.nextLine();        
         }
 

@@ -1,0 +1,8 @@
+*vertices
+1 "vertice 1"
+2 "vertice 2"
+3 "vertice 3"
+*arcs
+1 1 30
+2 3 10
+@

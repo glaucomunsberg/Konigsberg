@@ -1,8 +1,23 @@
-Versão 0.4.5.1
+Versão 0.5.2
+    Principal
+        ✎ lerComandos               - agora executa os comandos implementados até então
+        ✔ getConexaoJSONconexaoid   - antigo conexaoJSONconexaoid
+        ✘ conexaoJSONconexaoid      - agora se chama getConexaoJSONconexaoid
+        ✔ getvizinhoJSONid          - antigo vizinhoJSONid
+        ✘ vizinhoJSONid             - agora se chama getVizinhoJSONid
+        ✔ getOrdemTopologicaJSON    - antigo ordemTopologicaJSON
+        ✘ odemTopologicaJSON        - gora se getOrdemTopologicaJSON
+        ✘ getValorMatriz            - remoção por obsoletividade
+    README
+	✎ documentação incremetada em relação aos comandos
+    exemplosDeComandos
+        ✔ diretório com todos exemplos usados no README
+
+Versão 0.5.1
     README
 	✎ documentação incremetada
 
-Versão 0.4.5
+Versão 0.5.0
     Principal
         ✔ lerComandos           - método que faz a leitura dos comandos [bit implemented yet]
         ✎ setNovaAresta         - comentado
@@ -124,7 +139,6 @@ Versão 0.0
 Problems to solve
 --------------------------------------------------------------------------------
 
-    ⌛ O número de vertice é ditado por um máximo? Comando *vertice ou *vertice limite;
     ⌛ Caso haja um erro no comando criado pelo usuário deve este ser mostrado;
 
 --------------------------------------------------------------------------------
