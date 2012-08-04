@@ -4,7 +4,7 @@
 #
 # 1.Introduçao
 # 2.Como foi programado
-# 3.Comandos Aceitos
+# 3.Comandos
 # 4.Como executar
 # 5.Resultados obtidos
 # 6.Conclusão
@@ -71,9 +71,9 @@
 #   métodos e comportamento interno, bem como o retorno e seu tipo
 #
 ################################################################################
-# 3.Comandos aceitos
+# 3.Comandos
 ################################################################################
-#
+#   Os comandos aceitos se dividem em 3 grupos, sendo eles Vertice, Arc/Edge 
 #
 #
 #
