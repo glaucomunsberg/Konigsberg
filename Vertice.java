@@ -219,17 +219,19 @@ public class Vertice {
     }
     
     public int[] getlistaDeVerticesSemEntrada(){
-        ArrayList<Integer> arrayDeVerices = new ArrayList<Integer>();
+        ArrayList<Character> arrayDeVerices = new ArrayList<Character>();
         int[] vertices = this.getlistaVerticesID();
+        Character charTemp;
         for(int a=0; a < vertices.length;a++){
-            arrayDeVerices.add(vertices[a]);
+            arrayDeVerices.add((char)vertices[a]);
         }
         
         Vertice vertice = this.proximoVertice;
         while( vertice != null){
             Aresta arestaTemp = vertice.getProximaAresta();
             while( arestaTemp != null){
-                arrayDeVerices.remove(arestaTemp.getVerticeID());
+                charTemp = (char)arestaTemp.getVerticeID();
+                arrayDeVerices.remove(charTemp);
                 arestaTemp = arestaTemp.getProximaAresta();
             }
             vertice = vertice.getProximoVertice();
@@ -246,8 +248,35 @@ public class Vertice {
         System.out.print("\n");
         return vertices;
     }
+    public int[] getlistaDeVerticesSemSaida(){
+        int[] vertices;
+        Vertice vertice = this.proximoVertice;
+        ArrayList<Integer> arrayVerices = new ArrayList<Integer>();
+        while(vertice != null){
+            if(vertice.getProximaAresta() == null ){
+                arrayVerices.add(vertice.getID());
+                vertice = vertice.getProximoVertice();
+            }
+            else{
+                vertice = vertice.getProximoVertice();
+            }
+        }
+        vertices = new int[arrayVerices.size()];
+        for(int a=0; a < arrayVerices.size();a++){
+            vertices[a]=arrayVerices.get(a);
+        }
+        System.out.print("Lista de Vertices sem saida:\n");
+        for(int a=0; a < vertices.length; a++){
+            System.out.printf("%d,",vertices[a]);
+        }
+        System.out.print("\n");
+        return vertices;
+    }
     
     /**
+     *
+     * VER COM MAIS CUIDADO http://paginas.fe.up.pt/~rossetti/rrwiki/lib/exe/fetch.php?media=teaching:1011:cal:05_1.grafos1_b.pdf
+     * 
      * L ← Lista vazia que irá conter os elementos ordenados
      * S ← Conjunto de todos os nós sem arestas de entrada
      * 
@@ -257,15 +286,31 @@ public class Vertice {
      *  para cada nodo m com uma aresta e de n até m faça
      *      remova a aresta e do grafo
      *      se m não tem mais arestas de entrada então
-     *          insira  m em 
+     *          insira  m em S
      * se o grafo tem arestas então
      *  escrever mensagem de erro (grafo tem pelo menos um ciclo
      * senão 
      *  escrever mensagem  (ordenação topológica proposta: L)
      */
-    public void getOrdemTopologica(){
-        int[] ordem = this.getlistaDeVerticesSemEntrada();
-        //return ordem;
+    public int[] getOrdemTopologica(){
+        int[] semEntrada = this.getlistaDeVerticesSemEntrada();
+        //int[] semSaida = this.getlistaDeVerticesSemSaida();
+        int nodo;
+        ArrayList<Integer> L = new ArrayList<Integer>();
+        ArrayList<Integer> S = new ArrayList<Integer>();
+        
+        for(int a=0; a < semEntrada.length; a++){
+            L.add(semEntrada[a]);
+        }
+        
+        while( !S.isEmpty() ){
+            nodo = S.remove(0);
+            L.add(nodo);
+            //for(a=0; a < )
+            
+        }
+        
+       return new int[1];
     }
     
     

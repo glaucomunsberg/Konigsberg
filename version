@@ -1,3 +1,11 @@
+Versão 0.5.3
+    Principal
+	✘ setValorMatriz                - remoção por oboletividade
+        ✎ getOrdemTopologicaJSON        - método ativado
+    Vertice
+        ✎ getOrdemTopologica            - modificação de retorno;
+        ✎ getlistaDeVerticesSemEntrada  - método modificação e ativado
+        ✔ getlistaDeVerticesSemSaida    - retorna um array de int com vertices sem saida
 
 Versão 0.5.2.1
     listaComandos

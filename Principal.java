@@ -28,59 +28,6 @@ public class Principal{
     }
     
     /**
-     * Método para inserir o valor na matriz, recebe como parametros
-     *  a linha, coluna e valor
-     * @param int verticeOrigemID
-     * @param int verticeDestinoD
-     * @param int valor
-     * 
-     * @return void
-     */
-    public boolean setValorMatriz(int verticeOrigemID, int verticeDestinoD, int valor){
-        vertice = raiz.getProximoVertice();
-        while( vertice != null )
-        {
-            if( vertice.getID() == verticeOrigemID){
-                aresta = vertice.getProximaAresta();
-                while( aresta != null)
-                {
-                    if( aresta.getVerticeID() == verticeDestinoD){
-                        aresta.setValor(valor);
-                        return true;
-                    }
-                    else{
-                        aresta = aresta.getProximaAresta();
-                    }
-                }
-            }
-            else{
-                vertice = vertice.getProximoVertice();
-            } 
-        }
-        return false;
-    }
-    
-    /**
-     * Método de obtenção do peso na tabela. Recebe como parametro
-     *  a linha e a coluna para se obter o valor
-     * @param int linha
-     * @param int coluna
-     * 
-     * @return int peso
-     */
-    //private int getValorMatriz(int verticeOrigemID, int verticeDestinoID){
-    //    vertice = raiz.getVerticeExists(verticeOrigemID);
-     //   
-     //   if( vertice != null )
-      //  {
-      //      aresta = vertice.getArestaExists(verticeDestinoID);
-      //      if(aresta != null)
-      //          return aresta.getValor();
-      //  }
-      //  return -1;
-    //}
-    
-    /**
      * Método que retorna um array com os vertices vizinhos do
      *  vertice passado
      * @param int vertice
@@ -198,13 +145,13 @@ public class Principal{
      */
     public String getOrdemTopologicaJSON(){
         String retorno = "{\"ordemtop\":[";
-        //int[] ordem = raiz.getOrdemTopologica();
-            //for(int a=0; a < ordem.length;a++){
-                //retorno+=String.format("%d", ordem[a]);
-                //if( a+1 < ordem.length ){
-                //    retorno+=String.format(",", ordem[a]);
-               // }
-           // }
+        int[] ordem = raiz.getOrdemTopologica();
+            for(int a=0; a < ordem.length;a++){
+                retorno+=String.format("%d", ordem[a]);
+                if( a+1 < ordem.length ){
+                    retorno+=String.format(",", ordem[a]);
+                }
+            }
         return retorno+="]}"; 
     }
     
@@ -305,7 +252,7 @@ public class Principal{
                                         System.out.println(this.getConexaoJSONconexaoid( Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2])));
                                     }else{
                                         if("ordemtop".equals(parteComando[0])){
-                                            //ORDEM TOPOLOGICA
+                                            System.out.println(this.getOrdemTopologicaJSON());
                                         }else{
                                             if("arvoreminima".equals(parteComando[0])){
                                                 //ARVORE MINIMA
