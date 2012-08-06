@@ -234,13 +234,11 @@ public class Vertice {
         ArrayList<Integer> arrayDeVerices = new ArrayList<Integer>();
         int[] vertices = this.getlistaVerticesID();
         Integer integerTemp;
-        for(int a=0; a < vertices.length;a++){
+        for(int a=0; a < vertices.length;a++){  
             arrayDeVerices.add((Integer)vertices[a]);
         }
-        
         Vertice vertice = raiz.proximoVertice;
         while( vertice != null){
-            vertice.getRaiz();
             Aresta arestaTemp = vertice.getProximaAresta();
             while( arestaTemp != null){
                 integerTemp = (Integer)arestaTemp.getVerticeID();
@@ -248,8 +246,7 @@ public class Vertice {
                 arestaTemp = arestaTemp.getProximaAresta();
             }
             vertice = vertice.getProximoVertice();
-        }
-        
+        }   
         vertices = new int[arrayDeVerices.size()];
         for(int a=0; a < arrayDeVerices.size();a++){
             vertices[a]=arrayDeVerices.get(a);
@@ -322,8 +319,7 @@ public class Vertice {
             L.add(nodo);
             //for(a=0; a < )
             
-        }
-        
+       }
        return new int[1];
     }
     
