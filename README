@@ -101,7 +101,7 @@
 #   parâmetros não obedece a isso. Porém é necessário que cada grupo contenha 
 #   pelo menos UM comando. Não podendo assim colocar dois grupos de comandos 
 #   sem um comando do primeiro grupo esteja entre eles.
-#   Veja dois exemplos do que NÂO se pode fazer:
+#   Veja exemplo do que NÂO se pode fazer:
 #
 #     -arquivo_nao_executa1.txt----------
 #     |	<TIPO1>				|
@@ -112,16 +112,6 @@
 #     |					|
 #     -----------------------------------
 #
-#   ou 
-#
-#     -arquivo_nao_executa2.txt----------
-#     |	<TIPO1>				|
-#     |	<TIPO2>				|
-#     |	@				|
-#     -----------------------------------
-#     -console_return--------------------
-#     |					|
-#     -----------------------------------
 #   Leia abaixo mais sobre os comandos, ou pegue os arquivo dos exemplos no 
 #   no diretório "exemplosDeComandos".
 #
@@ -149,14 +139,15 @@
 #
 #   3.1 Grupos de Comandos
 #      Os comandos são divididos em três grupos definidos segundo a utilidade 
-#      no sistema. O primeiro "*vértices" (3.2) agrupa dentro dele apenas um 
-#      comando, de criaçao de vértices no grafo.
+#      no sistema. Sendo eles:
+#      "*vértices" (3.2) agrupa dentro dele apenas um comando, de criaçao de
+#      vértices no grafo.
 #
-#      O Segundo "*Arcs" e "*Edges" (3.3) são comandos de criação de arestas no
-#      grafo. Abriga-se nesse grupo também apenas um tipo comando.
+#      "*Arcs" e "*Edges" (3.3) são comandos de criação de arestas no grafo.
+#      Abriga-se nesse grupo também apenas um tipo comando.
 #
-#      O terceiro "*Queries" (3.4) contém comandos de retorno do grafo, por 
-#      exemplo o de retornar se existe ou não uma aresta.
+#      "*Queries" (3.4) contém comandos de retorno do grafo, por exemplo o de
+#      retornar se existe ou não uma aresta.
 #      
 #   3.2 *vertices
 #      O comando "*vértice" informa ao programa que existirá um bloco de 
@@ -167,7 +158,8 @@
 #         3.2.1 <ID> "<NOME>"
 #         O comando de inserção de vértice deve estar dentro de um bloco do 
 #         grupo de vértices. O comando é composto por duas partes:#         
-#          <ID> 	 int    - id que terá o vértice
+#          <ID>     int    - id que terá o vértice podendo assumir todos os
+#            entre  -2147483647 e 2147483647.
 #          "<NOME>" string - nome que terá o vértice
 #
 #         A primeira parte referencia ao ID do vértice e deve ser um integer, 
@@ -185,8 +177,8 @@
 #           -console_return----------------------
 #           |					|
 #           -------------------------------------
-#         Obs.: Caso seja inserido um vértice com um ID igual, este será 
-#         ignorado.
+#         Obs.: Caso seja inserido um vértice com um ID já existente, este será 
+#         ignorado a adição deste.
 #
 #   3.3 *Arcs e *Edges
 #      Ambos comando "*arcs" e "*edges" informam ao programa que existirá um 

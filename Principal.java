@@ -24,7 +24,7 @@ public class Principal{
      * @return void
      */
     public void inicialize(){
-        raiz = new Vertice("RAIZ", -999, null, null);
+        raiz = Vertice.getRaiz();
     }
     
     /**
@@ -36,7 +36,7 @@ public class Principal{
      */
     private int[] getVizinhosDaMatriz(int verticeID){
         
-        vertice = raiz.getProximoVertice();
+        vertice = Vertice.getRaiz(); //AQUI T
         ArrayList<Integer> array = new ArrayList<Integer>();
         while( vertice != null){
              if( vertice.getID() == verticeID){
@@ -83,9 +83,9 @@ public class Principal{
      * @return String verticeRemovidoFormatoJSON
      */
     public String deleteJSONid(int verticeID){
-        vertice = raiz.getVerticeExists(verticeID);
-        if( vertice != null ){
-            raiz.deleteVerticeDaMatriz(verticeID);
+        //vertice = raiz.getVerticeExists(verticeID);
+        if( raiz.deleteVerticeDaMatriz(verticeID) ){
+            
             return String.format("{\"delete\":{\"ID\":%d,\"resposta\":\"sucesso\"}}", verticeID);
         }else{
             return String.format("{\"delete\":{\"ID\":%d,\"resposta\":\"falha\"}}", verticeID);
@@ -155,34 +155,6 @@ public class Principal{
         return retorno+="]}"; 
     }
     
-    /**
-     * Insere um novo Vertice
-     * 
-     * @param int verticeID
-     * @param String nome 
-     */
-    public void setNovoVertice(int verticeID, String nome){
-        raiz.setProximoVertice(nome, verticeID);
-    }
-    
-    /**
-     * Método que insere uma nova aresta ao vertice
-     * @param int verticeOrigemID
-     * @param int verticeDestinoID
-     * @param int valor 
-     */
-    public void setNovaAresta(int verticeOrigemID, int verticeDestinoID, int valor){        
-        vertice = raiz.getVerticeExists(verticeOrigemID);
-        if( vertice != null )
-        {
-            aresta = vertice.getArestaExists(verticeOrigemID);
-            if( aresta != null){
-                    return;
-            }
-            vertice.setProximaAresta(verticeDestinoID,valor);
-        }
-    }
-    
     public void lerComandos(){
         
         /**
@@ -235,30 +207,32 @@ public class Principal{
                 switch(tipoComando){
                     case 0:
                         //QUERIE
-                        if("get".equals(parteComando[0])){
-                            //System.out.printf("query get %d\n", Integer.parseInt(parteComando[1]));
-                            System.out.println(this.getJSONid(Integer.parseInt(parteComando[1])));
-                        }else{
-                            if("delete".equals(parteComando[0])){
-                                //System.out.printf("query delete %d\n", Integer.parseInt(parteComando[1]));
-                                System.out.println(this.deleteJSONid(Integer.parseInt(parteComando[1])));
+                        try{
+                            if("get".equals(parteComando[0])){
+                                //System.out.printf("query get %d\n", Integer.parseInt(parteComando[1]));
+                                System.out.println(this.getJSONid(Integer.parseInt(parteComando[1])));
                             }else{
-                                if("vizinhos".equals(parteComando[0])){
-                                    //System.out.printf("query vizinhos %d\n",Integer.parseInt(parteComando[1]));
-                                    System.out.println(this.getVizinhoJSONid(Integer.parseInt(parteComando[1])));
+                                if("delete".equals(parteComando[0])){
+                                    //System.out.printf("query delete %d\n", Integer.parseInt(parteComando[1]));
+                                    System.out.println(this.deleteJSONid(Integer.parseInt(parteComando[1])));
                                 }else{
-                                    if("conexao".equals(parteComando[0])){
-                                        //System.out.printf("query conexao %d %d\n", Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2]));
-                                        System.out.println(this.getConexaoJSONconexaoid( Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2])));
+                                    if("vizinhos".equals(parteComando[0])){
+                                        //System.out.printf("query vizinhos %d\n",Integer.parseInt(parteComando[1]));
+                                        System.out.println(this.getVizinhoJSONid(Integer.parseInt(parteComando[1])));
                                     }else{
-                                        if("ordemtop".equals(parteComando[0])){
-                                            System.out.println(this.getOrdemTopologicaJSON());
+                                        if("conexao".equals(parteComando[0])){
+                                            //System.out.printf("query conexao %d %d\n", Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2]));
+                                            System.out.println(this.getConexaoJSONconexaoid( Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2])));
                                         }else{
-                                            if("arvoreminima".equals(parteComando[0])){
-                                                //ARVORE MINIMA
+                                            if("ordemtop".equals(parteComando[0])){
+                                                System.out.println(this.getOrdemTopologicaJSON());
                                             }else{
-                                                if("menorcaminho".equals(parteComando[0])){
-                                                    //MENOR CAMINHO
+                                                if("arvoreminima".equals(parteComando[0])){
+                                                    //ARVORE MINIMA
+                                                }else{
+                                                    if("menorcaminho".equals(parteComando[0])){
+                                                        //MENOR CAMINHO
+                                                    }
                                                 }
                                             }
                                         }
@@ -266,18 +240,26 @@ public class Principal{
                                 }
                             }
                         }
+                        catch(Exception eee){
+                            
+                        }
                         break;
                     case 1:
                         //VERTICE
-                        
+                        try{
                         int inicioDoNome = comando.indexOf("\"");
-                        setNovoVertice(Integer.parseInt(parteComando[0]), comando.substring(inicioDoNome, comando.length()-1));
+                        raiz.setNovoVertice(Integer.parseInt(parteComando[0]), comando.substring(inicioDoNome, comando.length()-1));
                         //System.out.printf("Vertice ID: %d NOME: %s\n", Integer.parseInt(parteComando[0]), comando.substring(inicioDoNome+1, comando.length()-1));
+                        }catch(Exception eeee){    
+                        }
                         break;
                     case 2:
                         //ARESTA
-                        setNovaAresta(Integer.parseInt(parteComando[0]),Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2]));
+                        try{
+                        raiz.setNovaAresta(Integer.parseInt(parteComando[0]),Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2]));
                         //System.out.printf("Aresta %d %d %d\n", Integer.parseInt(parteComando[0]),Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2]));
+                        }catch(Exception eee){
+                        }
                         break;
                 }
             }

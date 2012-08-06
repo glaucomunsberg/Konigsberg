@@ -1,3 +1,13 @@
+Versão 0.6.0
+    Principal
+        ✎ lerComandos                   - agora trata eventos de exception
+        ✔ setNovaAresta                 - método deslocado para a classe vertice para respeitar o conceito de OO
+    Vertice
+        ✔ getRaiz                       - método que retorna a raiz do grafo sempre
+        ✔ setNovaAresta                 - método implementado para respeitar o conceito OO 
+        ✎ getlistaDeVerticesSemEntrada  - correção grave de tipo
+        ✎ deleteVerticeDaMatriz         - correção para retorno de false ou true
+
 Versão 0.5.3
     Principal
 	✘ setValorMatriz                - remoção por oboletividade
