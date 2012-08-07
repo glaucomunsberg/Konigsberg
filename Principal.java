@@ -84,7 +84,7 @@ public class Principal{
      */
     public String deleteJSONid(int verticeID){
         //vertice = raiz.getVerticeExists(verticeID);
-        if( raiz.deleteVerticeDaMatriz(verticeID) ){
+        if( raiz.deleteVertice(verticeID) ){
             
             return String.format("{\"delete\":{\"ID\":%d,\"resposta\":\"sucesso\"}}", verticeID);
         }else{
@@ -153,6 +153,15 @@ public class Principal{
                 }
             }
         return retorno+="]}"; 
+    }
+    
+    public String removeArestaJSONid(int id1, int id2){
+        if( raiz.removeAresta(id1, id2)){
+            return "{\"remove\":{\"ID1:"+id1+", \"ID2\":"+id2+",\"resposta\":\"sucesso\"}}";
+        }
+        else{
+            return "{\"remove\":{\"ID1:"+id1+", \"ID2\":"+id2+",\"resposta\":\"falha\"}}";
+        }
     }
     
     public void lerComandos(){
@@ -232,6 +241,10 @@ public class Principal{
                                                 }else{
                                                     if("menorcaminho".equals(parteComando[0])){
                                                         //MENOR CAMINHO
+                                                    }else{
+                                                        if("remove".equals(parteComando[0])){
+                                                             System.out.println(this.removeArestaJSONid(Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2])));
+                                                        }
                                                     }
                                                 }
                                             }

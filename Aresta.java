@@ -7,7 +7,7 @@ public class Aresta
 {
     private int verticeID;
     private int valor;
-    private Aresta proximo;
+    protected Aresta proximo;
     
     /**
      * Construtor padrão tudo zero e null

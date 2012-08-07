@@ -127,11 +127,12 @@
 #     | *Queries			|  3.4	 |
 #     | get <ID>			|  3.4.1 |
 #     | delete <ID>			|  3.4.2 |
-#     | vizinhos <ID>			|  3.4.3 |
-#     | conexao <ID1> <ID2>		|  3.4.4 |
-#     | ordemtop			|  3.4.5 |
-#     | arvoreminima			|  3.4.6 |
-#     | menorcaminho			|  3.4.7 |
+#     | remove <ID1> <ID2>              |  3.4.3 |
+#     | vizinhos <ID>			|  3.4.4 |
+#     | conexao <ID1> <ID2>		|  3.4.5 |
+#     | ordemtop			|  3.4.6 |
+#     | arvoreminima			|  3.4.7 |
+#     | menorcaminho			|  3.4.8 |
 #     | @				|  3.5	 | 
 #     --------------------------------------------
 #
@@ -290,7 +291,31 @@
 #         Obs.: Deletar um vértice implica em remove todo e qualquer aresta com 
 #         origem ou destino no vertice tal.
 #
-#         3.4.3 vizinhos <ID>
+#         3.4.3 remove <ID1> <ID2>
+#         O comando "remove <ID1> <ID2>" remove a aresta ID1 conectada a ID2, se
+#         existir ou retona falaha se a conexão não existir.
+#         O comando é composto por três partes:
+#          remove
+#          <ID1> - Índice do vertice Origem
+#          <ID2> - Índice do vertice destino
+#         Veja um exemplo:
+#         -arquivo_remove_vertice.txt------------
+#         |	*vertices			|
+#         |	1 "vertice 1"			|
+#         |	2 "vertice 2"			|
+#         |	*edges  			|
+#         |	1 2 1           		|
+#         |     *queries                        |
+#         |	remove 1 2			|
+#         |	delete 2 1			|
+#         |	@				|
+#         ---------------------------------------
+#         -console_return------------------------------------------------
+#         |	{"remove"{"ID1":1,"ID2":2,"resposta":"sucesso"}}	|
+#         |	{"remove"{"ID1":2,"ID2":1,"resposta":"falha"}}		|
+#          --------------------------------------------------------------
+#
+#         3.4.4 vizinhos <ID>
 #         O comando "get <ID>" retorna uma lista de vizinhos do vértice ID. No 
 #         caso do grafo ser direcionado, os vizinhos são aqueles apontados pelo 
 #         vértice ID. Retorna falha se o vértice ID não existir.
@@ -315,7 +340,7 @@
 #         |	{"vizinhos":{"ID":2, "resposta":"falha", "vizinhos":[]}}    |
 #         -------------------------------------------------------------------
 #
-#         3.4.4 conexao <ID1> <ID2>
+#         3.4.5 conexao <ID1> <ID2>
 #         O comando "conexao <ID1> <ID2>" informa se existe uma conexão entre 
 #         os vértices ID1 e ID2. Falha se ID1 ou ID2 não existirem.
 #         O comando é composto por três partes:
@@ -340,13 +365,13 @@
 #         |	{"conexao":{"ID1":2, "ID2":1, "resposta":"falha", "conexao":""}}      |
 #         -----------------------------------------------------------------------------
 #
-#         3.4.5 ordemtop
+#         3.4.6 ordemtop
 #         [not implement yet]
 #
-#         3.4.6 arvoreminima
+#         3.4.7 arvoreminima
 #         [not implement yet]
 #
-#         3.4.7 menorcaminho
+#         3.4.8 menorcaminho
 #         [not implement yet]
 #         
 #   3.5 @

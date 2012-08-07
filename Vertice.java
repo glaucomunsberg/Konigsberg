@@ -1,5 +1,7 @@
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * Classe que representa os vertices do grafo
@@ -304,23 +306,10 @@ public class Vertice {
      */
     public int[] getOrdemTopologica(){
         int[] semEntrada = this.getlistaDeVerticesSemEntrada();
-        this.getlistaDeVerticesSemSaida();
-        //int[] semSaida = this.getlistaDeVerticesSemSaida();
-        int nodo;
-        ArrayList<Integer> L = new ArrayList<Integer>();
-        ArrayList<Integer> S = new ArrayList<Integer>();
+        int[] deTodos = this.getlistaVerticesID();
+        LinkedList<Integer>  S = new LinkedList<Integer>();
         
-        for(int a=0; a < semEntrada.length; a++){
-            L.add(semEntrada[a]);
-        }
-        
-        while( !S.isEmpty() ){
-            nodo = S.remove(0);
-            L.add(nodo);
-            //for(a=0; a < )
-            
-       }
-       return new int[1];
+        return new int[1];
     }
     
     
@@ -330,7 +319,7 @@ public class Vertice {
      * @param int verticeID
      * @return { true - se deletou || false- se não achou}
      */
-    public boolean deleteVerticeDaMatriz(int verticeID){
+    public boolean deleteVertice(int verticeID){
         //System.err.printf("DELETAR VERTICE\n");
         Vertice verticeAnterior = raiz.getProximoVertice();
         Vertice vertice = verticeAnterior.proximoVertice;
@@ -432,5 +421,56 @@ public class Vertice {
                 vertice.setProximaAresta(verticeOrigemID,valor);
             }   
         }
+    }
+    
+    public int getNumArestas(){
+        int numArestas=0;
+        Aresta arestaTemp =  this.getProximaAresta();
+        while( arestaTemp != null){
+            numArestas++;
+            arestaTemp = arestaTemp.proximo;
+        }
+        return numArestas;
+    }
+    public boolean removeAresta(int origem, int destino){
+        Vertice vertice = raiz.getVerticeExists(origem);
+        if(vertice != null){
+            return vertice.removeAresta(destino);
+        }
+        return false;
+    }
+    
+    private boolean removeAresta(int verticeID){
+        Aresta arestaAnterior = this.getProximaAresta();
+        if(arestaAnterior == null){
+            return false;
+        }
+        Aresta arestaTemp = arestaAnterior.getProximaAresta();
+        //verifica se é o primeiro que deve ser deletado
+        if(arestaAnterior.getVerticeID() == verticeID){
+            //System.err.printf("Encontrado o para deletar\n");
+            arestaAnterior = arestaTemp;
+            return true;
+        }
+        
+        /**
+         * Remove o vertice se encontra-o ou então
+         *  passa para o próximo
+         */
+        while( arestaTemp != null){
+            if( arestaTemp.getVerticeID() == verticeID ){
+                //System.err.printf("Encontrado o para deletar\n");
+                arestaAnterior.proximo = arestaTemp.getProximaAresta();
+                return true;
+            }
+            else{
+                //System.err.printf("Não encontrou para deletar\n");
+                arestaAnterior = arestaTemp;
+                arestaTemp = arestaTemp.getProximaAresta();
+            }
+        }
+        
+        return false;
+        
     }
 }
