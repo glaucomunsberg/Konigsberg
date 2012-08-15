@@ -216,7 +216,7 @@ public class Principal{
                 switch(tipoComando){
                     case 0:
                         //QUERIE
-                        try{
+                        //try{
                             if("get".equals(parteComando[0])){
                                 //System.out.printf("query get %d\n", Integer.parseInt(parteComando[1]));
                                 System.out.println(this.getJSONid(Integer.parseInt(parteComando[1])));
@@ -252,10 +252,10 @@ public class Principal{
                                     }
                                 }
                             }
-                        }
-                        catch(Exception eee){
+                        //}
+                        //catch(Exception eee){
                             
-                        }
+                        //}
                         break;
                     case 1:
                         //VERTICE

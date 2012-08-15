@@ -1,3 +1,13 @@
+Versão 0.6.2
+    Vertice
+        ✎ removeAresta                              - corrigido remoção da última aresta
+        ✎ getOrdemTopologica                        - modificações no comportamento
+        ✔ getlistaLinkedListDeVerticesSemEntrada    - método como o 'getlistaDeVerticesSemEntrada' porém retorna diretamente a lista
+    exemplosDeComandos
+       ✎ exemplo arquivo_remove_aresta.txt adicionado
+    README
+	✎ documentação incremetada e corrigida em relação aos comandos
+
 Versão 0.6.1
     Principal
         ✔ removeArestaJSONid            - Método que remover Aresta
@@ -180,7 +190,7 @@ Versão 0.0
 Problems to solve
 --------------------------------------------------------------------------------
 
-    ⌛ Caso haja um erro no comando criado pelo usuário deve este ser mostrado;
+    ⌛ ordemTopologica Erro
 
 --------------------------------------------------------------------------------
 Understanding the file 'version'

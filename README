@@ -34,8 +34,8 @@
 #   O trabalho foi programado e testado em um computador:
 #    * Pentium Dual Core 2.2GHz
 #    * 2,5GB Memória RAM DDR2
-#    * Ubuntu 12.04 32-bits, área de troca de 1Gb para auxílio, com Java7
-#      e demais configurações padrões.
+#    * Ubuntu 12.04 32-bits, área de troca de 1Gb para auxílio, com Java7 e 
+#   demais configurações padrões.
 #
 #   1.1 Resultado Obtido
 #       Usando uma JMV de no máximo 2,3Gb os resultados* obtidos foram:
@@ -103,7 +103,7 @@
 #   sem um comando do primeiro grupo esteja entre eles.
 #   Veja exemplo do que NÂO se pode fazer:
 #
-#     -arquivo_nao_executa1.txt----------
+#     -arquivo_nao_executa.txt----------
 #     |	<TIPO1>				|
 #     |	<COMANDO_TIPO_2>		|
 #     |	@				|
@@ -113,7 +113,7 @@
 #     -----------------------------------
 #
 #   Leia abaixo mais sobre os comandos, ou pegue os arquivo dos exemplos no 
-#   no diretório "exemplosDeComandos".
+#   diretório "exemplosDeComandos/".
 #
 #   Veja abaixo a lista de comandos aceitos pelo programa:
 #
@@ -136,7 +136,9 @@
 #     | @				|  3.5	 | 
 #     --------------------------------------------
 #
-#   Descrição de funcionalidade de cada comando:
+#   Descrição de funcionalidade de
+#   http://avainstitucional.ufpel.edu.br/mod/assignment/view.php?id=25409
+#   cada comando:
 #
 #   3.1 Grupos de Comandos
 #      Os comandos são divididos em três grupos definidos segundo a utilidade 
@@ -159,9 +161,9 @@
 #         3.2.1 <ID> "<NOME>"
 #         O comando de inserção de vértice deve estar dentro de um bloco do 
 #         grupo de vértices. O comando é composto por duas partes:#         
-#          <ID>     int    - id que terá o vértice podendo assumir todos os
+#          <ID>     int   - id que terá o vértice podendo assumir todos os
 #            entre  -2147483647 e 2147483647.
-#          "<NOME>" string - nome que terá o vértice
+#          <NOME> string  - nome que terá o vértice
 #
 #         A primeira parte referencia ao ID do vértice e deve ser um integer, 
 #         a segunda é o nome do vértice e o nome é delimitado com aspas no 
@@ -298,8 +300,9 @@
 #          remove
 #          <ID1> - Índice do vertice Origem
 #          <ID2> - Índice do vertice destino
+#
 #         Veja um exemplo:
-#         -arquivo_remove_vertice.txt------------
+#         -arquivo_remove_aresta.txt-------------
 #         |	*vertices			|
 #         |	1 "vertice 1"			|
 #         |	2 "vertice 2"			|
@@ -307,7 +310,7 @@
 #         |	1 2 1           		|
 #         |     *queries                        |
 #         |	remove 1 2			|
-#         |	delete 2 1			|
+#         |	remove 2 1			|
 #         |	@				|
 #         ---------------------------------------
 #         -console_return------------------------------------------------
@@ -380,7 +383,7 @@
 #      desconsiderados.
 #      Veja um exemplo a abaixo:
 #
-#      -arquivo_condicao_parada.txt-------
+#      -arquivo_condicao_parada.txt------
 #      |	*vertices		|
 #      |	1 "vertice 1"		|
 #      |	@			|

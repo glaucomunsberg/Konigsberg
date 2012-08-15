@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 /**
  * Classe que representa os vertices do grafo
@@ -254,12 +255,42 @@ public class Vertice {
             vertices[a]=arrayDeVerices.get(a);
         }
         System.out.print("Lista de Vertices sem entrada:\n");
-        for(int a=0; a < vertices.length; a++){
-            System.out.printf("%d,",vertices[a]);
+        Iterator i = arrayDeVerices.iterator();
+        while(i.hasNext()){
+          System.out.printf("%d", (Integer)i.next()) ;
         }
-        System.out.print("\n");
+        
+        System.out.print("\n,");
         return vertices;
     }
+    
+    public LinkedList getlistaLinkedListDeVerticesSemEntrada(){
+        LinkedList<Integer> arrayDeVerices = new LinkedList<Integer>();
+        int[] vertices = this.getlistaVerticesID();
+        Integer integerTemp;
+        for(int a=0; a < vertices.length;a++){  
+            arrayDeVerices.add((Integer)vertices[a]);
+        }
+        Vertice vertice = raiz.proximoVertice;
+        while( vertice != null){
+            Aresta arestaTemp = vertice.getProximaAresta();
+            while( arestaTemp != null){
+                integerTemp = (Integer)arestaTemp.getVerticeID();
+                arrayDeVerices.remove(integerTemp);
+                arestaTemp = arestaTemp.getProximaAresta();
+            }
+            vertice = vertice.getProximoVertice();
+        }   
+
+        System.out.print("Lista de Vertices sem entrada:\n");
+        Iterator i = arrayDeVerices.iterator();
+        while(i.hasNext()){
+          System.out.printf("%d", (Integer)i.next()) ;
+        }
+        System.out.print("\n,");
+        return arrayDeVerices;
+    }
+    
     public int[] getlistaDeVerticesSemSaida(){
         int[] vertices;
         Vertice vertice = this.proximoVertice;
@@ -305,9 +336,42 @@ public class Vertice {
      *  escrever mensagem  (ordenação topológica proposta: L)
      */
     public int[] getOrdemTopologica(){
-        int[] semEntrada = this.getlistaDeVerticesSemEntrada();
         int[] deTodos = this.getlistaVerticesID();
-        LinkedList<Integer>  S = new LinkedList<Integer>();
+        Vertice vertTemp;        
+        LinkedList semEntrada = this.getlistaLinkedListDeVerticesSemEntrada();
+        LinkedList temp = new LinkedList<Integer>();
+        int numeroTotalDeVertices = deTodos.length;
+        Integer verticeID;
+        while(semEntrada.size() != numeroTotalDeVertices ){
+            
+            ListIterator<Integer> iterador = semEntrada.listIterator(0);
+            
+            while (iterador.hasNext()) { //percorrer toda a lista até o ultimo elemento
+                verticeID = (Integer)iterador.next();
+                for(int a=0; a < numeroTotalDeVertices; a++){
+                    System.out.printf("VerticeID = %s ArestaID = %d!\n",verticeID, deTodos[a]);
+                    vertTemp = this.getVerticeExists(verticeID);
+                    vertTemp.removeAresta(deTodos[a]);
+                    System.out.printf("VerticeID = %s num de arestas = %d!\n",verticeID, vertTemp.getNumArestas());
+                    if( vertTemp.getNumArestas() == 0 ){
+                        temp.add(vertTemp.getID());
+                        break;
+                    }
+                }
+            }
+            
+           ListIterator<Integer> iterador2 = temp.listIterator(0);
+           while(iterador2.hasNext()){
+               System.out.printf("ADICIONADO");
+               semEntrada.add((Integer)iterador2.next());
+           }
+           temp.clear();
+        }
+         System.out.printf("Imprimir: !\n");
+        while(!semEntrada.isEmpty()){
+            System.out.printf("%d,", (Integer)semEntrada.remove());
+        }
+        
         
         return new int[1];
     }
@@ -432,6 +496,7 @@ public class Vertice {
         }
         return numArestas;
     }
+    
     public boolean removeAresta(int origem, int destino){
         Vertice vertice = raiz.getVerticeExists(origem);
         if(vertice != null){
@@ -445,11 +510,19 @@ public class Vertice {
         if(arestaAnterior == null){
             return false;
         }
-        Aresta arestaTemp = arestaAnterior.getProximaAresta();
+        Aresta arestaTemp;
+
+        arestaTemp = arestaAnterior.getProximaAresta();
+         
         //verifica se é o primeiro que deve ser deletado
         if(arestaAnterior.getVerticeID() == verticeID){
-            //System.err.printf("Encontrado o para deletar\n");
-            arestaAnterior = arestaTemp;
+            if(arestaTemp == null){
+                this.aresta = null;
+            }
+            else{
+                arestaAnterior = arestaTemp;
+            }
+            
             return true;
         }
         
