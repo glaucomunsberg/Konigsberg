@@ -144,15 +144,18 @@ public class Principal{
      * @return String formatoJSON
      */
     public String getOrdemTopologicaJSON(){
-        String retorno = "{\"ordemtop\":[";
         int[] ordem = raiz.getOrdemTopologica();
+        if(ordem == null){
+            return String.format("");
+        }
+        String retorno = "{\"ordemtop\":[";
             for(int a=0; a < ordem.length;a++){
                 retorno+=String.format("%d", ordem[a]);
                 if( a+1 < ordem.length ){
                     retorno+=String.format(",", ordem[a]);
                 }
             }
-        return retorno+="]}"; 
+        return retorno+="]}\n"; 
     }
     
     public String removeArestaJSONid(int id1, int id2){
@@ -234,7 +237,7 @@ public class Principal{
                                             System.out.println(this.getConexaoJSONconexaoid( Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2])));
                                         }else{
                                             if("ordemtop".equals(parteComando[0])){
-                                                System.out.println(this.getOrdemTopologicaJSON());
+                                                System.out.printf(this.getOrdemTopologicaJSON());
                                             }else{
                                                 if("arvoreminima".equals(parteComando[0])){
                                                     //ARVORE MINIMA

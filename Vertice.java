@@ -328,6 +328,9 @@ public class Vertice {
      * Retorna a ordem topológica caso esse não tenha um ciclo
      */
     public int[] getOrdemTopologica(){
+        if(!Vertice.getIsDirecionado()){
+            return null;
+        }
         LinkedList<Integer> semEntrada = this.getlistaLinkedListDeVerticesSemEntrada();
         LinkedList<Integer> semEntradaTemp = new LinkedList<Integer>(semEntrada);
         while(Vertice.getNumeroDeVertices() != 0){
@@ -454,7 +457,8 @@ public class Vertice {
             }
             vertice.setProximaAresta(verticeDestinoID,valor);
         }
-        if( Vertice.getIsDirecionado() ){
+        
+        if( !Vertice.getIsDirecionado() ){
             vertice = raiz.getVerticeExists(verticeDestinoID);
             if( vertice != null )
             {

@@ -195,10 +195,10 @@
 #      primeira vez, será sempre *edges mesmo com inserção do tipo *arcs.
 #
 #      Veja a diferença entre ambos:
-#      *arcs - Comando que insere arestas direcionadas, ou seja, para toda
+#      *edges - Comando que insere arestas não direcionadas, ou seja, para toda
 #       aresta X com vértice origem A e vértice destinho B, existe uma aresta Y 
 #       com vértice origem em B e vértice destino em A.
-#      *edges- Comando que insere arestas não direcionadas, ou seja, para toda 
+#      *arcs - Comando que insere arestas direcionadas, ou seja, para toda 
 #       aresta X tem vertece origem em A e vértice destino B, porém não insere 
 #       uma aresta com vértice origem B com vértice destino em A.
 #
@@ -371,8 +371,9 @@
 #         3.4.6 ordemtop
 #         O comando "ordemtop" retorna a ordem topológica do grafo. para isso
 #         deve-se assegurar duas condições:
-#           * Que o grafo não seja arestas direcionadas, do tipo *arcs
-#           * Que não haja ciclos no grafo
+#           * Que o grafo seja direcionado, do tipo *arcs;
+#           * Que o grafo seja conexo;
+#           * Que não haja ciclos no grafo;
 #         O comando é unitário sendo composto apenas por:
 #          ordemtop
 #

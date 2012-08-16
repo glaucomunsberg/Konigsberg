@@ -1,3 +1,13 @@
+Versão 0.7.1
+    Principal
+        ✎  getOrdemTopologicaJSON   - correção sobre retorno de OrdemTopologica e mensagem de alerta na compilação
+        ✎ lerComandos               - pequena correção na formatação de saída da ordemtop
+    Vertice
+        ✎ setNovaAresta             - correção sobre grafo digrafo
+        ✎ getOrdemTopologica        - correção sobre grafo digrafo
+    README
+        ✎ correção de orientação para o grafo digrafo ou não
+
 Versão 0.7.0
     Vertice 
         ✎ Vertice                                   - Contrutor documentado
@@ -210,7 +220,7 @@ Versão 0.0
 Problems to solve
 --------------------------------------------------------------------------------
 
-    ⌛ ordemTopologica tem que ser filtrada adequadamente pelo *arcs e ciclos
+    ⌛ ordemTopologica tem que ser filtrada adequadamente se há ciclos
 
 --------------------------------------------------------------------------------
 Understanding the file 'version'
