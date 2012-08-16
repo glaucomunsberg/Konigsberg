@@ -11,7 +11,6 @@ import java.util.LinkedList;
 public class Vertice {
     
     private String nome;
-    private static int numDeVertices;
     private int ID;
     private Aresta aresta;
     private Vertice proximoVertice;
@@ -22,7 +21,6 @@ public class Vertice {
      * Criador do vertice raiz
      */
     public Vertice(){
-        numDeVertices=0;
         nome = ""; 
         ID = 0;
         proximoVertice = null;
@@ -36,7 +34,6 @@ public class Vertice {
      * @param Vertice proximoVertice 
      */
     public Vertice(String nome, int ID, Aresta aresta, Vertice proximoVertice){
-        numDeVertices++;
         this.nome = nome;
         this.ID = ID;
         this.aresta = aresta;
@@ -48,7 +45,6 @@ public class Vertice {
      * @param Vertice vertice 
      */
     public Vertice(Vertice vertice){
-        numDeVertices++;
         this.ID = vertice.ID;
         this.nome = vertice.nome;
         this.aresta = vertice.aresta;
@@ -93,7 +89,13 @@ public class Vertice {
      * Retorna o total vertices que possúi
      * @return int numDeVertices
      */
-    public static int getNumeroDeVertices(){
+    public int getNumeroDeVertices(){
+        int numDeVertices=0;
+        Vertice temp = this.getProximoVertice();
+        while(temp != null){
+            temp = temp.getProximoVertice();
+            numDeVertices++;
+        }
         return numDeVertices;
     }
     
@@ -308,14 +310,16 @@ public class Vertice {
         if(!Vertice.getIsDirecionado()){
             return null;
         }
-        LinkedList<Integer> semEntrada = this.getlistaLinkedListDeVerticesSemEntrada();
+        Vertice clone = this.clone(this.getProximoVertice());
+        
+        LinkedList<Integer> semEntrada = clone.getlistaLinkedListDeVerticesSemEntrada();
         LinkedList<Integer> semEntradaTemp = new LinkedList<Integer>(semEntrada);
-        while(Vertice.getNumeroDeVertices() != 0){
+        while(clone.getNumeroDeVertices() != 0){
             Iterator interator = semEntradaTemp.iterator();
             while(interator.hasNext()){
-                this.deleteVertice( (int)interator.next() );
+                clone.deleteVertice( (int)interator.next() );
             }
-            semEntradaTemp = this.getlistaLinkedListDeVerticesSemEntrada();
+            semEntradaTemp = clone.getlistaLinkedListDeVerticesSemEntrada();
             Iterator interatorDois = semEntradaTemp.iterator();
             while(interatorDois.hasNext()){
                 semEntrada.add((Integer)interatorDois.next());
@@ -348,9 +352,7 @@ public class Vertice {
         boolean jaDeletou = false;
         //verifica se é o primeiro que deve ser deletado
         if(verticeAnterior.getID() == verticeID){
-            //System.err.printf("Encontrado o para deletar\n");
             this.proximoVertice = vertice;
-            Vertice.numDeVertices--;
             jaDeletou = true;
  
         }
@@ -361,14 +363,11 @@ public class Vertice {
          */
         while( vertice != null){
             if( vertice.getID() == verticeID ){
-                //System.err.printf("Encontrado o para deletar\n");
-                numDeVertices--;
                 verticeAnterior.proximoVertice = vertice.proximoVertice;
                 jaDeletou = true;
                 vertice = null;
             }
             else{
-                //System.err.printf("Não encontrou para deletar\n");
                 verticeAnterior = vertice;
                 vertice = vertice.proximoVertice;
             }
@@ -385,17 +384,14 @@ public class Vertice {
             if(arestaAnterior != null){
                 Aresta estaAresta = arestaAnterior.getProximaAresta();
                 if( arestaAnterior.getVerticeID() == verticeID){
-                    //System.err.printf("Encontrado Aresta o para deletar\n");
                     vertice.aresta = estaAresta;
                 }
                 while(estaAresta != null){
                     if(estaAresta.getVerticeID() == verticeID){
-                        //System.err.printf("Encontrado Aresta o para deletar\n");
                         arestaAnterior.setProximaAresta(estaAresta.getProximaAresta());
                         estaAresta = null;
                     }
                     else{
-                        //System.err.printf("Aresta não encontrou para deletar\n");
                         arestaAnterior = estaAresta;
                         estaAresta = estaAresta.getProximaAresta();
                     }
@@ -558,5 +554,45 @@ public class Vertice {
          }
 
         return new int[0];
+    }
+    
+    /**
+     * Método que retornar um clone do grafo na sua atual
+     *  situação
+     * @param Vertice raiz
+     * 
+     * @return Vertice clone
+     */
+    public Vertice clone(Vertice raiz)
+    {
+        Vertice clone = new Vertice();
+        
+        Vertice verticeTemp = this.getProximoVertice();
+        Aresta arestaTemp;
+        
+        //Primeiro copia todos os vertices, pois para se criar uma aresta ambas as
+        //  os vertices devem estar presentes
+        while(verticeTemp != null)
+        {
+            
+            clone.setNovoVertice(verticeTemp.getID(), verticeTemp.getNomeVertice());
+            verticeTemp = verticeTemp.getProximoVertice();
+            
+        }
+        
+        //Copia as arestas da raiz para o clone
+        verticeTemp = this.getProximoVertice();
+        while( verticeTemp != null)
+        {
+            arestaTemp = verticeTemp.getProximaAresta();
+            while( arestaTemp != null )
+            {
+                clone.setNovaAresta(verticeTemp.ID, arestaTemp.getVerticeID(), arestaTemp.getValor());
+                arestaTemp = arestaTemp.getProximaAresta();
+            }
+            verticeTemp = verticeTemp.getProximoVertice();
+        }
+        
+        return clone;
     }
 }

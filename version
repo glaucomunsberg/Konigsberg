@@ -1,3 +1,11 @@
+Versão 0.7.3
+    Vertice
+        ✔ clone                 - cria um clone do grafo
+        ✎ getOrdemTopologica    - agora opera sobre o clone, não removendo sua estrutura
+        ✎ getNumeroDeVertices   - modificado para ser dinamico conforme é inserido ou removido
+    README.md
+        ✎ correção de formatação de informação
+
 Versão 0.7.2
     Principal
         ✘ getVizinhosDaMatriz   - removido por não fazer para respeitar a POO
