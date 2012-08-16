@@ -20,6 +20,7 @@ public class Vertice {
     private static boolean isRaiz = false;
     private static boolean isDirecionado;
     private static boolean isDirecionadoInseridoValor;
+    
     /**
      * Construtor base com tudo zero e null
      */
@@ -30,11 +31,21 @@ public class Vertice {
         proximoVertice = null;
     }
     
+    /**
+     * Construtor privado para raiz;
+     * @param isID - Id do novo vertico
+     * 
+     */
     private Vertice(int isID){
         nome = "raiz";
         ID  = isID;
     }
     
+    /**
+     * Retorna a raiz desse grafo
+     * 
+     * @return Vertice raiz 
+     */
     public static Vertice getRaiz(){
         //return raiz;
         return raiz;
@@ -205,8 +216,9 @@ public class Vertice {
     }
     
     /**
-     * Método que retorna todos os vertices e ids que existe
-     * @return 
+     *  Método que retorna a lista de ID de vertices que há no grafo
+     * 
+     *  @return int[] arrayDeInt;
      */
     public int[] getlistaVerticesID(){
         ArrayList<Integer> listaDeVertices = new ArrayList<Integer>();
@@ -222,17 +234,18 @@ public class Vertice {
             {
                 arrayDeInt[i]=listaDeVertices.get(i);
             }
-            System.out.print("Lista de Vertices:\n");
-            for(int a=0; a < arrayDeInt.length; a++){
-                System.out.printf("%d,",arrayDeInt[a]);
-            }
-            System.out.print("\n");
             return arrayDeInt;
         }else{
             return new int[0];
         }
     }
     
+    /**
+     * Método que retorna a array de vertices do grafo que não
+     *  possúem arestas de entrada.
+     * 
+     * @return int[] vertices 
+     */
     public int[] getlistaDeVerticesSemEntrada(){
         ArrayList<Integer> arrayDeVerices = new ArrayList<Integer>();
         int[] vertices = this.getlistaVerticesID();
@@ -254,16 +267,16 @@ public class Vertice {
         for(int a=0; a < arrayDeVerices.size();a++){
             vertices[a]=arrayDeVerices.get(a);
         }
-        System.out.print("Lista de Vertices sem entrada:\n");
-        Iterator i = arrayDeVerices.iterator();
-        while(i.hasNext()){
-          System.out.printf("%d", (Integer)i.next()) ;
-        }
-        
-        System.out.print("\n,");
+        java.util.Collections.sort(arrayDeVerices);
         return vertices;
     }
     
+    /**
+     * Método que retorna uma linkedList de ID's de vertices do grafo 
+     *  que não possúem arestas de entrada.
+     * 
+     * @return int[] vertices 
+     */
     public LinkedList getlistaLinkedListDeVerticesSemEntrada(){
         LinkedList<Integer> arrayDeVerices = new LinkedList<Integer>();
         int[] vertices = this.getlistaVerticesID();
@@ -282,15 +295,15 @@ public class Vertice {
             vertice = vertice.getProximoVertice();
         }   
 
-        System.out.print("Lista de Vertices sem entrada:\n");
-        Iterator i = arrayDeVerices.iterator();
-        while(i.hasNext()){
-          System.out.printf("%d", (Integer)i.next()) ;
-        }
-        System.out.print("\n,");
+        java.util.Collections.sort(arrayDeVerices);
         return arrayDeVerices;
     }
     
+    /**
+     * Retorna a lista de vertices que não possúem grau de entrada
+     * 
+     * @return int[] vertices
+     */
     public int[] getlistaDeVerticesSemSaida(){
         int[] vertices;
         Vertice vertice = this.proximoVertice;
@@ -308,72 +321,35 @@ public class Vertice {
         for(int a=0; a < arrayVerices.size();a++){
             vertices[a]=arrayVerices.get(a);
         }
-        System.out.print("Lista de Vertices sem saida:\n");
-        for(int a=0; a < vertices.length; a++){
-            System.out.printf("%d,",vertices[a]);
-        }
-        System.out.print("\n");
         return vertices;
     }
     
     /**
-     *
-     * VER COM MAIS CUIDADO http://paginas.fe.up.pt/~rossetti/rrwiki/lib/exe/fetch.php?media=teaching:1011:cal:05_1.grafos1_b.pdf
-     * 
-     * L ← Lista vazia que irá conter os elementos ordenados
-     * S ← Conjunto de todos os nós sem arestas de entrada
-     * 
-     * enquanto S é não-vazio faça
-     *  remova um nodo n de S
-     *  insira n em L
-     *  para cada nodo m com uma aresta e de n até m faça
-     *      remova a aresta e do grafo
-     *      se m não tem mais arestas de entrada então
-     *          insira  m em S
-     * se o grafo tem arestas então
-     *  escrever mensagem de erro (grafo tem pelo menos um ciclo
-     * senão 
-     *  escrever mensagem  (ordenação topológica proposta: L)
+     * Retorna a ordem topológica caso esse não tenha um ciclo
      */
     public int[] getOrdemTopologica(){
-        int[] deTodos = this.getlistaVerticesID();
-        Vertice vertTemp;        
-        LinkedList semEntrada = this.getlistaLinkedListDeVerticesSemEntrada();
-        LinkedList temp = new LinkedList<Integer>();
-        int numeroTotalDeVertices = deTodos.length;
-        Integer verticeID;
-        while(semEntrada.size() != numeroTotalDeVertices ){
-            
-            ListIterator<Integer> iterador = semEntrada.listIterator(0);
-            
-            while (iterador.hasNext()) { //percorrer toda a lista até o ultimo elemento
-                verticeID = (Integer)iterador.next();
-                for(int a=0; a < numeroTotalDeVertices; a++){
-                    System.out.printf("VerticeID = %s ArestaID = %d!\n",verticeID, deTodos[a]);
-                    vertTemp = this.getVerticeExists(verticeID);
-                    vertTemp.removeAresta(deTodos[a]);
-                    System.out.printf("VerticeID = %s num de arestas = %d!\n",verticeID, vertTemp.getNumArestas());
-                    if( vertTemp.getNumArestas() == 0 ){
-                        temp.add(vertTemp.getID());
-                        break;
-                    }
-                }
+        LinkedList<Integer> semEntrada = this.getlistaLinkedListDeVerticesSemEntrada();
+        LinkedList<Integer> semEntradaTemp = new LinkedList<Integer>(semEntrada);
+        while(Vertice.getNumeroDeVertices() != 0){
+            Iterator interator = semEntradaTemp.iterator();
+            while(interator.hasNext()){
+                this.deleteVertice( (int)interator.next() );
             }
-            
-           ListIterator<Integer> iterador2 = temp.listIterator(0);
-           while(iterador2.hasNext()){
-               System.out.printf("ADICIONADO");
-               semEntrada.add((Integer)iterador2.next());
-           }
-           temp.clear();
+            semEntradaTemp = this.getlistaLinkedListDeVerticesSemEntrada();
+            Iterator interatorDois = semEntradaTemp.iterator();
+            while(interatorDois.hasNext()){
+                semEntrada.add((Integer)interatorDois.next());
+            }
         }
-         System.out.printf("Imprimir: !\n");
-        while(!semEntrada.isEmpty()){
-            System.out.printf("%d,", (Integer)semEntrada.remove());
+        Iterator a = semEntrada.iterator();
+        int[] retorno = new int[semEntrada.size()];
+        int b=0;
+        while(a.hasNext()){
+            retorno[b] = (int)a.next();
+            b++;
         }
         
-        
-        return new int[1];
+        return retorno;
     }
     
     
@@ -386,12 +362,16 @@ public class Vertice {
     public boolean deleteVertice(int verticeID){
         //System.err.printf("DELETAR VERTICE\n");
         Vertice verticeAnterior = raiz.getProximoVertice();
+        if(verticeAnterior == null){
+            return false;
+        }
         Vertice vertice = verticeAnterior.proximoVertice;
         boolean jaDeletou = false;
         //verifica se é o primeiro que deve ser deletado
         if(verticeAnterior.getID() == verticeID){
             //System.err.printf("Encontrado o para deletar\n");
             this.proximoVertice = vertice;
+            Vertice.numDeVertices--;
             jaDeletou = true;
  
         }
@@ -487,6 +467,12 @@ public class Vertice {
         }
     }
     
+    /**
+     * Método que retorna o numero de arestas do vertice que está
+     *  sendo manipulado.
+     * 
+     * @return int numArestas
+     */
     public int getNumArestas(){
         int numArestas=0;
         Aresta arestaTemp =  this.getProximaAresta();
@@ -497,6 +483,13 @@ public class Vertice {
         return numArestas;
     }
     
+    /**
+     * Método que remove uma aresta de um vertice existente
+     * @param int origem - Vertice Origem
+     * @param int destino - Vertice Destino
+     * 
+     * @return {true - se removeu || false - se não existe }
+     */
     public boolean removeAresta(int origem, int destino){
         Vertice vertice = raiz.getVerticeExists(origem);
         if(vertice != null){
@@ -505,6 +498,12 @@ public class Vertice {
         return false;
     }
     
+    /**
+     * Método que remove a aresta, se existe, deste vertice
+     * @param int verticeID -  vertice Destino
+     * 
+     * @return {true - se removeu || false - se não existe }
+     */
     private boolean removeAresta(int verticeID){
         Aresta arestaAnterior = this.getProximaAresta();
         if(arestaAnterior == null){

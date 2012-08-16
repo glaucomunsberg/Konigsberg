@@ -75,6 +75,11 @@ public class Aresta
         this.valor = valor;
     }
     
+    /**
+     * Mpetodo que insere a próxima aresta
+     *  desta aparesta
+     * @param Aresta a 
+     */
     public void setProximaAresta(Aresta a){
         this.proximo = a;
     }

@@ -1,12 +1,32 @@
+Versão 0.7.0
+    Vertice 
+        ✎ Vertice                                   - Contrutor documentado
+        ✎ deleteVertice                             - correção para contagem de vertices e sobre erro no vertice primeiro null
+        ✎ getlistaDeVerticesSemEntrada              - correção na ordenação e documentação
+        ✎ getlistaLinkedListDeVerticesSemEntrada    - correção na ordenação e documentação
+        ✎ getOrdemTopologica                        - retorna ordem topológica
+        ✎ getlistaDeVerticesSemSaida                - documentação
+        ✎ deleteVertice                             - documentação
+        ✎ getNumArestas                             - documentação
+        ✎ removeAresta                              - documentação
+        ✎ removeAresta                              - documentação
+    Aresta
+        ✎ setProximaAresta                          - documentação
+    exemplosDeComandos
+        ✔ arquivo_ordemtop_exec.txt novo no readme para o ordemtop
+        ✔ arquivo_ordemtop_nao_exec.txt novo no redme para o ordemtop
+    README
+        ✎ ducmentação incrementada sobre o comando ordemtop
+
 Versão 0.6.2
     Vertice
         ✎ removeAresta                              - corrigido remoção da última aresta
         ✎ getOrdemTopologica                        - modificações no comportamento
         ✔ getlistaLinkedListDeVerticesSemEntrada    - método como o 'getlistaDeVerticesSemEntrada' porém retorna diretamente a lista
     exemplosDeComandos
-       ✎ exemplo arquivo_remove_aresta.txt adicionado
+        ✎ exemplo arquivo_remove_aresta.txt adicionado
     README
-	✎ documentação incremetada e corrigida em relação aos comandos
+        ✎ documentação incremetada e corrigida em relação aos comandos
 
 Versão 0.6.1
     Principal
@@ -190,7 +210,7 @@ Versão 0.0
 Problems to solve
 --------------------------------------------------------------------------------
 
-    ⌛ ordemTopologica Erro
+    ⌛ ordemTopologica tem que ser filtrada adequadamente pelo *arcs e ciclos
 
 --------------------------------------------------------------------------------
 Understanding the file 'version'
