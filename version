@@ -1,3 +1,23 @@
+Versão 0.7.2
+    Principal
+        ✘ getVizinhosDaMatriz   - removido por não fazer para respeitar a POO
+    Vertice
+        ✔ getVizinhos           - antigo getVizinhosDaMatriz que estava na classe principal
+        ✎ deleteVertice         - modificado, vide Nota
+        ✎ setNovoVertice        - modificado, vide Nota
+        ✎ setNovaAresta         - modificado, vide Nota
+        ✎ removeAresta          - modificado, vide Nota
+        ✘ getRaiz               - modificado, vide Nota
+
+    README.md
+        ✎ mais autoexplicativo sobre o projeto
+    ◬ Nota:
+        Foi removido o vertice raiz e seus método da classe vertice, pois esse
+        estava implementado sobre o padrão SingleTon, o que impede a criação de
+        uma cópia profunda do grafo. Com isso houve pequenos ajustes onde estava
+        referenciado a 'raiz' agora é 'this' para que no próximo commit possa ter
+        a criação da copia profunda do grafo.
+ 
 Versão 0.7.1
     Principal
         ✎  getOrdemTopologicaJSON   - correção sobre retorno de OrdemTopologica e mensagem de alerta na compilação
@@ -227,4 +247,4 @@ Understanding the file 'version'
 --------------------------------------------------------------------------------
 [estable version].[change in their behavior].[version of the struct]
     class manipulated
-        modifications {[✔:"created", ✎:"edited", ✘:"removed", ⌛="problem to solve" ]}
+        modifications {[✔:"created", ✎:"edited", ✘:"removed", ⌛="problem to solve", ◬ ="Atention" ]}

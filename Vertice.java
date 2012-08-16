@@ -2,7 +2,6 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.ListIterator;
 
 /**
  * Classe que representa os vertices do grafo
@@ -16,39 +15,17 @@ public class Vertice {
     private int ID;
     private Aresta aresta;
     private Vertice proximoVertice;
-    private static final Vertice raiz = new Vertice( -2147483648);
-    private static boolean isRaiz = false;
     private static boolean isDirecionado;
     private static boolean isDirecionadoInseridoValor;
     
     /**
-     * Construtor base com tudo zero e null
+     * Criador do vertice raiz
      */
     public Vertice(){
         numDeVertices=0;
         nome = ""; 
         ID = 0;
         proximoVertice = null;
-    }
-    
-    /**
-     * Construtor privado para raiz;
-     * @param isID - Id do novo vertico
-     * 
-     */
-    private Vertice(int isID){
-        nome = "raiz";
-        ID  = isID;
-    }
-    
-    /**
-     * Retorna a raiz desse grafo
-     * 
-     * @return Vertice raiz 
-     */
-    public static Vertice getRaiz(){
-        //return raiz;
-        return raiz;
     }
     
     /**
@@ -203,7 +180,7 @@ public class Vertice {
      * @return {Vertice || null}
      */
     public Vertice getVerticeExists(int verticeID){
-        Vertice verticeTemp = raiz.getProximoVertice();
+        Vertice verticeTemp = this.getProximoVertice();
         while(verticeTemp != null){
             if( verticeTemp.getID() == verticeID)
             {
@@ -253,7 +230,7 @@ public class Vertice {
         for(int a=0; a < vertices.length;a++){  
             arrayDeVerices.add((Integer)vertices[a]);
         }
-        Vertice vertice = raiz.proximoVertice;
+        Vertice vertice = this.proximoVertice;
         while( vertice != null){
             Aresta arestaTemp = vertice.getProximaAresta();
             while( arestaTemp != null){
@@ -284,7 +261,7 @@ public class Vertice {
         for(int a=0; a < vertices.length;a++){  
             arrayDeVerices.add((Integer)vertices[a]);
         }
-        Vertice vertice = raiz.proximoVertice;
+        Vertice vertice = this.proximoVertice;
         while( vertice != null){
             Aresta arestaTemp = vertice.getProximaAresta();
             while( arestaTemp != null){
@@ -363,8 +340,7 @@ public class Vertice {
      * @return { true - se deletou || false- se não achou}
      */
     public boolean deleteVertice(int verticeID){
-        //System.err.printf("DELETAR VERTICE\n");
-        Vertice verticeAnterior = raiz.getProximoVertice();
+        Vertice verticeAnterior = this.getProximoVertice();
         if(verticeAnterior == null){
             return false;
         }
@@ -403,7 +379,7 @@ public class Vertice {
          *  então ele procura por arestas com o mesmo sentido
          */
         //System.err.printf("PROCURAR ARESTAS\n");
-        vertice = raiz.proximoVertice;
+        vertice = this.proximoVertice;
         while(vertice != null){
             Aresta arestaAnterior = vertice.aresta;
             if(arestaAnterior != null){
@@ -438,7 +414,7 @@ public class Vertice {
      * @param String nome 
      */
     public void setNovoVertice(int verticeID, String nome){
-        raiz.setProximoVertice(nome, verticeID);
+        this.setProximoVertice(nome, verticeID);
     }
     
     /**
@@ -448,7 +424,7 @@ public class Vertice {
      * @param int valor 
      */
     public void setNovaAresta(int verticeOrigemID, int verticeDestinoID, int valor){        
-        Vertice vertice = raiz.getVerticeExists(verticeOrigemID);
+        Vertice vertice = this.getVerticeExists(verticeOrigemID);
         if( vertice != null )
         {
             aresta = vertice.getArestaExists(verticeOrigemID);
@@ -459,7 +435,7 @@ public class Vertice {
         }
         
         if( !Vertice.getIsDirecionado() ){
-            vertice = raiz.getVerticeExists(verticeDestinoID);
+            vertice = this.getVerticeExists(verticeDestinoID);
             if( vertice != null )
             {
                 aresta = vertice.getArestaExists(verticeOrigemID);
@@ -495,7 +471,7 @@ public class Vertice {
      * @return {true - se removeu || false - se não existe }
      */
     public boolean removeAresta(int origem, int destino){
-        Vertice vertice = raiz.getVerticeExists(origem);
+        Vertice vertice = this.getVerticeExists(origem);
         if(vertice != null){
             return vertice.removeAresta(destino);
         }
@@ -548,5 +524,39 @@ public class Vertice {
         
         return false;
         
+    }
+    
+    /**
+     * Método que retorna um array com os vertices vizinhos do
+     *  vertice passado
+     * @param int vertice
+     * 
+     * @return int[]vizinho
+     */
+    public int[] getVizinhos(int verticeID){
+        
+        Vertice vertice = this.getProximoVertice();
+        ArrayList<Integer> array = new ArrayList<Integer>();
+        while( vertice != null){
+             if( vertice.getID() == verticeID){
+                 aresta = vertice.getProximaAresta();
+                 while( aresta != null)
+                 {
+                     array.add( aresta.getVerticeID());
+                     aresta = aresta.getProximaAresta();
+                 }
+                 int[] arrayDeInt = new int[array.size()];
+                 for (int i=0; i < array.size(); i++)
+                 {
+                    arrayDeInt[i]=array.get(i);
+                 }
+                 return arrayDeInt;
+             }
+             else{
+                 vertice = vertice.getProximoVertice();
+             }
+         }
+
+        return new int[0];
     }
 }

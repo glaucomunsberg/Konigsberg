@@ -5,7 +5,6 @@
  *      @version 0.1
  */
 
-import java.util.ArrayList;
 import java.util.Scanner;
 public class Principal{
     private Vertice raiz;
@@ -24,41 +23,7 @@ public class Principal{
      * @return void
      */
     public void inicialize(){
-        raiz = Vertice.getRaiz();
-    }
-    
-    /**
-     * Método que retorna um array com os vertices vizinhos do
-     *  vertice passado
-     * @param int vertice
-     * 
-     * @return int[]vizinho
-     */
-    private int[] getVizinhosDaMatriz(int verticeID){
-        
-        vertice = Vertice.getRaiz(); //AQUI T
-        ArrayList<Integer> array = new ArrayList<Integer>();
-        while( vertice != null){
-             if( vertice.getID() == verticeID){
-                 aresta = vertice.getProximaAresta();
-                 while( aresta != null)
-                 {
-                     array.add( aresta.getVerticeID());
-                     aresta = aresta.getProximaAresta();
-                 }
-                 int[] arrayDeInt = new int[array.size()];
-                 for (int i=0; i < array.size(); i++)
-                 {
-                    arrayDeInt[i]=array.get(i);
-                 }
-                 return arrayDeInt;
-             }
-             else{
-                 vertice = vertice.getProximoVertice();
-             }
-         }
-
-        return new int[0];
+        raiz = new Vertice();
     }
     
     /**
@@ -102,7 +67,7 @@ public class Principal{
         vertice = raiz.getVerticeExists(verticeID);
         if( vertice != null){
             String retorno = String.format("{\"vizinhos\":{\"ID\":%d, \"resposta\":\"sucesso\", \"vizinhos\":[", verticeID);
-            int[] vizinho = this.getVizinhosDaMatriz(verticeID);
+            int[] vizinho = raiz.getVizinhos(verticeID);
             for(int a=0; a < vizinho.length;a++){
                 retorno+=String.format("%d", vizinho[a]);
                 if( a+1 < vizinho.length ){
@@ -291,20 +256,6 @@ public class Principal{
         Principal grafo = new Principal();
         grafo.inicialize();
         grafo.lerComandos();
-        //grafo.setNovoVertice(1, "glauco");
-        //grafo.setNovoVertice(2, "maria");
-        //grafo.setNovoVertice(3, "tiago");
-        //grafo.setNovoVertice(4, "marta");
-        //grafo.setNovaAresta(1, 2, 3);
-        //grafo.setNovaAresta(1, 3, 4);
-        //grafo.setNovaAresta(1, 4, 5);
-        //grafo.setNovaAresta(2, 3, 6);
-        //grafo.setNovaAresta(2, 4, 7);
-        //System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 3));
-        //System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 2));
-        //System.out.printf("%s\n", grafo.conexaoJSONconexaoid(1, 4));
-        //grafo.raiz.getOrdemTopologica();
-        //System.out.printf("%s\n", grafo.getJSONid(2));
     }
     
 }
