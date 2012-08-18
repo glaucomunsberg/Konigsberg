@@ -6,13 +6,13 @@
  */
 
 import java.util.Scanner;
-public class Principal{
+public class Grafo{
     private Vertice raiz;
     private Vertice vertice;
     private Aresta aresta;
     private Scanner leitor;
     
-    public Principal(){    
+    public Grafo(){    
         leitor = new Scanner(System.in);
     }
     
@@ -253,7 +253,7 @@ public class Principal{
     }
     
     public static void main(String args[]){
-        Principal grafo = new Principal();
+        Grafo grafo = new Grafo();
         grafo.inicialize();
         grafo.lerComandos();
     }
