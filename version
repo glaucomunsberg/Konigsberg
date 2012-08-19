@@ -1,3 +1,12 @@
+Versão 0.8.0
+    Grafo
+        ✔ getArvoreMinimaJSON   - retorna a Árvore Minima no formato JSON
+        ✎ lerComandos           - aceita o comando 'arvoreminima' 
+    Vertice
+        getArvoreMinima         - retorna a árvore
+        getOrigemDestinoCusto   - retorna arraylist dos componentes Origem, destino e Custo
+        
+
 Versão 0.7.5
     Grafo
         ✎ lerComandos               - conta com uma hash para tornar a leitura dos comandos mais simples

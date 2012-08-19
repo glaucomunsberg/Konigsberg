@@ -1,7 +1,5 @@
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * Classe que representa os vertices do grafo
@@ -595,4 +593,57 @@ public class Vertice {
         
         return clone;
     }
+    
+    private ArrayList getOrigemDestinoCusto(){
+        ArrayList<ArrayList> vetor = new ArrayList<ArrayList>();
+        ArrayList<Integer> origem = new ArrayList<Integer>();
+        ArrayList<Integer> destino = new ArrayList<Integer>();
+        ArrayList<Integer> custo = new ArrayList<Integer>();
+        
+        Vertice vertice = this.getProximoVertice();
+        Aresta arestaTemp = null;
+        
+        while(vertice != null){
+            arestaTemp = vertice.getProximaAresta();
+            while(arestaTemp != null){
+                
+                origem.add(vertice.getID());
+                destino.add(arestaTemp.getVerticeID());
+                custo.add(arestaTemp.getValor());
+                arestaTemp = arestaTemp.getProximaAresta();
+            }
+            vertice = vertice.getProximoVertice();
+        }
+        
+        vetor.add(origem);
+        vetor.add(destino);
+        vetor.add(custo);
+        return vetor;
+    }
+    
+    
+    public void getArvoreMinima(){
+        
+        ArrayList<ArrayList> vertice = this.getOrigemDestinoCusto();
+        
+        int narcos = (int) ((ArrayList) vertice.get(0)).size();
+        int nos = this.getNumeroDeVertices();
+        int[] origem = new int[narcos];
+        int[] destino = new int[narcos];
+        int[] custo = new int[narcos];
+        int infinito=0;
+        int total_nodos = origem.length;
+        
+        for(int a=0; a< narcos; a++){
+            origem[a] = (int) ((ArrayList) vertice.get(0)).get(a);
+            destino[a]= (int) ((ArrayList) vertice.get(1)).get(a);
+            custo[a]  = (int) ((ArrayList) vertice.get(2)).get(a);
+            infinito+=custo[a];
+        }
+        
+        
+        Map<Integer, Integer> T = new HashMap<Integer, Integer>();
+        
+    }
+    
 }

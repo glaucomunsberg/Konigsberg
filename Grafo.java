@@ -221,7 +221,7 @@ public class Grafo{
                                 break;  
                             }
                             case 6: {
-                                // Árvore mínima
+                                System.out.printf(this.getArvoreMinimaJSON());
                                 break;  
                             }
                             case 7: {
@@ -262,6 +262,13 @@ public class Grafo{
             comando = leitor.nextLine();        
         }
 
+    }
+    
+    public String getArvoreMinimaJSON(){
+        
+        
+        raiz.getArvoreMinima();
+        return "";
     }
     
     public static void main(String args[]){
