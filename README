@@ -420,17 +420,18 @@
 #         |	@				|
 #         ---------------------------------------
 #         -console_return----------------------------------------------------
-#         |                     	                                    |
+#         |     {"ordemtop":[]}                                             |
 #         -------------------------------------------------------------------
 #         Obs.: Um ciclo induzido por um vertice A-B e B-A ou grafo *arcs são
 #         automaticamente fazem o grafo retornar nada. Veja que esse exemplo
 #         possui ciclos criados pelo comando *arcs.
 #
 #         3.4.7 arvoreminima
-#         [not implement yet]
+#
+#           {"arvoreminima":{"arestas":[], "custo":}}
 #
 #         3.4.8 menorcaminho
-#         [not implement yet]
+#          {"menorcaminho":{"ID1":0, "ID2":3, "caminho":[],"custo":}}
 #         
 #   3.5 @
 #      O comando "@" é a condição de parada da leitura de comandos e encerra a 

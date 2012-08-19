@@ -37,7 +37,7 @@ Necessários para execução:
 
     Vertice.java
 
-    Principal.java (futuramente Grafo.java)
+    Grafo.java
 
 
 Arquivos de apoio:

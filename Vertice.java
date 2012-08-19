@@ -308,11 +308,11 @@ public class Vertice {
      */
     public int[] getOrdemTopologica(){
         if(!Vertice.getIsDirecionado()){
-            return null;
+            return new int[0];
         }
         Vertice clone = this.clone(this.getProximoVertice());
         
-        LinkedList<Integer> semEntrada = clone.getlistaLinkedListDeVerticesSemEntrada();
+        LinkedList<Integer> semEntrada = new LinkedList<Integer>(clone.getlistaLinkedListDeVerticesSemEntrada());
         LinkedList<Integer> semEntradaTemp = new LinkedList<Integer>(semEntrada);
         while(clone.getNumeroDeVertices() != 0){
             Iterator interator = semEntradaTemp.iterator();

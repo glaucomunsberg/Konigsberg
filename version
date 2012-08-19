@@ -1,3 +1,14 @@
+Versão 0.7.5
+    Grafo
+        ✎ lerComandos               - conta com uma hash para tornar a leitura dos comandos mais simples
+        ✎ getOrdemTopologicaJSON    - correção na saida para array vazio em vez de null
+    Vertice
+        ✎ getOrdemTopologica        - não retorna null
+    README.md
+        ✎ correção de principal para grafo
+    README
+        ✎ ducmentação corrigida sobre o comando ordemtop
+
 Versão 0.7.4
         ◬ Principal agora se chama Grafo
 

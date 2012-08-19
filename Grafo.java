@@ -5,6 +5,7 @@
  *      @version 0.1
  */
 
+import java.util.HashMap;
 import java.util.Scanner;
 public class Grafo{
     private Vertice raiz;
@@ -110,9 +111,6 @@ public class Grafo{
      */
     public String getOrdemTopologicaJSON(){
         int[] ordem = raiz.getOrdemTopologica();
-        if(ordem == null){
-            return String.format("");
-        }
         String retorno = "{\"ordemtop\":[";
             for(int a=0; a < ordem.length;a++){
                 retorno+=String.format("%d", ordem[a]);
@@ -144,6 +142,17 @@ public class Grafo{
         String comando = leitor.nextLine();
         boolean leuSeEDirecionado = false;
         boolean tipoLido;
+
+        HashMap<String, Integer> caseHash = new HashMap<String, Integer>();
+        caseHash.put("get", 1);  
+        caseHash.put("delete", 2);  
+        caseHash.put("vizinhos", 3);
+        caseHash.put("conexao", 4);
+        caseHash.put("ordemtop", 5);
+        caseHash.put("arvoreminima", 6);
+        caseHash.put("menorcaminho", 7);
+        caseHash.put("remove", 8);  
+        
         /**
          * Enquando não houver condição de parada prosegue
          */
@@ -185,41 +194,49 @@ public class Grafo{
                     case 0:
                         //QUERIE
                         //try{
-                            if("get".equals(parteComando[0])){
-                                //System.out.printf("query get %d\n", Integer.parseInt(parteComando[1]));
+                           switch (caseHash.containsKey(parteComando[0]) ? caseHash.get(parteComando[0]) : -1) { 
+                            case 1: {
+                                // Get Vertice
                                 System.out.println(this.getJSONid(Integer.parseInt(parteComando[1])));
-                            }else{
-                                if("delete".equals(parteComando[0])){
-                                    //System.out.printf("query delete %d\n", Integer.parseInt(parteComando[1]));
-                                    System.out.println(this.deleteJSONid(Integer.parseInt(parteComando[1])));
-                                }else{
-                                    if("vizinhos".equals(parteComando[0])){
-                                        //System.out.printf("query vizinhos %d\n",Integer.parseInt(parteComando[1]));
-                                        System.out.println(this.getVizinhoJSONid(Integer.parseInt(parteComando[1])));
-                                    }else{
-                                        if("conexao".equals(parteComando[0])){
-                                            //System.out.printf("query conexao %d %d\n", Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2]));
-                                            System.out.println(this.getConexaoJSONconexaoid( Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2])));
-                                        }else{
-                                            if("ordemtop".equals(parteComando[0])){
-                                                System.out.printf(this.getOrdemTopologicaJSON());
-                                            }else{
-                                                if("arvoreminima".equals(parteComando[0])){
-                                                    //ARVORE MINIMA
-                                                }else{
-                                                    if("menorcaminho".equals(parteComando[0])){
-                                                        //MENOR CAMINHO
-                                                    }else{
-                                                        if("remove".equals(parteComando[0])){
-                                                             System.out.println(this.removeArestaJSONid(Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2])));
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+                                break;  
+                            }  
+                            case 2: {
+                                // Remove Vértice
+                                System.out.println(this.deleteJSONid(Integer.parseInt(parteComando[1])));
+                                break;  
+                            }  
+                            case 3: {
+                                // Vizinhos
+                                System.out.println(this.getVizinhoJSONid(Integer.parseInt(parteComando[1])));
+                                break;  
                             }
+                            case 4: {
+                                // Conexão
+                                System.out.println(this.getConexaoJSONconexaoid( Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2])));
+                                break;  
+                            }
+                            case 5: {
+                                // Ordem Topológica
+                                System.out.printf(this.getOrdemTopologicaJSON());
+                                break;  
+                            }
+                            case 6: {
+                                // Árvore mínima
+                                break;  
+                            }
+                            case 7: {
+                                // Menor Caminho
+                                break;  
+                            }
+                            case 8: {
+                                // Remover Aresta
+                                System.out.println(this.removeArestaJSONid(Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2])));
+                                break;  
+                            }
+                            default:{  
+
+                            }  
+                            }  
                         //}
                         //catch(Exception eee){
                             
@@ -228,25 +245,20 @@ public class Grafo{
                     case 1:
                         //VERTICE
                         try{
-                        int inicioDoNome = comando.indexOf("\"");
-                        raiz.setNovoVertice(Integer.parseInt(parteComando[0]), comando.substring(inicioDoNome, comando.length()-1));
-                        //System.out.printf("Vertice ID: %d NOME: %s\n", Integer.parseInt(parteComando[0]), comando.substring(inicioDoNome+1, comando.length()-1));
+                            int inicioDoNome = comando.indexOf("\"");
+                            raiz.setNovoVertice(Integer.parseInt(parteComando[0]), comando.substring(inicioDoNome, comando.length()-1));
                         }catch(Exception eeee){    
                         }
                         break;
                     case 2:
                         //ARESTA
                         try{
-                        raiz.setNovaAresta(Integer.parseInt(parteComando[0]),Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2]));
-                        //System.out.printf("Aresta %d %d %d\n", Integer.parseInt(parteComando[0]),Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2]));
+                            raiz.setNovaAresta(Integer.parseInt(parteComando[0]),Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2]));
                         }catch(Exception eee){
                         }
                         break;
                 }
             }
-            //else{
-            //   System.out.printf("agora tipo: %s\n",parteComando[0] );
-            //}
             comando = leitor.nextLine();        
         }
 
