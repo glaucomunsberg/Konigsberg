@@ -593,7 +593,7 @@ public class Vertice {
         
         return clone;
     }
-    
+
     private ArrayList getOrigemDestinoCusto(){
         ArrayList<ArrayList> vetor = new ArrayList<ArrayList>();
         ArrayList<Integer> origem = new ArrayList<Integer>();
@@ -624,26 +624,178 @@ public class Vertice {
     
     public void getArvoreMinima(){
         
-        ArrayList<ArrayList> vertice = this.getOrigemDestinoCusto();
-        
-        int narcos = (int) ((ArrayList) vertice.get(0)).size();
-        int nos = this.getNumeroDeVertices();
-        int[] origem = new int[narcos];
-        int[] destino = new int[narcos];
-        int[] custo = new int[narcos];
-        int infinito=0;
-        int total_nodos = origem.length;
-        
-        for(int a=0; a< narcos; a++){
-            origem[a] = (int) ((ArrayList) vertice.get(0)).get(a);
-            destino[a]= (int) ((ArrayList) vertice.get(1)).get(a);
-            custo[a]  = (int) ((ArrayList) vertice.get(2)).get(a);
-            infinito+=custo[a];
+        Vertice vertice = this.getProximoVertice();
+        Aresta aresta;
+        int numeroDeArestas = 0;
+        while( vertice != null){
+            numeroDeArestas += vertice.getNumArestas();
+            vertice = vertice.getProximoVertice();
         }
-        
-        
-        Map<Integer, Integer> T = new HashMap<Integer, Integer>();
+        int n=-1;
+        int[] origem = new int[numeroDeArestas];
+        int[] destino = new int[numeroDeArestas];
+        int[] valor = new int[numeroDeArestas];
+        vertice = this.getProximoVertice();
+        while(vertice != null){
+            aresta = vertice.getProximaAresta();
+            while(aresta != null){
+                n++;
+                origem[n] = vertice.ID;
+                destino[n] = aresta.getVerticeID();
+                valor[n] = aresta.getValor();
+                aresta = aresta.getProximaAresta();
+            }
+            vertice = vertice.proximoVertice;
+        }
+        int variavelAuxiliarValor;
+        int variavelAuxiliarOrigem;
+        int variavelAuxiliarDestino;
+        boolean houveTroca = true;
+ 
+        while (houveTroca) {
+            houveTroca = false;
+            for (int i = 0; i < (valor.length)-1; i++){
+                            if (valor[i] > valor[i+1]){
+                                    variavelAuxiliarValor = valor[i+1];
+                                    variavelAuxiliarOrigem = origem[i+1];
+                                    variavelAuxiliarDestino = destino[i+1];
+                                    valor[i+1] = valor[i];
+                                    origem[i+1] = origem[i];
+                                    destino[i+1] = destino[i];
+                                    valor[i] = variavelAuxiliarValor;
+                                    origem[i] = variavelAuxiliarOrigem;
+                                    destino[i] = variavelAuxiliarDestino;
+                                    houveTroca = true;
+                            }
+                    }
+        }
+        LinkedList<Vertice> grafo = new LinkedList<Vertice>();
+        LinkedList<Integer> verticesInseridas = new LinkedList<Integer>();
+        Scanner ler = new Scanner(System.in);
+        Vertice removida;
+        Vertice temp;
+        for(int a=0; a < valor.length; a++){
+            
+            int vOrigem = origem[a];
+            int vDestino = destino[a];
+            int vValor = valor[a];
+
+            System.out.printf("Origem %d Destino %d peso %d\n", vOrigem,vDestino,vValor);
+            boolean hasOrigem = verticesInseridas.contains((Integer)vOrigem);
+            boolean hasDestino = verticesInseridas.contains((Integer)vDestino);
+            if(hasOrigem == false)
+                verticesInseridas.add(vOrigem);
+            if(hasDestino == false)
+                verticesInseridas.add(vDestino);
+            
+            if( (hasOrigem && hasDestino) == true ){
+                //Se há alguem para conectar então coleta duas arvores
+                System.out.printf("Tem %d grafos\n\n", grafo.size());
+                Iterator t = grafo.iterator();
+                boolean primeiro = false;
+                boolean segundo = false;
+                int contador = 0;
+                int primeiroP= 0;
+                int segundoP = 0;
+                Vertice vORIGEM;
+                Vertice vDESTINO;
+                Vertice vert;
+                while(t.hasNext()){
+                    vert = (Vertice)t.next();
+                    if( !primeiro){
+                        vORIGEM = vert.getVerticeExists(vOrigem);
+                        if(vORIGEM != null){
+                        System.out.printf("-->Primeiro no grafo %d\n", contador);
+                        primeiro = true;
+                        primeiroP = contador;
+                        }
+                    }
+                    if(!segundo){
+                        vDESTINO = vert.getVerticeExists(vDestino);
+                        if(vDESTINO != null){
+                        System.out.printf("-->Segundo no grafo %d\n", contador);
+                        segundo = true;
+                        segundoP = contador;
+                        }
+                    }
+                    if( (primeiro && segundo == true) &&  primeiroP != segundoP  ){
+                        System.out.printf("-->Podemos juntar primerio %d segundo em %d\n", primeiroP,segundoP);
+                        //temp = (Vertice)grafo.get(primeiroP);
+                        // temp.setProximoVertice( (Vertice)grafo.remove(segundoP));
+
+                    }
+                    contador+=1;
+                }
+
+                
+            }else{
+                
+                if((hasOrigem || hasDestino) == true){
+                    
+                    //insere uam aresta
+                    //fazer um if para saber se é origem ou destino que tem
+                    if(hasOrigem){
+                        
+                        Iterator i = grafo.iterator();
+                        while(i.hasNext()){
+                            temp = (Vertice)i.next();
+                            if(temp.ID == vOrigem){
+                                
+                                temp.setProximoVertice("", vDestino);
+                                temp.setProximaAresta(vDestino, vValor);
+                                System.out.printf("Origem existe colocando o destino como aresta\n\n");
+                            }
+                        }
+                    }
+                    if(hasDestino){
+                        
+                        Iterator i = grafo.iterator();
+                        while(i.hasNext()){
+                            temp = (Vertice)i.next();
+                            if(temp.ID == vDestino){
+                                temp.setProximaAresta(vOrigem, vValor);
+                                System.out.printf("Destino existe colocando o Origem como aresta\n\n");
+                            }
+                        }  
+                    }
+                    
+                }else{
+                    //insere uma nova arvore
+                    System.out.printf("Não existe nenhum inserindo origem e destino como aresta\n");
+                    grafo.add( new Vertice("",vOrigem,new Aresta(vDestino, vValor, null),new Vertice("",vDestino,null,null)));
+                }
+                    
+                
+            }
+         ler.hasNextLine();
+        }
+        Iterator aba= grafo.iterator();
+        while(aba.hasNext()){
+            Vertice vet = (Vertice)aba.next();
+            System.out.printf("\nGrafo:");
+            while(vet != null){
+                Aresta are = vet.getProximaAresta();
+                while(are != null){
+                    System.out.printf("(%d,%d) ",vet.ID, are.getVerticeID());
+                    are = are.getProximaAresta();
+                }
+                vet = vet.proximoVertice;
+            }
+        }
         
     }
     
+    public void setProximoVertice(Vertice v){
+        if(this.proximoVertice == null){
+            this.proximoVertice = v;
+        }else{
+            if(this.proximoVertice.proximoVertice == null){
+                this.proximoVertice.proximoVertice = v;
+            }else{
+                Vertice verti = this.proximoVertice.proximoVertice;
+                verti.setProximoVertice(v);
+            }
+        }
+            
+    }
 }

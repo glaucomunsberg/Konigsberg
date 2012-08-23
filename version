@@ -1,3 +1,8 @@
+Versão 8.0.1
+    Grafo
+        ✔ setProximoVertice - novo método que recebe um Vertice v
+        ✎ getArvoreMinima   - modificações drasticas de funcionamento
+
 Versão 0.8.0
     Grafo
         ✔ getArvoreMinimaJSON   - retorna a Árvore Minima no formato JSON

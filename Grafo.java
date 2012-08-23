@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class Grafo{
     private Vertice raiz;
     private Vertice vertice;
-    private Aresta aresta;
     private Scanner leitor;
     
     public Grafo(){    
