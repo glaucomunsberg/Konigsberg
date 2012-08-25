@@ -1,4 +1,23 @@
-Versão 8.0.1
+Versão 0.9
+    Grafo
+        ✎ getArvoreMinimaJSON           - retorno no formado JSON
+        ✎ lerComandos                   - filtro para valores negativos e introducao para modo grafico
+    Vertice
+        ✎ setProximoVertice             - remoção da recursividade
+        ✎ getVerticeExists              - correção da pesquisa e para o próprio vertice entra na pesquisa
+        ✎ getArestaExists               - correção na pesquisa e para a própria aresta do vertice entra na pesquisa
+        ✎ getArvoreMinima               - correção da árvore, melhoramento do desempenho e documentação
+        ✎ getlistaDeVerticesID          - método agora se chama 'getListaDeVerticesID'
+        ✎ getlistaVerticesSemEntrada    - método se chama 'getVerticesSemEntrada'
+        ✎ getlistaVerticesSemSaida      - método se chama 'getVerticesSemSaida'
+        ✎ deleteVertice                 - método se chama 'removeVertice'
+    README
+        ✎ correção da documentação e inserção da descrição de comando 'arvoreminima'
+    exemplosDeComandos
+        ✔ arquivo_arvoreminima_exec.txt inserido nos exemplos
+    ◬ Esta é uma versão estável
+
+Versão 0.8.1
     Grafo
         ✔ setProximoVertice - novo método que recebe um Vertice v
         ✎ getArvoreMinima   - modificações drasticas de funcionamento
@@ -21,7 +40,7 @@ Versão 0.7.5
     README.md
         ✎ correção de principal para grafo
     README
-        ✎ ducmentação corrigida sobre o comando ordemtop
+        ✎ documentação corrigida sobre o comando ordemtop
 
 Versão 0.7.4
         ◬ Principal agora se chama Grafo

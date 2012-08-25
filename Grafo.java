@@ -47,10 +47,8 @@ public class Grafo{
      * @param int vertice
      * @return String verticeRemovidoFormatoJSON
      */
-    public String deleteJSONid(int verticeID){
-        //vertice = raiz.getVerticeExists(verticeID);
-        if( raiz.deleteVertice(verticeID) ){
-            
+    public String deleteJSONid(int verticeID){        
+        if( raiz.removeVertice(verticeID) ){
             return String.format("{\"delete\":{\"ID\":%d,\"resposta\":\"sucesso\"}}", verticeID);
         }else{
             return String.format("{\"delete\":{\"ID\":%d,\"resposta\":\"falha\"}}", verticeID);
@@ -141,6 +139,11 @@ public class Grafo{
         String comando = leitor.nextLine();
         boolean leuSeEDirecionado = false;
         boolean tipoLido;
+        
+        String nomeQueRecebera;
+        int idQueRecebera;
+        int valorQueRecebera;
+        int inicioDoNome;
 
         HashMap<String, Integer> caseHash = new HashMap<String, Integer>();
         caseHash.put("get", 1);  
@@ -150,7 +153,8 @@ public class Grafo{
         caseHash.put("ordemtop", 5);
         caseHash.put("arvoreminima", 6);
         caseHash.put("menorcaminho", 7);
-        caseHash.put("remove", 8);  
+        caseHash.put("remove", 8);
+        caseHash.put("remove", 9);
         
         /**
          * Enquando não houver condição de parada prosegue
@@ -232,6 +236,9 @@ public class Grafo{
                                 System.out.println(this.removeArestaJSONid(Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2])));
                                 break;  
                             }
+                            case 9: {
+                                // Modo Grafico
+                            }
                             default:{  
 
                             }  
@@ -244,15 +251,22 @@ public class Grafo{
                     case 1:
                         //VERTICE
                         try{
-                            int inicioDoNome = comando.indexOf("\"");
-                            raiz.setNovoVertice(Integer.parseInt(parteComando[0]), comando.substring(inicioDoNome, comando.length()-1));
+                            idQueRecebera = Integer.parseInt(parteComando[0]);
+                            if(idQueRecebera >= 0){
+                                inicioDoNome = comando.indexOf("\"");
+                                nomeQueRecebera = comando.substring(inicioDoNome, comando.length()-1);
+                                raiz.setNovoVertice(idQueRecebera, nomeQueRecebera);
+                            }
+                            
                         }catch(Exception eeee){    
                         }
                         break;
                     case 2:
                         //ARESTA
                         try{
-                            raiz.setNovaAresta(Integer.parseInt(parteComando[0]),Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2]));
+                            valorQueRecebera = Integer.parseInt(parteComando[2]);
+                            if(valorQueRecebera >= 0)
+                                raiz.setNovaAresta(Integer.parseInt(parteComando[0]),Integer.parseInt(parteComando[1]),valorQueRecebera);
                         }catch(Exception eee){
                         }
                         break;
@@ -265,9 +279,22 @@ public class Grafo{
     
     public String getArvoreMinimaJSON(){
         
+        int[] arvore = Vertice.getArvoreMinima(raiz);
+        String parte= "{\"arvoreminima\":{\"arestas\":[";
+        if(arvore.length != 0){
+           for(int a=0; a < arvore.length-1;a++){
+               parte+=String.format("(%d,%d)", arvore[a],arvore[++a]);
+               if( a < arvore.length-2){
+                   parte+=",";
+               }
+           }
+           parte+= String.format("], \"custo\":%d}}\n", arvore[arvore.length-1]);
+        }
+        else{
+           parte+= "], \"custo\":}}\n";
+        }
         
-        raiz.getArvoreMinima();
-        return "";
+        return parte;
     }
     
     public static void main(String args[]){
