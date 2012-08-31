@@ -1,5 +1,5 @@
 ################################################################################
-#                       Konigsberg - Trabalho de EDII
+#                       Königsberg - Grafo em Java
 ################################################################################
 #
 # 1.Introduçao
@@ -17,7 +17,7 @@
 # 1.Introduçao
 ################################################################################
 #
-#   Projeto Konigsberg se propõem a realizar o trabalho de EDII, proposto pelo 
+#   Projeto Königsberg se propõem a realizar o trabalho de EDII, proposto pelo 
 #   professor Ricardo Matsumura Araújo e que está espeficido através dos links:
 #   * Primeira parte do Trabalho:
 #       http://avainstitucional.ufpel.edu.br/mod/assignment/view.php?id=25409
@@ -26,7 +26,7 @@
 #       sendo esse segundo trabalho realizado em conjunto com também acadêmico
 #       da ciência da computação André Peil.
 #
-#   O repositório e o projeto recebe o nome 'Königsberg' em referencia ao 
+#   O repositório e o projeto recebe o nome 'Königsberg' em referência ao 
 #   problema histórico relacionado aos grafos. O trabalho foi versionado no 
 #   GitHub como apoio a programação, para o maior detalhamento das versões 
 #   consulte o arquivo "version.txt". 
@@ -35,7 +35,7 @@
 #    * Pentium Dual Core 2.2GHz
 #    * 2,5GB Memória RAM DDR2
 #    * Ubuntu 12.04 32-bits, área de troca de 1Gb para auxílio, com Java7 e 
-#   demais configurações padrões.
+#      demais configurações padrões.
 #
 #   1.1 Resultado Obtido
 #       Usando uma JMV de no máximo 2,3Gb os resultados* obtidos foram:
@@ -55,7 +55,7 @@
 # 2.Como foi programado
 ################################################################################
 #
-#   O projeto Konigsberg dividido em duas partes, sendo a primeira programada
+#   O projeto Königsberg dividido em duas partes, sendo a primeira programada
 #   por Glauco Roberto Munsberg dos Santos e a segunda parte programada por este
 #   e André Peil sendo o desenvolvimento ocorrido do periodo entre 3 de Julho de
 #   2012 até XX de XX de 2012. Para isso foi usado a linguagem de programação 
@@ -497,8 +497,37 @@
 # 4.Como executar
 ################################################################################
 #
+#   Através do repositório no GitHub ( @github ) é possível obter os arquivos 
+#   individuais para a execução do grafo. Podendo inclusive baixar e executar os
+#   arquivos da pasta 'exemplosDeComandos', entretanto aqui está disponível
+#   apenas os arquivos abaixo, mínimos para a execução do grafo:
+#     * Grafo.java
+#     * Vertice.java
+#     * Aresta.java
 #
+#   4.1 Compilar o Grafo
+#         Para a compilação se opta por executar diretamente a compilação do
+#         grafo que resolve as compilações dependentes que no caso Vertice e 
+#         Aresta.Para compilar no terminal:
 #
+#         $ javac Grafo.java
+#
+#   4.2 Execução do grafo
+#         4.2.1 Execução do grafo
+#         Para executar o grafo no terminal basta digitar:
+#
+#         $ java -Xms500m -Xmx2300m Grafo
+#
+#         4.2.2 Execução do grafo em modo Grafico
+#         Para executar a árvore de sufixo no terminal basta digitar:
+#
+#         $ java -Xms500m -Xmx2300m NOT_IMPLEMENT_YET
+#
+#   Obs.: Os parametros -Xms e -Xmx da JVM reserva 500Mb no mínimo e no máximo 
+#   2,3Gb alocada de Memória RAM para executar o processo, estando o máximo 
+#   limitado pela memória do computador onde está sendo executado. Ficando assim
+#   possível de troca desses valores segundo a necessidade e o seu limite de
+#   hardware.
 #
 ################################################################################
 # 5.Resultados obtidos
