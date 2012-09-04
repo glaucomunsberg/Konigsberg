@@ -229,6 +229,7 @@ public class Grafo{
                             }
                             case 7: {
                                 // Menor Caminho
+                                System.out.println(this.getMenorCaminhoJSON( Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2])));
                                 break;  
                             }
                             case 8: {
@@ -284,6 +285,25 @@ public class Grafo{
         if(arvore.length != 0){
            for(int a=0; a < arvore.length-1;a++){
                parte+=String.format("(%d,%d)", arvore[a],arvore[++a]);
+               if( a < arvore.length-2){
+                   parte+=",";
+               }
+           }
+           parte+= String.format("], \"custo\":%d}}\n", arvore[arvore.length-1]);
+        }
+        else{
+           parte+= "], \"custo\":}}\n";
+        }
+        
+        return parte;
+    }
+    
+    public String getMenorCaminhoJSON(int vID1, int vID2){
+        int[] arvore = Vertice.getMenorCaminho(raiz, vID1, vID2);
+        String parte= "{\"menorcaminho\":{\"arestas\":[";
+        if(arvore.length != 0){
+           for(int a=0; a < arvore.length-1;a++){
+               parte+=String.format("%d", arvore[a]);
                if( a < arvore.length-2){
                    parte+=",";
                }

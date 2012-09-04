@@ -897,10 +897,135 @@ public class Vertice {
                 }else{
                     vert = vert.proximoVertice;
                 }
+            }   
+        }
+    }
+    
+    /**
+     * Retorna o menor caminho entre dois vertices no grafo
+     * @param Vertice raiz - raiz do grafo que se deseja procurar
+     * @param int vertID1 - Início do caminho no grafo
+     * @param int vertID2 - Fim do caminho no grafo
+     * 
+     * @return ?
+     */
+    public static int[] getMenorCaminho(Vertice raiz, int vertID1, int vertID2){
+        Vertice vOrigem = raiz.getVerticeExists(vertID1);
+        Vertice vDestino = raiz.getVerticeExists(vertID2);
+        
+        /**
+         * Se ambos não existem então retorna vazio
+         */
+        if( vOrigem == null || vDestino == null){
+            return new int[0];
+        }
+        
+        /**
+         * distancia[]  representa o menor caminho de i a j
+         * vertices[]   todos os vertices
+         * precedente[] informa qual é o vertice precente
+         * visitado[]   informa se o vértice já foi visitado 
+         */
+        int numDeVertices = raiz.getNumeroDeVertices();
+        int[] distancia = new int[numDeVertices];
+        int[] precedente = new int[numDeVertices];
+        int[] vertices =raiz.getListaDeVerticesID();
+        boolean[] visitado = new boolean[numDeVertices];
+        
+        /**
+         * Nenhum foi visitado
+         * A distancia é a máxima
+         * Precendente é -1 por padrão
+         */
+        java.util.Arrays.fill(visitado,Boolean.FALSE);
+        java.util.Arrays.fill(distancia,Integer.MAX_VALUE);  
+        java.util.Arrays.fill(precedente,-1);
+            
+        Aresta arestaTemp;
+        Vertice verticeTemp;
+        
+        int posicaoVerticeID2=0;
+        for(int a=0; a < vertices.length; a++){
+            if( vertices[a] == vertID1){
+                distancia[a] =0;
+            }
+            if(vertices[a] == vertID2){
+                posicaoVerticeID2 = a;
             }
             
         }
+        
+        int valorAnteriorDaDistancia;
+        
+        while(true){
+            int n = -1;
+
+            for(int i = 0; i < numDeVertices; i++){
+                if (!visitado[i] && (n < 0 || distancia[i] < distancia[n]))
+                    n = i;
+            }
+
+            if(n < 0)
+                break;
             
+            visitado[n] = true;
+            verticeTemp = raiz.getVerticeExists(vertices[n]);
+            for (int i = 0; i < numDeVertices; i++){
+                
+                arestaTemp = verticeTemp.getArestaExists(vertices[i]);
+                
+                if( arestaTemp != null && ( distancia[i] > distancia[n]+arestaTemp.getValor() ) ){
+                    
+                    valorAnteriorDaDistancia = distancia[i];
+                    distancia[i] = distancia[n] + arestaTemp.getValor();
+                    
+                    if( valorAnteriorDaDistancia > distancia[i]){
+                        precedente[i] = verticeTemp.getID(); 
+                    }
+                    
+                }
+            }      
+        }
+        
+        
+        /**
+         * Preparando dados para a saída
+         * Pegando do final para o início segundo
+         * os vertices precedente
+         */
+        LinkedList<Integer> valores = new LinkedList<Integer>();
+        
+        int vertice = vertID2;
+        valores.addLast(vertice);
+        boolean continua=true;
+        while(continua){
             
+            for(int a=0; a < numDeVertices;a++){
+                if( vertices[a] == vertice){
+                    vertice = precedente[a];
+                    //System.out.printf(" %d-->",vertice);
+                    if(vertice == -1){
+                        continua = false;
+                    }else{
+                        valores.addFirst(vertice);
+                    }
+                } 
+            }
+        }
+        
+        int[] retorno = new int[valores.size()+1];
+        int a=0;
+        Iterator i = valores.iterator();
+        while(i.hasNext()){
+            retorno[a++] = (int)i.next();
+        }
+        retorno[a]=distancia[posicaoVerticeID2];
+        
+        
+        //for(int o=0; o < retorno.length;o++){
+            //System.out.printf("%d->>",retorno[o]);
+        //}
+        return retorno;
     }
+    
 }

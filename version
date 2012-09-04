@@ -1,3 +1,11 @@
+Versão 0.9.2
+    Grafo
+        ✔ getMenorCaminho       - retorna o menor caminho entre dois vertice
+    Vertice
+        ✔ getMenorCaminhoJSON   - retorna no formato JSON o resultado do menor caminho
+        ✎ lerComandos           - correção para o comando getMenorCaminhoJSON
+    ◬ Esta é uma versão estável
+
 Versão 0.9.1
     README
         ✎ correção da documentação e inserção de outras partes
