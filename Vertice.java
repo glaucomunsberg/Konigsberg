@@ -957,7 +957,22 @@ public class Vertice {
         
         int valorAnteriorDaDistancia;
         
+        /**
+         * Varre todo o grafo para que seja possível
+         *  analisar e estipular o peso.
+         */
         while(true){
+            
+            /**
+             * ENTENDA O QUE SE FAZ AQUI:
+             * Enquanto há vertice não visitados
+             *      pega o vertice N não visitado cuja estimativa seja a menor entre todos não visitados
+             *      visita o vertice N
+             *      Para toda vertice adjacencia I que seja sucessor do vertice N
+             *          some a estimativa do vertice N com o custo do arco N,I
+             *          Caso esta soma seja melhor que a estimavia anterior para I, substitua e anote N como precedente de I
+             */
+            
             int n = -1;
 
             for(int i = 0; i < numDeVertices; i++){
@@ -1013,6 +1028,7 @@ public class Vertice {
             }
         }
         
+        //Transforma o linkedList em um array
         int[] retorno = new int[valores.size()+1];
         int a=0;
         Iterator i = valores.iterator();
@@ -1021,10 +1037,6 @@ public class Vertice {
         }
         retorno[a]=distancia[posicaoVerticeID2];
         
-        
-        //for(int o=0; o < retorno.length;o++){
-            //System.out.printf("%d->>",retorno[o]);
-        //}
         return retorno;
     }
     

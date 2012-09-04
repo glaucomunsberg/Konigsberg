@@ -17,8 +17,7 @@ public class Grafo{
     }
     
     /**
-     * Método para a inicialização da matriz de adjacencia,
-     *  e da string contendo o nome de cada vertice
+     * Método para a inicialização do grafo
      * 
      * @return void
      */
@@ -127,6 +126,12 @@ public class Grafo{
         }
     }
     
+    
+    /**
+     * Método que faz a leitura de dados e faz o retonro
+     *  de cada comando inserido
+     *  Para ver mais sobre 'comandos' leia o README
+     */
     public void lerComandos(){
         
         /**
@@ -278,6 +283,12 @@ public class Grafo{
 
     }
     
+    /**
+     * Método que retonra o árvore mínima no formado
+     *  JSON em forma de estring
+     * 
+     * @return String arvoreMinima
+     */
     public String getArvoreMinimaJSON(){
         
         int[] arvore = Vertice.getArvoreMinima(raiz);
@@ -298,9 +309,18 @@ public class Grafo{
         return parte;
     }
     
+    /**
+     * Método que retorna uma string contendo o menor
+     *  caminho no formato JSON
+     * @param int vID1 - vertice de origem
+     * @param int vID2 - vertice de destino
+     * 
+     * @return String menorCaminho
+     */
     public String getMenorCaminhoJSON(int vID1, int vID2){
         int[] arvore = Vertice.getMenorCaminho(raiz, vID1, vID2);
-        String parte= "{\"menorcaminho\":{\"arestas\":[";
+        
+        String parte= String.format("{\"menorcaminho\":{\"ID1\":%d,\"ID2\":%d,\"caminho\":[", vID1,vID2);
         if(arvore.length != 0){
            for(int a=0; a < arvore.length-1;a++){
                parte+=String.format("%d", arvore[a]);
@@ -308,10 +328,10 @@ public class Grafo{
                    parte+=",";
                }
            }
-           parte+= String.format("], \"custo\":%d}}\n", arvore[arvore.length-1]);
+           parte+= String.format("], \"custo\":%d}}", arvore[arvore.length-1]);
         }
         else{
-           parte+= "], \"custo\":}}\n";
+           parte+= "], \"custo\":}}";
         }
         
         return parte;
