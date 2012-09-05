@@ -1,4 +1,4 @@
-*vertices
+*vertices 3
 1 "vertice 1"
 2 "vertice 2"
 3 "vertice 3"

@@ -1,7 +1,7 @@
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Classe que representa os vertices do grafo
@@ -289,6 +289,7 @@ public class Vertice {
      * 
      * @return int[] vertices 
      */
+    // @SuppressWarnings("unchecked")
     private LinkedList getlistaLinkedListDeVerticesSemEntrada(){
         LinkedList<Integer> arrayDeVerices = new LinkedList<Integer>();
         int[] vertices = this.getListaDeVerticesID();
@@ -339,13 +340,14 @@ public class Vertice {
     /**
      * Retorna a ordem topológica caso esse não tenha um ciclo
      */
+    @SuppressWarnings("unchecked")
     public int[] getOrdemTopologica(){
         if(!Vertice.getIsDirecionado()){
             return new int[0];
         }
         Vertice clone = this.clone(this.getProximoVertice());
         
-        LinkedList<Integer> semEntrada = new LinkedList<Integer>(clone.getlistaLinkedListDeVerticesSemEntrada());
+        LinkedList<Integer> semEntrada = clone.getlistaLinkedListDeVerticesSemEntrada();
         LinkedList<Integer> semEntradaTemp = new LinkedList<Integer>(semEntrada);
         while(clone.getNumeroDeVertices() != 0){
             Iterator interator = semEntradaTemp.iterator();
@@ -749,7 +751,7 @@ public class Vertice {
          *      Se não novo grafo na lista de grafos
          * 
          */
-        LinkedList<Vertice> grafo = new LinkedList<Vertice>();
+        CopyOnWriteArrayList< Vertice > grafo = new CopyOnWriteArrayList< Vertice >();
         LinkedList<Integer> verticesInseridos = new LinkedList<Integer>();
         int numDeAresta=0;
         boolean temOrigem;
@@ -769,7 +771,7 @@ public class Vertice {
             if( (temOrigem && temDestino) == true ){
                 //Se ambos estiverem em arvores diferentes remova o segundo
                 // e insira no primeiro grafo
-                Iterator t = grafo.iterator();
+                
                 primeiro = false;
                 segundo = false;
                 int contador = 0;
@@ -777,12 +779,12 @@ public class Vertice {
                 int segundoNoGrafo = 0;
                 Vertice vORIGEM;
                 Vertice vDESTINO;
-                while(t.hasNext()){
+                
+                for( Iterator< Vertice > t = grafo.iterator(); t.hasNext() ; ){
                     temp = (Vertice)t.next();
                     if( !primeiro){
                         vORIGEM = temp.getVerticeExists(origem[a]);
                         if(vORIGEM != null){
-                        //System.out.printf("-->Primeiro no grafo %d\n", contador);
                         primeiro = true;
                         primeroNoGrafo = contador;
                         }
@@ -790,24 +792,26 @@ public class Vertice {
                     if(!segundo){
                         vDESTINO = temp.getVerticeExists(destino[a]);
                         if(vDESTINO != null){
-                        //System.out.printf("-->Segundo no grafo %d\n", contador);
                         segundo = true;
                         segundoNoGrafo = contador;
                         }
                     }
                     if( (primeiro && segundo == true) &&  primeroNoGrafo != segundoNoGrafo  ){
-                        //System.out.printf("-->Podemos juntar primerio %d segundo em %d\n", primeiroP,segundoP);
                         temp = (Vertice)grafo.get(primeroNoGrafo);
                         temp.setProximoVertice( (Vertice)grafo.remove(segundoNoGrafo));
+                        //System.out.printf("A - %d, B- %d.Pegar o vertice ID: %d\nTodos:",primeroNoGrafo,segundoNoGrafo,origem[a]);
+                        //int verte[] = temp.getListaDeVerticesID();
+                        //for(int v: verte){
+                        //    System.out.printf("%d,",v);
+                        //}
+                        //System.out.printf("\n");
                         temp = temp.getVerticeExists(origem[a]);
                         numDeAresta++;
                         temp.setProximaAresta( new Aresta(destino[a],valor[a],null));
-
                     }
                     contador+=1;
                 }
 
-                
             }else{
                 
                 if((temOrigem || temDestino) == true){

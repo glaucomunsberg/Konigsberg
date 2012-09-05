@@ -1,3 +1,20 @@
+Versão 0.9.4
+    Grafo
+        ✎ lerComandos       - Seta um número de maximo de vertices e modificado para comando ordemtop ser ordemtopologica.
+    Vertice
+        ✎ getArvoreMinima   - modificado para inserir copia concorrente
+    exemplosDeComandos
+        ✔ arquivo_add_vertice_exec.txt novo no readme para o comando *vertices
+        ✔ arquivo_add_vertice_nao_exec.txt novo no readme para o comando *vertices
+        ✔ arquivo_ordemtopologica_exec.txt substitui arquivo_ordemtop_exec.txt
+        ✔ arquivo_ordemtopologica_nao_exec.txt substitui arquivo_ordemtop_nao_exec.txt
+        ✎ *.txt agora tem quanto é o máximo de vertice que suporta o grafo do exemplo
+        ✘ arquivo_ordemtop_exec.txt removido
+        ✘ arquivo_ordemtop_nao_exec.txt removido
+    README
+        ✎ documentação corrigida onde tinha comando 'ordemtop' agora está correto com o comando 'ordemtopologica',
+          comando '*vertice <NUM>' e '*vertice' foram adicionados e documentos
+
 Versão 0.9.3
     Grafo
         ✎ getMenorCaminhoJSON   - correção do formato JSON

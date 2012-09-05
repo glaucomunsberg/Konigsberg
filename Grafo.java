@@ -11,9 +11,13 @@ public class Grafo{
     private Vertice raiz;
     private Vertice vertice;
     private Scanner leitor;
+    private int numMaximoDeVertice;
+    private int numDeVertices;
     
     public Grafo(){    
         leitor = new Scanner(System.in);
+        numMaximoDeVertice = Integer.MIN_VALUE;
+        numDeVertices = 0;
     }
     
     /**
@@ -155,11 +159,11 @@ public class Grafo{
         caseHash.put("delete", 2);  
         caseHash.put("vizinhos", 3);
         caseHash.put("conexao", 4);
-        caseHash.put("ordemtop", 5);
+        caseHash.put("ordemtopologica", 5);
         caseHash.put("arvoreminima", 6);
         caseHash.put("menorcaminho", 7);
         caseHash.put("remove", 8);
-        caseHash.put("remove", 9);
+        caseHash.put("modografico", 9);
         
         /**
          * Enquando não houver condição de parada prosegue
@@ -190,9 +194,23 @@ public class Grafo{
                     }else{
                         if( parteComando[0].equals("*vertices")){
                             tipoComando = 1;
-                            tipoLido = true;
+                            tipoLido = true;                                
                         }
                     }
+                }
+            }else{
+                
+                if( parteComando[0].equals("*vertices")){
+                    tipoComando = 1;
+                    tipoLido = true;
+                    if(numMaximoDeVertice == Integer.MIN_VALUE){
+                        int numeroMax = Integer.parseInt(parteComando[1]);
+
+                        if(numeroMax >= 0){
+
+                            numMaximoDeVertice = numeroMax;
+                        }
+                    }                                
                 }
             }
             
@@ -257,11 +275,17 @@ public class Grafo{
                     case 1:
                         //VERTICE
                         try{
-                            idQueRecebera = Integer.parseInt(parteComando[0]);
-                            if(idQueRecebera >= 0){
-                                inicioDoNome = comando.indexOf("\"");
-                                nomeQueRecebera = comando.substring(inicioDoNome, comando.length()-1);
-                                raiz.setNovoVertice(idQueRecebera, nomeQueRecebera);
+                            if( numDeVertices >= numMaximoDeVertice){
+                                break;
+                            }else{
+                                idQueRecebera = Integer.parseInt(parteComando[0]);
+                                if(idQueRecebera >= 0){
+                                    inicioDoNome = comando.indexOf("\"");
+                                    nomeQueRecebera = comando.substring(inicioDoNome, comando.length()-1);
+                                    raiz.setNovoVertice(idQueRecebera, nomeQueRecebera);
+                                    numDeVertices++;
+                                }
+                                
                             }
                             
                         }catch(Exception eeee){    
