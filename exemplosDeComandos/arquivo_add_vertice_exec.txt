@@ -2,7 +2,7 @@
 1 "vertice 1"
 2 "vertice 2"
 *vertices
-3 "vertices"
+3 "vertice 3"
 *queries
 get 2
 get 3

@@ -999,7 +999,7 @@ public class Vertice {
                     distancia[i] = distancia[n] + arestaTemp.getValor();
                     
                     if( valorAnteriorDaDistancia > distancia[i]){
-                        precedente[i] = verticeTemp.getID(); 
+                        precedente[i] = verticeTemp.getID();
                     }
                     
                 }

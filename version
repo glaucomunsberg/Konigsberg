@@ -1,16 +1,35 @@
+Versão 0.9.5
+    exemplosDeComandos
+        ✎ arquivo_add_vertice_exec.txt      - correção do tipo de aresta
+        ✎ arquivo_add_vertice_nao_exec.txt  - correção do tipo de aresta
+        ✎ arquivo_conexao_aresta.txt        - correção do tipo de aresta
+        ✎ arquivo_menorcaminho.txt          - correção do tipo de aresta
+        ✎ arquivo_remove_aresta.txt         - correção do tipo de aresta
+        ✎ arquivo_vizinhos_aresta.txt       - correção do tipo de aresta
+    casosDeTestes
+        ✔ casoDeTeste_error_0.txt           - erro encontrado e documentado no README
+        ✔ casoDeTeste_error_1.txt           - erro encontrado e documentado no README
+        ✔ casoDeTeste_simulacao_1.txt       - Teste de simulação do README
+        ✔ casoDeTeste_simulacao_2.txt       - Teste de simulação do README
+        ✔ casoDeTeste_simulacao_3.txt       - Teste de simulação do README
+        ✔ casoDeTeste_simulacao_4.txt       - Teste de simulação do README
+        ✔ casoDeTeste_simulacao_5.txt       - Teste de simulação do README
+    README
+        ✎ documentação corrigida devido a inversão de comandos. Adicionado ítem 5 (resultados obtidos)
+
 Versão 0.9.4
     Grafo
         ✎ lerComandos       - Seta um número de maximo de vertices e modificado para comando ordemtop ser ordemtopologica.
     Vertice
         ✎ getArvoreMinima   - modificado para inserir copia concorrente
     exemplosDeComandos
-        ✔ arquivo_add_vertice_exec.txt novo no readme para o comando *vertices
-        ✔ arquivo_add_vertice_nao_exec.txt novo no readme para o comando *vertices
-        ✔ arquivo_ordemtopologica_exec.txt substitui arquivo_ordemtop_exec.txt
-        ✔ arquivo_ordemtopologica_nao_exec.txt substitui arquivo_ordemtop_nao_exec.txt
-        ✎ *.txt agora tem quanto é o máximo de vertice que suporta o grafo do exemplo
-        ✘ arquivo_ordemtop_exec.txt removido
-        ✘ arquivo_ordemtop_nao_exec.txt removido
+        ✔ arquivo_add_vertice_exec.txt          - novo no readme para o comando *vertices
+        ✔ arquivo_add_vertice_nao_exec.txt      - novo no readme para o comando *vertices
+        ✔ arquivo_ordemtopologica_exec.txt      - substitui arquivo_ordemtop_exec.txt
+        ✔ arquivo_ordemtopologica_nao_exec.txt  - substitui arquivo_ordemtop_nao_exec.txt
+        ✎ *.txt                                 - agora tem quanto é o máximo de vertice que suporta o grafo do exemplo
+        ✘ arquivo_ordemtop_exec.txt             - removido
+        ✘ arquivo_ordemtop_nao_exec.txt         - removido
     README
         ✎ documentação corrigida onde tinha comando 'ordemtop' agora está correto com o comando 'ordemtopologica',
           comando '*vertice <NUM>' e '*vertice' foram adicionados e documentos

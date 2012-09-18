@@ -1,0 +1,236 @@
+*Vertices 110
+0 "Babar"
+1 "Babul"
+2 "Bacchus"
+3 "Bae"
+4 "Bahar"
+5 "Bailey"
+6 "Baingana"
+7 "Baird"
+8 "Bairn"
+9 "Bajnok"
+10 "Bakari"
+11 "Baker"
+12 "Balavan"
+13 "Balbo"
+14 "Balder"
+15 "Baldric"
+16 "Baldwin"
+17 "Bale"
+18 "Balfour"
+19 "Bali"
+20 "Balint"
+21 "Ballard"
+22 "Balram"
+23 "Balthasar"
+24 "Balthazar"
+25 "Balun"
+26 "Bancroft"
+27 "Bandele"
+28 "Bane"
+29 "Banjora"
+30 "Bankim"
+31 "Banning"
+32 "Banquo"
+33 "Bansi"
+34 "Baptista"
+35 "Barabas"
+36 "Barak"
+37 "Baran"
+38 "Barber"
+39 "Barclay"
+40 "Barden"
+41 "Bardo"
+42 "Bardolph"
+43 "Bardon"
+44 "Barega"
+45 "Barend"
+46 "Bari"
+47 "Barlow"
+48 "Barna"
+49 "Barnabas"
+50 "Barnard"
+51 "Barnardine"
+52 "Barnardo"
+53 "Barnet"
+54 "Barnett"
+55 "Barney"
+56 "Barnum"
+57 "Barny"
+58 "Baron"
+59 "Barrett"
+60 "Barry"
+61 "Bars"
+62 "Barse"
+63 "Bart"
+64 "Barth"
+65 "Bartholomew"
+66 "Barton"
+67 "Baruch"
+68 "Barwon"
+69 "Bashir"
+70 "Basil"
+71 "Basim"
+72 "Bassanio"
+73 "Bassett"
+74 "Bastiaan"
+75 "Bastian"
+76 "Bastien"
+77 "Bates"
+78 "Baudouin"
+79 "Baul"
+80 "Bavol"
+81 "Baxter"
+82 "Bay"
+83 "Bayanai"
+84 "Bayard"
+85 "Bayley"
+86 "Bazyli"
+87 "Beacan"
+88 "Beacher"
+89 "Beagan"
+90 "Beaman"
+91 "Beardsley"
+92 "Beathan"
+93 "Beattie"
+94 "Beau"
+95 "Beaumont"
+96 "Beauregard"
+97 "Bebe"
+98 "Becan"
+99 "Beck"
+100 "Becse"
+101 "Bede"
+102 "Bedrich"
+103 "Bela"
+104 "Belarius"
+105 "Beldon"
+106 "Belen"
+107 "Bellamy"
+108 "Bem"
+109 "Bemus"
+*Edges
+0 1 11
+0 109 5
+1 2 10
+2 3 11
+3 4 17
+4 104 6
+5 89 5
+5 6 16
+6 7 3
+7 8 4
+8 9 9
+9 10 1
+10 11 15
+11 12 7
+12 13 11
+13 14 3
+14 15 13
+15 16 3
+16 17 3
+17 18 7
+18 42 7
+19 20 7
+20 21 15
+21 22 9
+22 23 13
+23 24 7
+23 100 11
+24 25 19
+25 26 1
+26 27 8
+27 79 7
+28 29 4
+29 30 17
+30 31 20
+31 32 10
+32 33 14
+33 34 2
+34 52 10
+35 36 12
+36 37 13
+37 38 3
+38 39 11
+39 41 17
+40 41 12
+41 42 4
+42 43 11
+43 44 11
+44 45 3
+45 46 3
+46 68 3
+47 48 18
+48 49 15
+48 67 7
+49 50 5
+50 108 18
+51 52 3
+52 53 9
+53 54 20
+54 55 7
+55 56 12
+56 57 5
+57 58 5
+58 59 19
+59 60 17
+60 61 13
+61 62 10
+62 63 2
+63 64 19
+64 65 5
+65 66 20
+66 67 9
+68 69 8
+69 70 5
+70 71 18
+71 72 2
+72 73 12
+73 74 15
+74 75 13
+75 76 14
+76 77 15
+77 78 4
+78 79 19
+79 84 10
+80 81 7
+81 82 19
+82 83 13
+83 84 2
+84 85 15
+85 86 20
+86 87 20
+87 95 13
+88 89 5
+89 106 18
+90 91 3
+91 92 5
+92 93 4
+93 94 11
+94 95 15
+95 96 6
+96 97 18
+97 98 7
+98 99 6
+99 100 5
+101 102 16
+102 103 12
+103 104 11
+104 105 17
+105 106 17
+107 108 2
+108 109 19
+*Queries
+menorcaminho 0 1
+menorcaminho 0 100
+menorcaminho 50 2
+@
+
+Resultado
+    {"menorcaminho":{"ID1":0,"ID2":1,"caminho":[0,1], "custo":11}}
+    {"menorcaminho":{"ID1":0,"ID2":100,"caminho":[0,1,2,3,4,104,105,106,89,5,6,7,8,9,10,11,12,13,14,15,16,17,18,42,43,44,45,46,68,69,70,71,72,73,74,75,76,77,78,79,27,26,25,24,23,100], "custo":423}}
+    {"menorcaminho":{"ID1":50,"ID2":2,"caminho":[50,108,109,0,1,2], "custo":63}} 
+Tempo de execução
+    real    0m0.292s
+    user    0m0.236s
+    sys     0m0.044s 

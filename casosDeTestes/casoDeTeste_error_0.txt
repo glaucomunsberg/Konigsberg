@@ -1,0 +1,38 @@
+*vertices 8
+0 "A"
+1 "B"
+2 "C"
+3 "D"
+4 "E"
+5 "F"
+6 "G"
+7 "H"
+*arcs
+0 3 80
+0 1 20
+0 6 90
+1 5 10
+2 5 50
+2 7 20
+2 3 10
+3 2 10
+3 6 20
+4 6 30
+4 1 50
+5 2 10
+5 3 40
+6 0 20
+*queries
+get 0
+get 7
+conexao 0 3
+conexao 0 1
+conexao 0 6
+conexao 4 1
+menorcaminho 0 7
+@
+
+Resultado
+    {"menorcaminho":{"ID1":0,"ID2":7,"caminho":[4,1,5,2,7], "custo":60}} 
+Esperado
+    {"menorcaminho":{"ID1":0,"ID2":7,"caminho":[0,1,5,2,7], "custo":60}} 

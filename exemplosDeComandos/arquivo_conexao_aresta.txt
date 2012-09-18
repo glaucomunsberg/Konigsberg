@@ -1,9 +1,10 @@
 *vertices 2
 1 "vertice 1"
 2 "vertice 2"
-*edges
+*arcs
 1 2 1
 *queries
 conexao 1 2
 conexao 2 1
+conexao 2 3
 @
