@@ -352,7 +352,7 @@ public class Vertice {
         while(clone.getNumeroDeVertices() != 0){
             Iterator interator = semEntradaTemp.iterator();
             while(interator.hasNext()){
-                clone.removeVertice( (int)interator.next() );
+                clone.removeVertice( Integer.parseInt(interator.next().toString()) );
             }
             semEntradaTemp = clone.getlistaLinkedListDeVerticesSemEntrada();
             Iterator interatorDois = semEntradaTemp.iterator();
@@ -364,7 +364,7 @@ public class Vertice {
         int[] retorno = new int[semEntrada.size()];
         int b=0;
         while(a.hasNext()){
-            retorno[b] = (int)a.next();
+            retorno[b] = Integer.parseInt(a.next().toString());
             b++;
         }
         
@@ -1037,7 +1037,7 @@ public class Vertice {
         int a=0;
         Iterator i = valores.iterator();
         while(i.hasNext()){
-            retorno[a++] = (int)i.next();
+            retorno[a++] = Integer.parseInt(i.next().toString());
         }
         retorno[a]=distancia[posicaoVerticeID2];
         

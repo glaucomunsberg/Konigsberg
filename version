@@ -1,3 +1,10 @@
+Versão 0.9.6
+    Vertice
+        ✎ getOrdemTopologica    - Compatibilização com Java 6
+        ✎ getMenorCaminho       - Compatibilização com Java 6
+    README
+        ✎ correção e finalização da documentação
+
 Versão 0.9.5
     exemplosDeComandos
         ✎ arquivo_add_vertice_exec.txt      - correção do tipo de aresta

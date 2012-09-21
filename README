@@ -19,9 +19,9 @@
 #
 #   Projeto Königsberg se propõem a realizar o trabalho de EDII, proposto pelo 
 #   professor Ricardo Matsumura Araújo e que está espeficido através dos links:
-#   * Primeira parte do Trabalho:
+#   1.1 Primeira parte do Trabalho:
 #       http://avainstitucional.ufpel.edu.br/mod/assignment/view.php?id=25409
-#   * Segunda parte do Trabalho:
+#   1.2 Segunda parte do Trabalho:
 #       http://avainstitucional.ufpel.edu.br/mod/assignment/view.php?id=25879
 #       sendo esse segundo trabalho realizado em conjunto com também acadêmico
 #       da ciência da computação André Peil.
@@ -34,43 +34,42 @@
 #   O trabalho foi programado e testado em um computador:
 #    * Pentium Dual Core 2.2GHz
 #    * 2,5GB Memória RAM DDR2
-#    * Ubuntu 12.04 32-bits, área de troca de 1Gb para auxílio, com Java7 e 
-#      demais configurações padrões.
+#    * Ubuntu 12.04 32-bits, área de troca de 1Gb para auxílio, com Java 6
+#      "1.6.0_04" e demais configurações padrões.
 #
 #   1.1 Resultado Obtido
 #       Usando uma JMV de no máximo 2,3Gb os resultados* obtidos foram:
 #
-#   1.1.1 Grafos
-#       Numero de Arestas: XX
-#       Tamanho da Vertices: XX
-#       Tempo de execução : XX,Xs
+#   1.1.1 Grafo
+#       Número de Vertices: 110
+#       Numero de Arestas : 110
+#       Tempo de execução : 0m0.172s
 #
-#   1.1.2 Visualização de Grafos
-#       Numero de caract.: 5mil
-#       Tempo de execução: 57,7s
+#   1.1.2 Grafo com Interface Grafica
+#       Número de Vertices: 110
+#       Numero de Arestas : 110
+#       Tempo de execução : 0m8.449s
 #
-#   *Sem estouro de memória e inferior a XXsegundos
+#   *Sem estouro de memória e inferior a 60segundos
 #
 ################################################################################
 # 2.Como foi programado
 ################################################################################
 #
-#   O projeto Königsberg dividido em duas partes, sendo a primeira programada
-#   por Glauco Roberto Munsberg dos Santos e a segunda parte programada por este
-#   e André Peil sendo o desenvolvimento ocorrido do periodo entre 3 de Julho de
-#   2012 até XX de XX de 2012. Para isso foi usado a linguagem de programação 
-#   Java dando continuidade aos conceitos obtido através da, também disciplica
-#   na Ciência da Computação, Programação Orientada à Objetos. 
-#
-#   PRIMEIRA PARTE:
-#   SEGUNDA PARTE:
+#   O projeto Königsberg dividido em duas partes, sendo a primeira parte (1.1)
+#   programada por Glauco Roberto Munsberg dos Santos  e a segunda parte(1.2)
+#   programada por este e André Peil sendo o desenvolvimento ocorrido do período
+#   entre 3 de Julho de 2012 até 25 de Setembro de 2012. 
+#   Para isso foi usado a linguagem de programação Java dando continuidade aos
+#   conceitos obtido através da Programação Orientaçãoa Objeto, também
+#   disciplica na Ciência da Computação. 
 #
 #   A documentação do código está dividida em duas parte:
 #    A primeira que se refere o comportamente do programa e se encontra neste
-#     arquivo.
+#    arquivo.
 #    A segunda se encontra diretamente nos arquivos *.java referente como é 
-#     executado os seus métodos e comportamento interno, bem como o retorno e 
-#     seu tipo.
+#    executado os seus métodos e comportamento interno, bem como o retorno e seu
+#    tipo.
 #
 ################################################################################
 # 3.Comandos
@@ -579,8 +578,12 @@
 #         -------------------------------------------------------------------
 #         
 #         3.4.9 modografico
-#           [not implemented yet]
-#
+#           [not implemented yet] 
+#           O modo gráfico foi implementado apenas no trabalho de André Peil,
+#           ficando para versões futuras a implementação dessa parte.
+#           A motivação para a não implementação foi o prazo curto e alguns
+#           problemas com a biblioteca mxgraph.
+#           
 #   3.5 @
 #      O comando "@" é a condição de parada da leitura de comandos e encerra a 
 #      execução do programa. Caso haja algum comando após ele, serão 
@@ -604,37 +607,40 @@
 # 4.Como executar
 ################################################################################
 #
-#   Através do repositório no GitHub ( @github ) é possível obter os arquivos 
-#   individuais para a execução do grafo. Podendo inclusive baixar e executar os
-#   arquivos da pasta 'exemplosDeComandos', entretanto aqui está disponível
-#   apenas os arquivos abaixo, mínimos para a execução do grafo:
+#   Para a execução do Grafo é necessário que a máquina onde rodará tenha uma
+#   uma versão igual ou superior a Java 6 e os arquivos abaixo:
+#
 #     * Grafo.java
 #     * Vertice.java
 #     * Aresta.java
 #
+#   Através do repositório no GitHub ( glaucomunsberg/Konigsberg) é possível
+#   obter os arquivos individuais para a execução do grafo ou até mesmo uma
+#   versão mais recente dos arquivos listado acima. Podendo inclusive baixar e 
+#   executar os arquivos da pasta 'exemplosDeComandos', entretanto aqui está
+#   disponível apenas os arquivos listado a cima.
+#
 #   4.1 Compilar o Grafo
 #         Para a compilação se opta por executar diretamente a compilação do
-#         grafo que resolve as compilações dependentes que no caso Vertice e 
-#         Aresta.Para compilar no terminal:
+#         grafo que resolve as compilações dependentes que no caso são Vertice e 
+#         Aresta. Para compilar no terminal:
 #
 #         $ javac Grafo.java
 #
 #   4.2 Execução do grafo
-#         4.2.1 Execução do grafo
-#         Para executar o grafo no terminal basta digitar:
+#         4.2.1 Execução do Grafo no terminal basta digitar:
 #
 #         $ java -Xms500m -Xmx2300m Grafo
 #
-#         4.2.2 Execução do grafo em modo Grafico
-#         Para executar a árvore de sufixo no terminal basta digitar:
+#         4.2.2 Execução do Grafo em modo Gráfico  no terminal:
 #
-#         $ java -Xms500m -Xmx2300m NOT_IMPLEMENT_YET
+#         Ver ítem:  3.4.9
 #
 #   Obs.: Os parametros -Xms e -Xmx da JVM reserva 500Mb no mínimo e no máximo 
 #   2,3Gb alocada de Memória RAM para executar o processo, estando o máximo 
 #   limitado pela memória do computador onde está sendo executado. Ficando assim
-#   possível de troca desses valores segundo a necessidade e o seu limite de
-#   hardware.
+#   possível de troca desses valores segundo a necessidade e o seu limite:
+#               -Xms < -Xmx < (RAM + SWAP - (used by System) )
 #
 ################################################################################
 # 5.Resultados obtidos
@@ -694,8 +700,9 @@
 #           Erro    : O comando trás com sucesso o custo, porém o caminho está
 #                     acusando começar com '4' em vez de '0'. Tudo indica que se
 #                     perde apenas na criação do retorno, ou seja, em saber quem
-#                     é o antecessor.
-#           Ocorre  : Em apenas alguns grafos.
+#                     é o antecessor. Porém a soma do custo está correto em
+#                     todos.
+#           Ocorre  : Em apenas grafos extensos.
 #
 #       Bug 2
 #           Arquivo : casoDeTeste_error_1.txt
@@ -705,13 +712,15 @@
 #                     causa desse problema acredito estar ligado a esse grafo
 #                     pois não tenho condições de examiná-lo se possúi ciclo
 #                     devido a sua complexidade de mais de 100 vertices.
-#           Ocorre  : Em apenas alguns grafos.
+#           Ocorre  : Em apenas alguns grafos extensos.
 #
 ################################################################################
 # 6.Conclusão
 ################################################################################
 #
-#
-#
+#   O trabalho apesar de chegar ao seus estado final para a cadeira de EDII
+#   vejo a conclusão dessa fase como sendo satisfatória, acredito que há ainda
+#   como continuar a desenvolver esse grafo para a utilização futura e até mesmo
+#   detectar os erros até então não solucionados (5.2).
 #
 ################################################################################
