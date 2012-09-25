@@ -1,14 +1,14 @@
 /**
  * Classe que representa as Arestas do grafo
- * 
+ *
  * @author glaucoroberto
  */
-public class Aresta 
+public class Aresta
 {
     private int verticeID;
     private int valor;
     protected Aresta proximo;
-    
+
     /**
      * Construtor padrão tudo zero e null
      */
@@ -17,71 +17,71 @@ public class Aresta
         valor=0;
         proximo = null;
     }
-    
+
     /**
      * Construtor de cópia
-     * @param nodo 
+     * @param nodo
      */
     public Aresta(Aresta nodo){
         this.valor = nodo.valor;
         this.verticeID = nodo.verticeID;
-        this.proximo = nodo.proximo; 
+        this.proximo = nodo.proximo;
     }
-    
+
     /**
      * Construtor que recebe por parametro
      * @param Vertice vertice
      * @param int valor
-     * @param Aresta proximo 
+     * @param Aresta proximo
      */
     public Aresta(int vertice, int valor, Aresta proximo){
         this.verticeID = vertice;
         this.valor = valor;
         this.proximo = proximo;
     }
-    
+
     /**
      * Método que retorno do valor da Aresta
-     * 
+     *
      * @return int valor
      */
     public int getValor(){
         return this.valor;
     }
-    
+
     /**
      * Método de retorno do ID do vertice
-     * 
-     * @return int verticeID; 
+     *
+     * @return int verticeID;
      */
     public int getVerticeID(){
         return this.verticeID;
     }
-    
+
     /**
      * Método que retorna a próxima Aresta
-     * 
+     *
      * @return Aresta proxima
      */
     public Aresta getProximaAresta(){
         return this.proximo;
     }
-    
+
     /**
      * Método que insere o valor da aresta
-     * @param int valor 
+     * @param int valor
      */
     public void setValor(int valor){
         this.valor = valor;
     }
-    
+
     /**
      * Mpetodo que insere a próxima aresta
      *  desta aparesta
-     * @param Aresta a 
+     * @param Aresta a
      */
     public void setProximaAresta(Aresta a){
         this.proximo = a;
     }
-    
+
 }
