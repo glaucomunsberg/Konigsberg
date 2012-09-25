@@ -634,33 +634,6 @@ public class Vertice {
         
         return clone;
     }
-
-    private ArrayList getOrigemDestinoCusto(){
-        ArrayList<ArrayList> vetor = new ArrayList<ArrayList>();
-        ArrayList<Integer> origem = new ArrayList<Integer>();
-        ArrayList<Integer> destino = new ArrayList<Integer>();
-        ArrayList<Integer> custo = new ArrayList<Integer>();
-        
-        Vertice vertice = this.getProximoVertice();
-        Aresta arestaTemp = null;
-        
-        while(vertice != null){
-            arestaTemp = vertice.getProximaAresta();
-            while(arestaTemp != null){
-                
-                origem.add(vertice.getID());
-                destino.add(arestaTemp.getVerticeID());
-                custo.add(arestaTemp.getValor());
-                arestaTemp = arestaTemp.getProximaAresta();
-            }
-            vertice = vertice.getProximoVertice();
-        }
-        
-        vetor.add(origem);
-        vetor.add(destino);
-        vetor.add(custo);
-        return vetor;
-    }
     
     /**
      * Método que retorna a árvore mínima de um grafo
