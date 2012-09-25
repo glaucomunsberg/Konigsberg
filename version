@@ -1,7 +1,3 @@
-Versão 0.9.7
-    Vertice
-        ✘ getOrigemDestinoCusto - método não utilizado
-
 Versão 0.9.6
     Vertice
         ✎ getOrdemTopologica    - Compatibilização com Java 6
