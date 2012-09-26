@@ -6,7 +6,7 @@
 # 2.Como foi programado
 # 3.Comandos
 # 4.Como executar
-# 5.Resultados obtidos
+# 5.Resultados
 # 6.Conclusão
 #
 # @autor   Glauco Roberto Munsberg dos Santos
@@ -40,15 +40,15 @@
 #   1.1 Resultado Obtido
 #       Usando uma JMV de no máximo 2,3Gb os resultados* obtidos foram:
 #
-#   1.1.1 Grafo
-#       Número de Vertices: 110
-#       Numero de Arestas : 110
-#       Tempo de execução : 0m0.172s
+#       1.1.1 Grafo
+#           Número de Vertices: 110
+#           Numero de Arestas : 110
+#           Tempo de execução : 0m0.172s
 #
-#   1.1.2 Grafo com Interface Grafica
-#       Número de Vertices: 110
-#       Numero de Arestas : 110
-#       Tempo de execução : 0m8.449s
+#       1.1.2 Grafo Grafica
+#           Número de Vertices: 110
+#           Numero de Arestas : 110
+#           Tempo de execução : 0m8.449s
 #
 #   *Sem estouro de memória e inferior a 60segundos
 #
@@ -61,11 +61,11 @@
 #   programada por este e André Peil sendo o desenvolvimento ocorrido do período
 #   entre 3 de Julho de 2012 até 25 de Setembro de 2012. 
 #   Para isso foi usado a linguagem de programação Java dando continuidade aos
-#   conceitos obtido através da Programação Orientaçãoa Objeto, também
-#   disciplica na Ciência da Computação. 
+#   conceitos obtido através da Programação Orientação a Objeto, também
+#   disciplina na Ciência da Computação. 
 #
 #   A documentação do código está dividida em duas parte:
-#    A primeira que se refere o comportamente do programa e se encontra neste
+#    A primeira que se refere o comportamento do programa e se encontra neste
 #    arquivo.
 #    A segunda se encontra diretamente nos arquivos *.java referente como é 
 #    executado os seus métodos e comportamento interno, bem como o retorno e seu
@@ -102,7 +102,7 @@
 #   parâmetros não obedece a isso. Porém é necessário que cada grupo contenha 
 #   pelo menos UM comando. Não podendo assim colocar dois grupos de comandos 
 #   sem um comando do primeiro grupo esteja entre eles.
-#   Veja exemplo do que NÂO se pode fazer:
+#   Veja exemplo do que NÃO se pode fazer:
 #
 #     -arquivo_nao_executa.txt----------
 #     |	<TIPO1>				|
@@ -163,7 +163,7 @@
 #      em caixa-alta também.
 #      Comando é composto por duas partes:
 #       *vertices
-#       <NUM> - numero máximo de vertices permitidos. Note que esse valor pode
+#       <NUM> - numero máximo de vértices permitidos. Note que esse valor pode
 #               variar de 0 a 2147483647.
 #
 #         Veja o exemplo a abaixo:
@@ -178,14 +178,14 @@
 #           |					|
 #           -------------------------------------
 #      Obs.: O numero máximo pode ser inserido uma única vez, apos isso não se
-#      pode modifica mais o valor atribuido ao máximo de vertices.
+#      pode modifica mais o valor atribuido ao máximo de vértices.
 # 
 #         3.2.1 *vertices
 #         O comando "*vértice" informa ao programa que existirá um bloco de 
 #         comandos após ele, neste caso o de inserção de vertices. Porém esse
 #         comando deve ser usado apenas apos a execução do comando
 #         "*vertices <NUM>" (2.3), pois assim já estará setado o número máximo
-#         de vertices suportado pelo grafo.
+#         de vértices suportado pelo grafo.
 #         O comando não é case-sensitive permitindo ser digitado em caixa-alta
 #         também.
 #         Comando é composto por duas partes:
@@ -223,9 +223,9 @@
 #           |	{"vértice":{"ID":2, "dado":"", "resposta":"falha"}}            |
 #           |	{"vértice":{"ID":3, "dado":"vértice 3", "resposta":"sucesso"}} |
 #           --------------------------------------------------------------------
-#        Obs.: Caso esse comando seja usado sem setar o número máximo de vertice
-#        suportado pelo grafo, todo e qualquer vertice será ignorado até que
-#        haja a escolha máxima de vertices
+#        Obs.: Caso esse comando seja usado sem setar o número máximo de vértice
+#        suportado pelo grafo, todo e qualquer vértice será ignorado até que
+#        haja a escolha máxima de vértices
 #         
 #         3.2.2 <ID> "<NOME>"
 #         O comando de inserção de vértice deve estar dentro de um bloco do 
@@ -368,8 +368,8 @@
 #         existir ou retona falaha se a conexão não existir.
 #         O comando é composto por três partes:
 #          remove
-#          <ID1> - Índice do vertice Origem
-#          <ID2> - Índice do vertice destino
+#          <ID1> - Índice do vértice Origem
+#          <ID2> - Índice do vértice destino
 #
 #         Veja um exemplo:
 #         -arquivo_remove_aresta.txt-------------
@@ -446,6 +446,7 @@
 #           * Que o grafo seja direcionado, do tipo *arcs;
 #           * Que o grafo seja conexo;
 #           * Que não haja ciclos no grafo;
+#
 #         O comando é unitário sendo assim:
 #          ordemtopologica
 #
@@ -494,7 +495,7 @@
 #         -Retorno-----------------------------------------------------------
 #         |     {"ordemtop":[]}                                             |
 #         -------------------------------------------------------------------
-#         Obs.: Um ciclo induzido por um vertice A-B e B-A ou grafo *edges não 
+#         Obs.: Um ciclo induzido por um vértice A-B e B-A ou grafo *edges não 
 #         respeitam as condição automaticamente fazem o grafo retornar a Ordem
 #         Topológica vazia. Veja que esse exemplo possui ciclos criados pelo
 #         comando *edges.
@@ -504,6 +505,7 @@
 #         Para isso deve-se assegurar duas condições:
 #           * Que o grafo seja não direcionado, do tipo *arcs;
 #           * Que o grafo seja conexo;
+#
 #         O comando é unitário sendo assim:
 #          arvoreminima
 #         -arquivo_arvoreminima_exec.txt---------
@@ -538,11 +540,12 @@
 #           
 #         3.4.8 menorcaminho
 #	  O comando "menorcaminho" retorna o caminho de custo mínimo entre 
-#         dois vertices.
+#         dois vértices.
 #         O comando é composto por três partes:
 #          menorcaminho
 #          <ID1> - Índice do vértice origem
 #          <ID2> - Índice do vértice destino
+#
 #         Para isso deve-se assegurar duas condições:
 #           * Que o grafo seja não direcionado, do tipo *arcs;
 #           * Que o grafo seja conexo;
@@ -578,11 +581,19 @@
 #         -------------------------------------------------------------------
 #         
 #         3.4.9 modografico
-#           [not implemented yet] 
-#           O modo gráfico foi implementado apenas no trabalho de André Peil,
-#           ficando para versões futuras a implementação dessa parte.
-#           A motivação para a não implementação foi o prazo curto e alguns
-#           problemas com a biblioteca mxgraph.
+#
+#         ATENÇÃO!
+#            Esse recurso é beta! Podendo não funcionar ou fazer o grafo ter uma
+#            exception!
+#
+#         O comando "modografico" retorna uma visualização do grafo no seu
+#         estado atual. Podendo ser chamado a qualquer momento entre as queries.
+#         O comando é unitário sendo assim:
+#           modografico
+#
+#        Obs.: Caso o comando "modografico" seja executado em um grafo não
+#        gráfico o comando será simplesmente descartado, certifique-se de estar
+#        rodando um GrafoGrafico.
 #           
 #   3.5 @
 #      O comando "@" é a condição de parada da leitura de comandos e encerra a 
@@ -607,34 +618,64 @@
 # 4.Como executar
 ################################################################################
 #
-#   Para a execução do Grafo é necessário que a máquina onde rodará tenha uma
-#   uma versão igual ou superior a Java 6 e os arquivos abaixo:
-#
-#     * Grafo.java
-#     * Vertice.java
-#     * Aresta.java
-#
 #   Através do repositório no GitHub ( glaucomunsberg/Konigsberg) é possível
 #   obter os arquivos individuais para a execução do grafo ou até mesmo uma
-#   versão mais recente dos arquivos listado acima. Podendo inclusive baixar e 
-#   executar os arquivos da pasta 'exemplosDeComandos', entretanto aqui está
-#   disponível apenas os arquivos listado a cima.
+#   versão mais recente dos arquivos listado abaixo. Podendo inclusive baixar e 
+#   executar os arquivos da pasta 'exemplosDeComandos'.
 #
-#   4.1 Compilar o Grafo
-#         Para a compilação se opta por executar diretamente a compilação do
-#         grafo que resolve as compilações dependentes que no caso são Vertice e 
-#         Aresta. Para compilar no terminal:
+#   4.1 Grafo (não gráfico)
 #
-#         $ javac Grafo.java
+#       Para a execução do Grafo (sem modo gráfico) é necessário que a máquina
+#       onde rodará tenha:
 #
-#   4.2 Execução do grafo
-#         4.2.1 Execução do Grafo no terminal basta digitar:
+#       4.1.1 Configuração Mínima
+#               * Java 6
+#               * 256 RAM
+#             Arquivos Mínima
+#               * Grafo.java
+#               * Vertice.java
+#               * Aresta.java
 #
-#         $ java -Xms500m -Xmx2300m Grafo
+#      4.1.2 Compilar
+#           Para a compilação se opta por executar diretamente a compilação do
+#           grafo que resolve as compilações dependentes que no caso são Vertice
+#           e Aresta.
+#           Para compilar no terminal:
 #
-#         4.2.2 Execução do Grafo em modo Gráfico  no terminal:
+#               $ javac Grafo.java
 #
-#         Ver ítem:  3.4.9
+#      4.1.3 Execução do grafo
+#           Execução do Grafo no terminal basta digitar:
+#
+#               $ java -Xms500m -Xmx2300m Grafo
+#
+#   4.2 Grafo (Gráfico)
+#
+#       Para a execução do Grafo Gráfico (com modo gráfico) é necessário que a
+#       máquina onde rodará tenha:
+#
+#       4.2.1 Configuração Mínima
+#               * Java 6
+#               * 256 RAM
+#               * 1024x768 resolução de tela
+#             Arquivos
+#               * com/ (biblioteca mxGraph)
+#               * Grafo.java
+#               * GrafoGrafico.java
+#               * Vertice.java
+#               * Aresta.java
+#
+#      4.2.2 Compilar
+#           Para a compilação se opta por executar diretamente a compilação do
+#           GrafoGrafico que resolve as compilações dependentes que no caso são
+#           Grafo, Vertice, Aresta e biblioteca MxGraph.
+#           Para compilar no terminal:
+#
+#           $ javac GrafoGrafico.java
+#
+#      4.2.3 Execução do GrafoGrafico
+#
+#           $ java -Xms500m -Xmx2300m GrafoGrafico
 #
 #   Obs.: Os parametros -Xms e -Xmx da JVM reserva 500Mb no mínimo e no máximo 
 #   2,3Gb alocada de Memória RAM para executar o processo, estando o máximo 
@@ -643,19 +684,19 @@
 #               -Xms < -Xmx < (RAM + SWAP - (used by System) )
 #
 ################################################################################
-# 5.Resultados obtidos
+# 5.Resultados
 ################################################################################
 #
 #   Os testes realizados no Projeto Königsberg foram feitos no computador
-#   especificado no ítem 1.0 . Todos os casos de teste realizados e resultados
+#   especificado no item 1.0 . Todos os casos de teste realizados e resultados
 #   obtidos estão disponível no no diretório 'casosDeTeste/' do projeto no
-#   GitHub. Abaixo encontra-se alguns resultado, assim com alguns Bugs e
+#   GitHub. Abaixo encontra-se alguns resultado, assim com alguns bugs e
 #   incoerências apresentados em algumas grafos testados.
 #
 #   5.1 Resultado por tempo de execução
 #       Simulação 1
 #           Arquivo           : casoDeTeste_simulacao_1.txt
-#           Nº de vertices    : 110
+#           Nº de vértices    : 110
 #           Nº de arestas     : 110
 #           Comando testado   : adicionar vertices e arestas *Edges
 #           Tempo de execução : 0m0.172s
@@ -664,7 +705,7 @@
 #           Arquivo           : casoDeTeste_simulacao_2.txt
 #           Nº de vertices    : 110
 #           Nº de arestas     : 110
-#           Comando testado   : adicionar vertices e arestas *Arcs
+#           Comando testado   : adicionar vértices e arestas *Arcs
 #           Tempo de execução : 0m0.148s
 #
 #       Simulação 3
@@ -688,7 +729,7 @@
 #           Comando testado   : ordemtopologica
 #           Tempo de execução : 0m0.168s
 #
-#       Obs.: Tempo de execução é desconsiderando o tempo utilizado pelo systema.
+#       Obs.: Tempo de execução é desconsiderando o tempo utilizado pelo system.
 #
 #   5.2 Bugs e incoerências
 #       Abaixo estão listados alguns bugs encontrados segundo cada caso de teste
@@ -711,7 +752,7 @@
 #                     manipular uma aresta que não foi adiciona ao vertice, a
 #                     causa desse problema acredito estar ligado a esse grafo
 #                     pois não tenho condições de examiná-lo se possúi ciclo
-#                     devido a sua complexidade de mais de 100 vertices.
+#                     devido a sua complexidade de mais de 100 vértices.
 #           Ocorre  : Em apenas alguns grafos extensos.
 #
 ################################################################################

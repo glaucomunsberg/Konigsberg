@@ -562,7 +562,7 @@ public class Vertice {
 
     /**
      * Método que retorna um array com os vertices vizinhos do
-     *  vertice passado
+     *  verticeID
      * @param int vertice
      *
      * @return int[]vizinho

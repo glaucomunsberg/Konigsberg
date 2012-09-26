@@ -11,11 +11,11 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.concurrent.CopyOnWriteArrayList;
 public class Grafo{
-    private Vertice raiz;
+    protected Vertice raiz;
     private Vertice vertice;
-    private Scanner leitor;
-    private int numMaximoDeVertice;
-    private int numDeVertices;
+    protected Scanner leitor;
+    protected int numMaximoDeVertice;
+    protected int numDeVertices;
     
     public Grafo(){    
         leitor = new Scanner(System.in);
@@ -166,7 +166,6 @@ public class Grafo{
         caseHash.put("arvoreminima", 6);
         caseHash.put("menorcaminho", 7);
         caseHash.put("remove", 8);
-        caseHash.put("modografico", 9);
         
         /**
          * Enquando não houver condição de parada prosegue
@@ -262,9 +261,6 @@ public class Grafo{
                                 // Remover Aresta
                                 System.out.println(this.removeArestaJSONid(Integer.parseInt(parteComando[1]),Integer.parseInt(parteComando[2])));
                                 break;  
-                            }
-                            case 9: {
-                                // Modo Grafico
                             }
                             default:{  
 

@@ -1,3 +1,18 @@
+Versão 0.9.8
+    GrafoGrafico
+        ✔ Criação da classe que dará suporte para a visua    
+    Grafo
+        ✎ lerComandos   - removido a possibilidade do comando modografico
+        ◬ atributos agora são protected
+    listaComandos
+        ✎ suporta os comandos básico para a exemplificação
+    com/
+        ✔ pasta com a biblioteca mxGraph
+    README
+        ✎ introdução comando modografico
+        ✎ documentação corrigida
+        ✎ correção de comando de compilação
+
 Versão 0.9.7
     Grafo
         ✔ getMenorCaminho       - código importado de vertice
