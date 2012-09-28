@@ -1,3 +1,13 @@
+Versão 0.9.9
+    GrafoGrafico
+        ✔ modoGrafico               - método que gerencia a criação do modografico
+        ✎ main                      - modificado para inserir 
+        ◬ InterfaceGrafica          - classe auxiliar para o grafo
+    README
+        ✎ documentação incrementada para o modografico
+    exemplosDeComandos
+        ✔ arquivo_modografico.txt   - adicionado
+
 Versão 0.9.8
     GrafoGrafico
         ✔ Criação da classe que dará suporte para a visua    

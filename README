@@ -588,12 +588,31 @@
 #
 #         O comando "modografico" retorna uma visualização do grafo no seu
 #         estado atual. Podendo ser chamado a qualquer momento entre as queries.
-#         O comando é unitário sendo assim:
+#         O comando é composto por três partes sendo assim:
 #           modografico
-#
+#           <WIDTH>  - int com a largura da janela
+#           <HEIGHT> - int com a comprimento da janela
+
+#         Observe que os parametros de largura e comprimento não são
+#         necessários caso a resolução que se espera seja 1024x768.
+#         -arquivo_modografico.txt---------------
+#         |	*vertices 6			|
+#         |	1 "vertice 1"			|
+#         |	2 "vertice 2"			|
+#         |	3 "vertice 3"			|
+#         |	4 "vertice 4"			|
+#         |	5 "vertice 5"			|
+#         |	6 "vertice 6"			|
+#         |	*queries			|
+#         |	modografico     		|
+#         |	@				|
+#         ---------------------------------------
+#         -Retorno-----------------------------------------------------------
+#         |  visualização do grafo                                          |
+#         -------------------------------------------------------------------
 #        Obs.: Caso o comando "modografico" seja executado em um grafo não
-#        gráfico o comando será simplesmente descartado, certifique-se de estar
-#        rodando um GrafoGrafico.
+#        gráfico (grafo.java) o comando será simplesmente descartado,
+#        certifique-se de estar rodando um GrafoGrafico.
 #           
 #   3.5 @
 #      O comando "@" é a condição de parada da leitura de comandos e encerra a 

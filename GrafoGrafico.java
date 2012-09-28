@@ -14,17 +14,11 @@ import javax.swing.JFrame;
 
 public class GrafoGrafico extends Grafo{
 
-    JFrame janela;
-    
     public GrafoGrafico(){    
         super();
-        janela = new JFrame();
-        janela.setVisible(false);
-        janela.setSize(1204, 686);
-        janela.setTitle("Grafico Gráfico!");
-        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
     }
-      
+
     /**
      * Método que faz a leitura de dados e faz o retonro
      *  de cada comando inserido
@@ -156,7 +150,20 @@ public class GrafoGrafico extends Grafo{
                                 break;  
                             }
                             case 9: {
-                                this.modoGrafico(raiz);
+                                int a, b;
+                                try{
+                                   a = Integer.parseInt(parteComando[1]);
+                                   b = Integer.parseInt(parteComando[2]);
+                                   if(a < 600)
+                                       a = 600;
+                                   if(b < 800)
+                                       b = 800;
+                                }catch(Exception e){
+
+                                }
+                                    a = 1204;
+                                    b = 768;
+                                this.modoGrafico(raiz,a,b);
                             }
                             default:{  
 
@@ -204,78 +211,110 @@ public class GrafoGrafico extends Grafo{
     
     
     
-    
-    public void modoGrafico(Vertice g){
-        
-        
-        mxGraph graph = new mxGraph();
-        final mxGraphComponent graphComponent = new mxGraphComponent(graph);
-        Object parent = graph.getDefaultParent();
-        Random random = new Random();
-        
-        graph.getModel().beginUpdate();
-        LinkedList<Object> aux = new LinkedList<Object>();
-        
-        //int totalVertices = g.getNumeroDeVertices();
-        
-        int verticesID[] = g.getListaDeVerticesID();
-        float[][][] posicao= new float[verticesID.length][2][1];
-        
-        for(int a=0; a < verticesID.length;a++){
-            
-        }
-        
-        
-        
-        int condicaoParada = 0;
-        janela.setVisible(true);
-        boolean parar = true;
-        
-        Vertice verticeDaVez;
-        Vertice verticeVizinho;
-        while(parar){
-                try {
-                        graph = new mxGraph();
-                        graph.getModel().beginUpdate();
-                        
-                        if(condicaoParada == 0){
-                            
-                            for (int i = 0; i < verticesID.length; i++) {
-                                posicao[i][0][0] = random.nextInt(1014);
-                                posicao[i][1][0] = random.nextInt(748);
-                                Object o = graph.insertVertex(parent, null, g.getVerticeExists(verticesID[i]).getNomeVertice(), posicao[i][0][0], posicao[i][1][0], 30, 30, "shape=ellipse;");
-                            }
-                            condicaoParada++;
-                        }else{
-                            for(int a=0; a < verticesID.length; a++){
-                                
-                                int[] visinhosID = g.getVizinhos(verticesID[a]);
-                                for(int i =0; i < visinhosID.length;i++){
-                                    
-                                }
-                            }
-                        }
-
-            } finally {
-
-                graph.getModel().endUpdate();
-                graphComponent.setGraph(graph);
-                graph.setMultigraph(false);
-                graph.setAllowDanglingEdges(false);
-                graphComponent.setConnectable(false);
-                graphComponent.setToolTips(false);
-                janela.getContentPane().add(graphComponent);
-            }
-        }
-        
-
-        
+    /**
+     * Método que cria o grafo segundo o seu estado atual
+     * @param Vertice grafo - rais do grafo
+     * @param int width
+     * @param int height 
+     */
+    public void modoGrafico(Vertice grafo, int width, int height){
+                InterfaceGrafica frame = new InterfaceGrafica(grafo,width,height);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(width, height);
+		frame.setVisible(true);
     }
     
     public static void main(String args[]){
         GrafoGrafico grafo = new GrafoGrafico();
         grafo.inicialize();
         grafo.lerComandos();
+    }
+    
+}
+/**
+ * Classe do JFrame do Grafo
+ *  serve apenas para a geração do grafo
+ * @author glaucoroberto
+ */
+class InterfaceGrafica extends JFrame {
+
+    private static final long serialVersionUID = -2707712944901661771L;
+
+    public InterfaceGrafica(Vertice g, int width, int height) {
+        super("Grafos");
+
+        /**
+         * Inicia o grafo
+         */
+        mxGraph graph = new mxGraph();
+        Object parent = graph.getDefaultParent();
+        graph.getModel().beginUpdate();
+        
+        /**
+         * Inicia apoios
+         */
+
+        int totalVertices = g.getNumeroDeVertices();
+        int[][] posicao= new int[totalVertices][3];
+        int pos = -1;
+        int verticeID1, verticeID2= 0;
+        Object vertice1, vertice2;
+        String[] nomes = new String[totalVertices];
+        LinkedList<Object> aux = new LinkedList<Object>();
+        Random random = new Random();
+        Vertice verticeTemp = g.getProximoVertice();
+        Aresta arestaTemp;
+        
+        /**
+         * Insere os vertices
+         */
+        while(verticeTemp != null){
+            pos++;
+            nomes[pos] = verticeTemp.getNomeVertice();
+            posicao[pos][0] = verticeTemp.getID();
+            posicao[pos][1] = random.nextInt(width);
+            posicao[pos][2] = random.nextInt(height);
+            verticeTemp = verticeTemp.getProximoVertice();
+            Object o = graph.insertVertex(parent, null, nomes[pos],posicao[pos][1], posicao[pos][2], 30, 30, "shape=ellipse;");
+        }
+        
+        /**
+         * Insere aresta
+         */
+        verticeTemp = g.getProximoVertice();
+        while(verticeTemp != null){
+            
+            arestaTemp = verticeTemp.getProximaAresta();
+            verticeID1 = verticeTemp.getID();
+            while(arestaTemp != null){
+                
+                verticeID2 = arestaTemp.getVerticeID();
+                //vertice1 = aux.get(verticeID1);
+                //vertice2 = aux.get(verticeID2);
+                
+                
+                arestaTemp = arestaTemp.getProximaAresta();
+            }
+            verticeTemp = verticeTemp.getProximoVertice();
+        }
+        
+        
+        
+        
+        
+        
+                
+        /**
+         * Finaliza o grafo para exibição
+         */        
+        graph.getModel().endUpdate();
+        final mxGraphComponent graphComponent = new mxGraphComponent(graph);
+        graph.setMultigraph(false);
+        graph.setAllowDanglingEdges(false);
+        graphComponent.setConnectable(false);
+        graphComponent.setToolTips(false);
+        getContentPane().add(graphComponent);
+
     }
     
 }
