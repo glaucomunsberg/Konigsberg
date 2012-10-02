@@ -1,3 +1,18 @@
+Versão 1.0
+    GrafoGrafico
+        ✎ modoGrafico       - inicia o grafico
+        ✎ InterfaceGrafica  - modificações profundas na classe interna para o funcionamento
+    Vertice
+        ✔ getObject         - retorna o object
+        ✔ setObject         - insere o object
+        ✔ getX              - retorna posicao X ao plano
+        ✔ getY              - retorna posicao Y ao plano
+        ✔ setXY             - insere posicao XY ao plano
+        ✔ setX              - insere posicao X ao plano
+        ✔ setY              - insere posicao Y ao plano
+        ✎ Vertice           - modificado para inserei object e XY
+     README
+        ✎ modificação na documentação para o comando modografico
 Versão 0.9.9
     GrafoGrafico
         ✔ modoGrafico               - método que gerencia a criação do modografico

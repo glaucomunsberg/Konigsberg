@@ -608,7 +608,7 @@
 #         |	@				|
 #         ---------------------------------------
 #         -Retorno-----------------------------------------------------------
-#         |  visualização do grafo                                          |
+#         |  visualização do grafo via janela                               |
 #         -------------------------------------------------------------------
 #        Obs.: Caso o comando "modografico" seja executado em um grafo não
 #        gráfico (grafo.java) o comando será simplesmente descartado,
@@ -676,7 +676,7 @@
 #       4.2.1 Configuração Mínima
 #               * Java 6
 #               * 256 RAM
-#               * 1024x768 resolução de tela
+#               * 800x600 resolução de tela
 #             Arquivos
 #               * com/ (biblioteca mxGraph)
 #               * Grafo.java

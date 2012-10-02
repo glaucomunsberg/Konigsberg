@@ -8,13 +8,14 @@ import java.util.LinkedList;
  * @author glaucoroberto
  */
 public class Vertice {
-
     private String nome;
     private int ID;
     private Aresta aresta;
     private Vertice proximoVertice;
     private static boolean isDirecionado;
     private static boolean isDirecionadoInseridoValor;
+    private Object object;
+    private int[] xy;
 
     /**
      * Criador do vertice raiz
@@ -23,6 +24,8 @@ public class Vertice {
         nome = "";
         ID = -1;
         proximoVertice = null;
+        this.object = null;
+        xy = new int[2];
     }
 
     /**
@@ -37,6 +40,8 @@ public class Vertice {
         this.ID = ID;
         this.aresta = aresta;
         this.proximoVertice = proximoVertice;
+        this.object = null;
+        this.xy = new int[2];
     }
 
     /**
@@ -47,9 +52,74 @@ public class Vertice {
         this.ID = vertice.ID;
         this.nome = vertice.nome;
         this.aresta = vertice.aresta;
-        this. proximoVertice = vertice.proximoVertice;
+        this.proximoVertice = vertice.proximoVertice;
+        this.xy = new int[2];
+        this.xy = vertice.xy;
+        this.object = vertice.object;
     }
-
+    
+    /**
+     * Método que retorna o objecto
+     *  sendo ele do tipo mxCell usado no
+     *  mxGraph
+     * @return object 
+     */
+    public Object getObject(){
+        return this.object;
+    }
+    
+    /**
+     * Retorna posição x do vertice no plano cartesiano
+     * 
+     * @return int x
+     */
+    public int getX(){
+        return xy[0];
+    }
+    
+    /**
+     * Retorna posição y do vertice no plano cartesiano
+     * 
+     * @return int y
+     */    
+    public int getY(){
+        return xy[1];
+    }
+    
+    
+   /**
+     * Insere object, sendo esse representando
+     * o vertice usado no mxGraph
+     * 
+     * @return int x
+     */
+    public void setObject(Object o){
+        this.object = o;
+    }
+    
+   /**
+     * Insere posição xy do vertice no plano cartesiano
+     * @param int[]xy
+     */
+    public void setXY( int[]xy){
+        this.xy = xy;
+    }
+    
+    /**
+     * Insere a posição x do vertice no plano carteisiano
+     * @param x 
+     */
+    public void setX(int x){
+        this.xy[0] = x;
+    }
+    
+    /**
+     *  Insere a posição y do vertice no plano cartesiano
+     * @param y 
+     */
+    public void setY(int y){
+        this.xy[1] = y;
+    }
     /**
      * Método de retorno do ID do vertice
      *
@@ -128,7 +198,7 @@ public class Vertice {
      *
      * @param Vertice vertice
      */
-    private void setProximoVertice(String nome, int verticeID){
+    protected void setProximoVertice(String nome, int verticeID){
         this.proximoVertice = new Vertice(nome, verticeID, null, this.proximoVertice);
     }
 

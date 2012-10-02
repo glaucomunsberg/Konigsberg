@@ -8,7 +8,6 @@
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Random;
 import javax.swing.JFrame;
 
@@ -18,7 +17,7 @@ public class GrafoGrafico extends Grafo{
         super();
         
     }
-
+    
     /**
      * Método que faz a leitura de dados e faz o retonro
      *  de cada comando inserido
@@ -154,10 +153,10 @@ public class GrafoGrafico extends Grafo{
                                 try{
                                    a = Integer.parseInt(parteComando[1]);
                                    b = Integer.parseInt(parteComando[2]);
-                                   if(a < 600)
-                                       a = 600;
-                                   if(b < 800)
-                                       b = 800;
+                                   if(b < 600)
+                                       b = 600;
+                                   if(a < 800)
+                                       a = 800;
                                 }catch(Exception e){
 
                                 }
@@ -222,6 +221,7 @@ public class GrafoGrafico extends Grafo{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(width, height);
 		frame.setVisible(true);
+                frame.inicializar();
     }
     
     public static void main(String args[]){
@@ -231,6 +231,7 @@ public class GrafoGrafico extends Grafo{
     }
     
 }
+
 /**
  * Classe do JFrame do Grafo
  *  serve apenas para a geração do grafo
@@ -239,76 +240,32 @@ public class GrafoGrafico extends Grafo{
 class InterfaceGrafica extends JFrame {
 
     private static final long serialVersionUID = -2707712944901661771L;
-
+    private Vertice g;
+    private int width;
+    private int height;
+    private mxGraph graph;
+    private Object parent;
+    mxGraphComponent graphComponent;
+    
     public InterfaceGrafica(Vertice g, int width, int height) {
         super("Grafos");
-
+        
+        this.g = g;
+        this.width = width;
+        this.height = height;
+        
         /**
          * Inicia o grafo
          */
-        mxGraph graph = new mxGraph();
-        Object parent = graph.getDefaultParent();
+        graph = new mxGraph();
+        parent = graph.getDefaultParent();
         graph.getModel().beginUpdate();
-        
-        /**
-         * Inicia apoios
-         */
 
-        int totalVertices = g.getNumeroDeVertices();
-        int[][] posicao= new int[totalVertices][3];
-        int pos = -1;
-        int verticeID1, verticeID2= 0;
-        Object vertice1, vertice2;
-        String[] nomes = new String[totalVertices];
-        LinkedList<Object> aux = new LinkedList<Object>();
-        Random random = new Random();
-        Vertice verticeTemp = g.getProximoVertice();
-        Aresta arestaTemp;
-        
-        /**
-         * Insere os vertices
-         */
-        while(verticeTemp != null){
-            pos++;
-            nomes[pos] = verticeTemp.getNomeVertice();
-            posicao[pos][0] = verticeTemp.getID();
-            posicao[pos][1] = random.nextInt(width);
-            posicao[pos][2] = random.nextInt(height);
-            verticeTemp = verticeTemp.getProximoVertice();
-            Object o = graph.insertVertex(parent, null, nomes[pos],posicao[pos][1], posicao[pos][2], 30, 30, "shape=ellipse;");
-        }
-        
-        /**
-         * Insere aresta
-         */
-        verticeTemp = g.getProximoVertice();
-        while(verticeTemp != null){
-            
-            arestaTemp = verticeTemp.getProximaAresta();
-            verticeID1 = verticeTemp.getID();
-            while(arestaTemp != null){
-                
-                verticeID2 = arestaTemp.getVerticeID();
-                //vertice1 = aux.get(verticeID1);
-                //vertice2 = aux.get(verticeID2);
-                
-                
-                arestaTemp = arestaTemp.getProximaAresta();
-            }
-            verticeTemp = verticeTemp.getProximoVertice();
-        }
-        
-        
-        
-        
-        
-        
-                
         /**
          * Finaliza o grafo para exibição
          */        
         graph.getModel().endUpdate();
-        final mxGraphComponent graphComponent = new mxGraphComponent(graph);
+        graphComponent = new mxGraphComponent(graph);
         graph.setMultigraph(false);
         graph.setAllowDanglingEdges(false);
         graphComponent.setConnectable(false);
@@ -317,4 +274,130 @@ class InterfaceGrafica extends JFrame {
 
     }
     
+    
+    public void algoritmoAtracaoRepulsao(){
+        
+        this.graph.refresh();
+        
+        this.graph.getModel().beginUpdate();
+        this.graph.getModel().endUpdate();
+        this.repaint();
+        
+        
+        graph.repaint();
+        
+        this.graphComponent = new mxGraphComponent(graph);
+        graph.setMultigraph(false);
+        graph.setAllowDanglingEdges(false);
+        this.graphComponent.setConnectable(false);
+        this.graphComponent.setToolTips(false);
+        getContentPane().add(graphComponent);
+        
+        Vertice verticeTemp = g.getProximoVertice();
+        Vertice verticeVizinho;
+        Aresta arestaTemp;
+        int[] vizinhosID;
+        int newX, newY;
+        int id;
+        
+       while(verticeTemp != null ){
+            id = verticeTemp.getID();
+            vizinhosID = g.getVizinhos(id);
+            System.out.printf("Tem %d vizinhos",vizinhosID.length);
+            for(int a=0; a < vizinhosID.length; a++){
+                
+                 verticeVizinho = g.getVerticeExists(vizinhosID[a]);
+                 newX = (verticeTemp.getX() + verticeVizinho.getX())/2; 
+                 newY = (verticeTemp.getY() + verticeVizinho.getY())/2;
+                 if ((newX < verticeTemp.getX()+30) || (newX < getX()+(-30))){
+                    verticeVizinho.setX(newX);
+                 } else {
+                    verticeVizinho.setX(verticeTemp.getX()+50);
+                 }
+                 if ((newY < verticeTemp.getY()+30) ||  (newY < getY()+(-30))){
+                    verticeVizinho.setY(newY);
+                 } else {
+                    verticeVizinho.setY(verticeTemp.getX()+50);
+                 }    
+            }
+
+            verticeTemp = verticeTemp.getProximoVertice();
+        }
+
+        
+        
+        /**
+         * Insere ao vertice posições aleatorias
+         */
+        verticeTemp = g.getProximoVertice();
+        
+        while(verticeTemp != null){
+            Object o = graph.insertVertex(parent, null, verticeTemp.getID() , verticeTemp.getY(),verticeTemp.getX(), 30, 30, "shape=ellipse;");
+            verticeTemp.setObject(o);
+            verticeTemp = verticeTemp.getProximoVertice();
+            
+        }
+        
+        /**
+         * Insere aresta segundo cada vertice
+         */
+        verticeTemp = g.getProximoVertice();
+        while(verticeTemp != null){
+            
+            arestaTemp = verticeTemp.getProximaAresta();
+            while(arestaTemp != null){
+                graph.insertEdge(parent, null, arestaTemp.getValor(), verticeTemp.getObject(), g.getVerticeExists(arestaTemp.getVerticeID()).getObject());                
+                arestaTemp = arestaTemp.getProximaAresta();
+            }
+            verticeTemp = verticeTemp.getProximoVertice();
+        }
+
+    }
+    
+    public void inicializar(){
+        graph.refresh();
+        graph.getModel().beginUpdate();
+        graph.getModel().endUpdate();
+        this.repaint();
+        
+        graph.getModel().endUpdate();
+        mxGraphComponent graphComponent = new mxGraphComponent(graph);
+        graph.setMultigraph(false);
+        graph.setAllowDanglingEdges(false);
+        graphComponent.setConnectable(false);
+        graphComponent.setToolTips(false);
+        getContentPane().add(graphComponent);
+        
+        
+        Random random = new Random();
+        Vertice verticeTemp = g.getProximoVertice();
+        Aresta arestaTemp;
+        
+        /**
+         * Insere ao vertice posições aleatorias
+         */
+        while(verticeTemp != null){
+            verticeTemp.setY(random.nextInt(width-30));
+            verticeTemp.setX(random.nextInt(height-30));
+            Object o = graph.insertVertex(parent, null, verticeTemp.getID() , verticeTemp.getY(),verticeTemp.getX(), 30, 30, "shape=ellipse;");
+            verticeTemp.setObject(o);
+            verticeTemp = verticeTemp.getProximoVertice();
+            
+        }
+        
+        /**
+         * Insere aresta segundo cada vertice
+         */
+        verticeTemp = g.getProximoVertice();
+        while(verticeTemp != null){
+            
+            arestaTemp = verticeTemp.getProximaAresta();
+            while(arestaTemp != null){
+                graph.insertEdge(parent, null, arestaTemp.getValor(), verticeTemp.getObject(), g.getVerticeExists(arestaTemp.getVerticeID()).getObject());                
+                arestaTemp = arestaTemp.getProximaAresta();
+            }
+            verticeTemp = verticeTemp.getProximoVertice();
+        }
+
+    }
 }
