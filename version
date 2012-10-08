@@ -13,6 +13,9 @@ Versão 1.0
         ✎ Vertice           - modificado para inserei object e XY
      README
         ✎ modificação na documentação para o comando modografico
+    casosDeTestes
+        ✔ casoDeTeste_simulacao_6.txt   - adicionado
+
 Versão 0.9.9
     GrafoGrafico
         ✔ modoGrafico               - método que gerencia a criação do modografico
@@ -408,7 +411,7 @@ Versão 0.0
 Problems to solve
 --------------------------------------------------------------------------------
 
-    ⌛ ordemTopologica tem que ser filtrada adequadamente se há ciclos
+    ⌛ Vide README
 
 --------------------------------------------------------------------------------
 Understanding the file 'version'

@@ -59,7 +59,7 @@
 #   O projeto Königsberg dividido em duas partes, sendo a primeira parte (1.1)
 #   programada por Glauco Roberto Munsberg dos Santos  e a segunda parte(1.2)
 #   programada por este e André Peil sendo o desenvolvimento ocorrido do período
-#   entre 3 de Julho de 2012 até 25 de Setembro de 2012. 
+#   entre 3 de Julho de 2012 até 08 de Setembro de 2012. 
 #   Para isso foi usado a linguagem de programação Java dando continuidade aos
 #   conceitos obtido através da Programação Orientação a Objeto, também
 #   disciplina na Ciência da Computação. 
@@ -139,9 +139,7 @@
 #     | @				|  3.6	 | 
 #     --------------------------------------------
 #
-#   Descrição de funcionalidade de
-#   http://avainstitucional.ufpel.edu.br/mod/assignment/view.php?id=25409
-#   cada comando:
+#   Descrição de funcionalidade de cada comando:
 #
 #   3.1 Grupos de Comandos
 #      Os comandos são divididos em três grupos definidos segundo a utilidade 
@@ -748,6 +746,11 @@
 #           Comando testado   : ordemtopologica
 #           Tempo de execução : 0m0.168s
 #
+#       Simulação 6
+#           Arquivo           : casoDeTeste_simulacao_6.txt
+#           Nº de Vertices    : 110
+#           Nº de Arestas     : 110
+#           Tempo de execução : 0m8.449s
 #       Obs.: Tempo de execução é desconsiderando o tempo utilizado pelo system.
 #
 #   5.2 Bugs e incoerências
@@ -781,6 +784,6 @@
 #   O trabalho apesar de chegar ao seus estado final para a cadeira de EDII
 #   vejo a conclusão dessa fase como sendo satisfatória, acredito que há ainda
 #   como continuar a desenvolver esse grafo para a utilização futura e até mesmo
-#   detectar os erros até então não solucionados (5.2).
+#   solucionar os erros até então não solucionados (5.2).
 #
 ################################################################################
