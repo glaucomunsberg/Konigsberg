@@ -221,7 +221,7 @@ public class Grafo{
                 switch(tipoComando){
                     case 0:
                         //QUERIE
-                        //try{
+                        try{
                            switch (caseHash.containsKey(parteComando[0]) ? caseHash.get(parteComando[0]) : -1) { 
                             case 1: {
                                 // Get Vertice
@@ -266,10 +266,10 @@ public class Grafo{
 
                             }  
                             }  
-                        //}
-                        //catch(Exception eee){
+                        }
+                            catch(Exception eee){
                             
-                        //}
+                        }
                         break;
                     case 1:
                         //VERTICE

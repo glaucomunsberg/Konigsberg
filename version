@@ -1,3 +1,10 @@
+Versão 1.0.1
+    Grafo
+        ✎ lerComandos   - tratamento de excessão
+     README
+        ✎ modificação pontuais
+    casosDeTestes
+        ✔ casoDeTeste_incoerencai_1.txt   - adicionado
 Versão 1.0
     GrafoGrafico
         ✎ modoGrafico       - inicia o grafico

@@ -11,7 +11,7 @@
 #
 # @autor   Glauco Roberto Munsberg dos Santos
 # @github  git@github.com:glaucomunsberg/Konigsberg.git
-# @version 0.4.5
+# @version 1.0.1
 #
 ################################################################################
 # 1.Introduçao
@@ -545,7 +545,7 @@
 #          <ID2> - Índice do vértice destino
 #
 #         Para isso deve-se assegurar duas condições:
-#           * Que o grafo seja não direcionado, do tipo *arcs;
+#           * Que o grafo seja não direcionado
 #           * Que o grafo seja conexo;
 #         -arquivo_menorcaminho.txt--------------
 #         |	*vertices 6			|
@@ -755,7 +755,7 @@
 #
 #   5.2 Bugs e incoerências
 #       Abaixo estão listados alguns bugs encontrados segundo cada caso de teste
-#       realizado que resultou em algum tipo de erro ou inconstância.
+#       realizado que resultou em algum tipo de erro ou incoerências aparente.
 #
 #       Bug 1
 #           Arquivo : casoDeTeste_error_0.txt
@@ -775,7 +775,21 @@
 #                     causa desse problema acredito estar ligado a esse grafo
 #                     pois não tenho condições de examiná-lo se possúi ciclo
 #                     devido a sua complexidade de mais de 100 vértices.
+#                     Obs.: Devido ao tratamento de erro, a mensagem
+#                     'NullPinterException' é suprimida pelo tratamento de
+                      exception que ocorre na linha 224 do arquivo Grafo.java
 #           Ocorre  : Em apenas alguns grafos extensos.
+#
+#       Incoerências 1
+#           Arquivo : casoDeTeste_incoerencia_1.txt
+#           Comando : menorcaminho
+#           Erro    : O comando trás com sucesso o custo, porém se constata uma
+#                     incoerência. O grafo do arquivo é o mesmo do
+#                     casoDeTeste_simulacao_3.txt sendo a única diferença é que
+#                     este é *arcs e o do simulação é *edges. Entretanto o 
+#                     resultado é deferente e o valor é negativo. O que se
+#                     esperava era o mesmo resultado. A mesma incoerência foi
+#                     dectado rodando no grafo de outro colega.
 #
 ################################################################################
 # 6.Conclusão
